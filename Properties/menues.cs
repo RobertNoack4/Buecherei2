@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using ConsoleTables;
 
 namespace Buecherei.Properties
 {
@@ -78,12 +79,52 @@ namespace Buecherei.Properties
 
         private static void BuecherAnzeigen()
         {
+            string author;
+            string title;
+            int pages;
+            int index = 1;
+            var table = new ConsoleTable("Index","Author", "Title", "Seiten");
             List<Buch> alleBuecher = Listen.BuchListeAusgeben();
+
 
             foreach (Buch buch in alleBuecher)
             {
-                Console.WriteLine(buch.Author);
+                author = buch.Author;
+                title = buch.Title;
+                pages = buch.Pages;
+
+                table.AddRow(index, author, title, pages);
+                index++;
             }
+            Console.WriteLine(table);
+            Console.WriteLine("Geben sie die Index Nummer ein um mehr Informationen zu dem Buch zu erhalten oder Z um ins Hauptmenue zu gelangen");
+            string eingabe = Console.ReadLine();
+            if (eingabe == "Z" || eingabe== "z")
+            {
+                return;
+            }
+            else
+            {
+                int genauereInfos = Controller.EingabeZahlPruefung(alleBuecher.Count, eingabe);
+                AlleInfosBuch(genauereInfos);
+            }
+        }
+
+        public static void AlleInfosBuch(int index)
+        {
+            List<Buch> alleBuecher = Listen.BuchListeAusgeben();
+            Buch aktuellesBuch = alleBuecher[index - 1];
+            var table = new ConsoleTable("Name", "Wert");
+            table.AddRow("Author", aktuellesBuch.Author);
+            table.AddRow("Title", aktuellesBuch.Title);
+            table.AddRow("Erscheinungsjahr", aktuellesBuch.Year);
+            table.AddRow("Land", aktuellesBuch.Country);
+            table.AddRow("Sprache", aktuellesBuch.Language);
+            table.AddRow("Seitenanzahl", aktuellesBuch.Pages);
+            table.AddRow("Link zu Wikipedia", aktuellesBuch.Link);
+            table.AddRow("Link zum Cover", aktuellesBuch.ImageLink);
+            
+            Console.WriteLine(table);
         }
     }
 }

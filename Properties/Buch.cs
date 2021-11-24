@@ -6,9 +6,9 @@ namespace Buecherei.Properties
     {
         public string Author {  get; private set; }
         public string Country { get; private set; }
-        private string ImageLink { get; set; }
+        public string ImageLink { get; set; }
         public string Language { get; private set; }
-        private string Link { get; set; }
+        public string Link { get; set; }
         public int Pages { get; private set; }
         public string Title { get; private set; }
         public int Year { get; private set; }
