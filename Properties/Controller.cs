@@ -30,6 +30,7 @@ namespace Buecherei.Properties
                     }
                 }
             } while (fehler);
+
             return probe;
         }
 
@@ -63,6 +64,44 @@ namespace Buecherei.Properties
             } while (fehler);
 
             return probe;
+        }
+
+        public static bool JaNeinTest()
+        {
+            do
+            {
+                ConsoleKeyInfo keyInfo = new ConsoleKeyInfo();
+                keyInfo = Console.ReadKey(true);
+                if (keyInfo.Key == ConsoleKey.Y)
+                {
+                    return true;
+                }
+                else if (keyInfo.Key == ConsoleKey.N)
+                {
+                    return false;
+                }
+                else
+                {
+                    Console.WriteLine("Bitte geben sie entweder Y oder N ein!");
+                }
+
+            } while (true);
+        }
+
+        public static bool EnterGedrueckt()
+        {
+            ConsoleKeyInfo keyInfo = new ConsoleKeyInfo();
+            keyInfo = Console.ReadKey(true);
+
+            if (keyInfo.Key == ConsoleKey.Enter)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
         }
     }
 }

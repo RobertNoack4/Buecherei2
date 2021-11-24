@@ -18,6 +18,8 @@ namespace Buecherei.Properties
                 foreach (Buch buch in listBuecher)
                 {
                     Listen.BuchHinzufuegen(buch);
+                    Konstruktoren.ExemplarErstellen(buch, true);
+                    Konstruktoren.ExemplarErstellen(buch, true);
                 }
             }
         }

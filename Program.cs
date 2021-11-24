@@ -6,7 +6,7 @@ namespace Buecherei
     {
         public static void Main(string[] args)
         {
-            Listen.BuchInit();
+            Listen.ListenInit();
             Json.LoadJsonBuch();
             Menues.Hauptmenue();
         }   
