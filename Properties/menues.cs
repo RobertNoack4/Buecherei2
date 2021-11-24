@@ -78,11 +78,16 @@ namespace Buecherei.Properties
 
         private static void BuecherAnzeigen()
         {
+            string author;
+            string title;
+            int pages;
             List<Buch> alleBuecher = Listen.BuchListeAusgeben();
 
             foreach (Buch buch in alleBuecher)
             {
-                Console.WriteLine(buch.Author);
+                author = buch.Author;
+                title = buch.Title;
+                pages = buch.Pages;
             }
         }
     }
