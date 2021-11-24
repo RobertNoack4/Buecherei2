@@ -6,6 +6,7 @@ namespace Buecherei
     {
         public static void Main(string[] args)
         {
+            Listen.BuchInit();
             Menues.Hauptmenue();
         }   
     }
