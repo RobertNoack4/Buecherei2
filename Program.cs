@@ -1,9 +1,12 @@
-﻿namespace Buecherei
+﻿using Buecherei.Properties;
+
+namespace Buecherei
 {
     internal class Program
     {
         public static void Main(string[] args)
         {
-        }
+            Menues.Hauptmenue();
+        }   
     }
 }
