@@ -149,10 +149,9 @@ namespace Buecherei.Properties
                     }
                 } while (!sicher);
             } 
-            Console.WriteLine("aktueller Titel ist: " + buch.Title);
+            Console.WriteLine("aktuelles Erscheinungsjahr ist: " + buch.Year);
             if (!Controller.EnterGedrueckt())
             {
-
                 do
                 {
                     sicher = false;
@@ -168,12 +167,9 @@ namespace Buecherei.Properties
                     }
                 } while (!sicher);
             }
-            Console.WriteLine("aktueller Titel ist: " + buch.Title);
+            Console.WriteLine("aktuelles Land ist: " + buch.Country);
             if (!Controller.EnterGedrueckt())
             {
-
-
-
                 do
                 {
                     sicher = false;
@@ -188,7 +184,7 @@ namespace Buecherei.Properties
                     }
                 } while (!sicher);
             }
-            Console.WriteLine("aktueller Titel ist: " + buch.Title);
+            Console.WriteLine("aktuelle Sprache ist: " + buch.Language);
             if (!Controller.EnterGedrueckt())
             {
                 do
@@ -205,7 +201,7 @@ namespace Buecherei.Properties
                     }
                 } while (!sicher);
             } 
-            Console.WriteLine("aktueller Titel ist: " + buch.Title);
+            Console.WriteLine("aktuelle Seitenanzahl ist: " + buch.Pages);
             if (!Controller.EnterGedrueckt())
             {
                 do
@@ -223,7 +219,7 @@ namespace Buecherei.Properties
                     }
                 } while (!sicher);
             }
-            Console.WriteLine("aktueller Titel ist: " + buch.Title);
+            Console.WriteLine("aktueller Link zu Wikipedia ist: " + buch.Link);
             if (!Controller.EnterGedrueckt())
             {
                 do
@@ -240,7 +236,7 @@ namespace Buecherei.Properties
                     }
                 } while (!sicher);
             } 
-            Console.WriteLine("aktueller Titel ist: " + buch.Title);
+            Console.WriteLine("aktueller Link zum Cover ist: " + buch.ImageLink);
             if (!Controller.EnterGedrueckt())
             {
 
