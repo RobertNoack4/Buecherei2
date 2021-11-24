@@ -1,0 +1,802 @@
+[
+  {
+    "Rang": 1,
+    "Titel": "ADAC Motorwelt",
+    "Auflage": "13.705.032",
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Motorpresse",
+    "Verlag / Herausgeber": "ADAC"
+  },
+  {
+    "Rang": 2,
+    "Titel": "Apotheken-Umschau",
+    "Auflage": "9.616.642",
+    "Gruppe": "Kunden",
+    "Sachgruppe": "Apotheken/Medizin/Gesundheit",
+    "Verlag / Herausgeber": "Wort & Bild Verlag"
+  },
+  {
+    "Rang": 3,
+    "Titel": "Bleibgesund",
+    "Auflage": "6.423.491",
+    "Gruppe": "Kunden",
+    "Sachgruppe": "Medizin/Gesundheit",
+    "Verlag / Herausgeber": "wdv-Gruppe"
+  },
+  {
+    "Rang": 4,
+    "Titel": "bleibgesund 60",
+    "Auflage": "3.192.922",
+    "Gruppe": "Kunden",
+    "Sachgruppe": "Medizin/Gesundheit",
+    "Verlag / Herausgeber": "wdv-Gruppe"
+  },
+  {
+    "Rang": 5,
+    "Titel": "tv14",
+    "Auflage": "2.389.661",
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Programmzeitschriften",
+    "Verlag / Herausgeber": "Bauer Media Group"
+  },
+  {
+    "Rang": 6,
+    "Titel": "metallzeitung",
+    "Auflage": "2.227.205",
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Aktuelle Zeitschriften und Magazine",
+    "Verlag / Herausgeber": "IG Metall"
+  },
+  {
+    "Rang": 7,
+    "Titel": "ver.di PUBLIK",
+    "Auflage": "1.899.122",
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Sonstige Zeitschriften National",
+    "Verlag / Herausgeber": "ver.di"
+  },
+  {
+    "Rang": 8,
+    "Titel": "TV Digital",
+    "Auflage": "1.771.022",
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Programmzeitschriften",
+    "Verlag / Herausgeber": "Funke Mediengruppe"
+  },
+  {
+    "Rang": 9,
+    "Titel": "Ratgeber/Meine Apotheke",
+    "Auflage": "1.728.602",
+    "Gruppe": "Kunden",
+    "Sachgruppe": "Apotheken/Medizin/Gesundheit",
+    "Verlag / Herausgeber": "Gebr. Storck GmbH & Co. Verlags-oHG"
+  },
+  {
+    "Rang": 10,
+    "Titel": "Senioren Ratgeber",
+    "Auflage": "1.727.317",
+    "Gruppe": "Kunden",
+    "Sachgruppe": "Apotheken/Medizin/Gesundheit",
+    "Verlag / Herausgeber": "Wort & Bild Verlag"
+  },
+  {
+    "Rang": 11,
+    "Titel": "Mit Liebe - Das Genussmagazin",
+    "Auflage": "1.668.550",
+    "Gruppe": "Kunden",
+    "Sachgruppe": "Lebensmittel/Kochen/Haushalt",
+    "Verlag / Herausgeber": "EDEKA Verlagsgesellschaft mbH"
+  },
+  {
+    "Rang": 12,
+    "Titel": "Das Haus",
+    "Auflage": "1.598.049",
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Wohn- und Gartenzeitschriften",
+    "Verlag / Herausgeber": "Hubert Burda Media"
+  },
+  {
+    "Rang": 13,
+    "Titel": "Mein Eigenheim, Wohnen & Leben",
+    "Auflage": "1.586.533",
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Wohn- und Gartenzeitschriften",
+    "Verlag / Herausgeber": "J.Fink Verlag GmbH & Co. KG"
+  },
+  {
+    "Rang": 14,
+    "Titel": "VdK-Zeitung",
+    "Auflage": "1.559.980",
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Aktuelle Zeitschriften und Magazine",
+    "Verlag / Herausgeber": "Sozialverband VdK Deutschland"
+  },
+  {
+    "Rang": 15,
+    "Titel": "medizini",
+    "Auflage": "1.491.475",
+    "Gruppe": "Kunden",
+    "Sachgruppe": "Apotheken/Medizin/Gesundheit",
+    "Verlag / Herausgeber": "Wort & Bild Verlag"
+  },
+  {
+    "Rang": 16,
+    "Titel": "Wohnglück",
+    "Auflage": "1.404.263",
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Wohn- und Gartenzeitschriften",
+    "Verlag / Herausgeber": "BELLEVUE AND MORE GmbH"
+  },
+  {
+    "Rang": 17,
+    "Titel": "Diabetes Ratgeber",
+    "Auflage": "1.200.450",
+    "Gruppe": "Kunden",
+    "Sachgruppe": "Apotheken/Medizin/Gesundheit",
+    "Verlag / Herausgeber": "Wort & Bild Verlag"
+  },
+  {
+    "Rang": 18,
+    "Titel": "TV Direkt",
+    "Auflage": "1.185.933",
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Programmzeitschriften",
+    "Verlag / Herausgeber": "Funke Mediengruppe"
+  },
+  {
+    "Rang": 19,
+    "Titel": "TV-Movie",
+    "Auflage": "1.166.838",
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Programmzeitschriften",
+    "Verlag / Herausgeber": "Bauer Media Group"
+  },
+  {
+    "Rang": 20,
+    "Titel": "Hörzu",
+    "Auflage": "1.125.985",
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Programmzeitschriften",
+    "Verlag / Herausgeber": "Funke Mediengruppe"
+  },
+  {
+    "Rang": 21,
+    "Titel": "vigo Gesundheit - Das Kundenmagazin",
+    "Auflage": "1.121.050",
+    "Gruppe": "Kunden",
+    "Sachgruppe": "Medizin/Gesundheit",
+    "Verlag / Herausgeber": "wdv-Gruppe"
+  },
+  {
+    "Rang": 22,
+    "Titel": "Johanniter",
+    "Auflage": "1.106.507",
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Gesundheitsmagazine",
+    "Verlag / Herausgeber": "Die Johanniter"
+  },
+  {
+    "Rang": 23,
+    "Titel": "ASB Magazin",
+    "Auflage": "1.104.904",
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Gesundheitsmagazine",
+    "Verlag / Herausgeber": "Arbeiter-Samariter-Bund Deutschland"
+  },
+  {
+    "Rang": 24,
+    "Titel": "Wohnen - Das Magazin für Bauen, Einrichten & Lebensart",
+    "Auflage": "1.056.140",
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Wohn- und Gartenzeitschriften",
+    "Verlag / Herausgeber": "HMC Verlag Hamburg Media Company GmbH"
+  },
+  {
+    "Rang": 25,
+    "Titel": "Landlust – Die schönsten Seiten des Landlebens",
+    "Auflage": "1.040.119",
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Wohn- und Gartenzeitschriften",
+    "Verlag / Herausgeber": "Landwirtschaftsverlag Münster"
+  },
+  {
+    "Rang": 26,
+    "Titel": "on job",
+    "Auflage": "1.009.720",
+    "Gruppe": "Kunden",
+    "Sachgruppe": "Medizin/Gesundheit",
+    "Verlag / Herausgeber": "wdv-Gruppe"
+  },
+  {
+    "Rang": 27,
+    "Titel": "Neue Apotheken Illustrierte",
+    "Auflage": "1.007.370",
+    "Gruppe": "Kunden",
+    "Sachgruppe": "Apotheken/Medizin/Gesundheit",
+    "Verlag / Herausgeber": "Bundesvereinigung Deutscher Apothekerverbände"
+  },
+  {
+    "Rang": 28,
+    "Titel": "TV Spielfilm",
+    "Auflage": 934.291,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Programmzeitschriften",
+    "Verlag / Herausgeber": "Hubert Burda Media"
+  },
+  {
+    "Rang": 29,
+    "Titel": "Auf einen Blick",
+    "Auflage": 921.049,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Programmzeitschriften",
+    "Verlag / Herausgeber": "Bauer Media Group"
+  },
+  {
+    "Rang": 30,
+    "Titel": "Schrot & Korn Naturkostmagazin",
+    "Auflage": 888.063,
+    "Gruppe": "Kunden",
+    "Sachgruppe": "Lebensmittel",
+    "Verlag / Herausgeber": "Bio Verlag GmbH"
+  },
+  {
+    "Rang": 31,
+    "Titel": "Der Spiegel",
+    "Auflage": 843.085,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Aktuelle Zeitschriften und Magazine",
+    "Verlag / Herausgeber": "SPIEGEL-Verlag"
+  },
+  {
+    "Rang": 32,
+    "Titel": "Bild der Frau",
+    "Auflage": 832.226,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Wöchentliche Frauenzeitschriften",
+    "Verlag / Herausgeber": "Funke Mediengruppe"
+  },
+  {
+    "Rang": 33,
+    "Titel": "extra / tour",
+    "Auflage": 774.431,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Reisezeitschriften",
+    "Verlag / Herausgeber": "Deutsches Jugendherbergswerk"
+  },
+  {
+    "Rang": 34,
+    "Titel": "Freizeit Revue",
+    "Auflage": 764.162,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Wöchentliche Frauenzeitschriften",
+    "Verlag / Herausgeber": "Hubert Burda Media"
+  },
+  {
+    "Rang": 35,
+    "Titel": "Baby und Familie",
+    "Auflage": 749.425,
+    "Gruppe": "Kunden",
+    "Sachgruppe": "Apotheken/Medizin/Gesundheit",
+    "Verlag / Herausgeber": "Wort & Bild Verlag"
+  },
+  {
+    "Rang": 36,
+    "Titel": "KONPRESS",
+    "Auflage": 731.664,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Konfessionelle Zeitschriften",
+    "Verlag / Herausgeber": "KONPRESS-Medien eG"
+  },
+  {
+    "Rang": 37,
+    "Titel": "Stern",
+    "Auflage": 725.959,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Aktuelle Zeitschriften und Magazine",
+    "Verlag / Herausgeber": "Gruner + Jahr"
+  },
+  {
+    "Rang": 38,
+    "Titel": "JUNIOR Kinderzeitschriften",
+    "Auflage": 679.795,
+    "Gruppe": "Kunden",
+    "Sachgruppe": "Apotheken/Medizin/Gesundheit",
+    "Verlag / Herausgeber": ""
+  },
+  {
+    "Rang": 39,
+    "Titel": "on",
+    "Auflage": 654.628,
+    "Gruppe": "Kunden",
+    "Sachgruppe": "Medizin/Gesundheit",
+    "Verlag / Herausgeber": "wdv-Gruppe"
+  },
+  {
+    "Rang": 40,
+    "Titel": "TV Hören und Sehen",
+    "Auflage": 653.399,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Programmzeitschriften",
+    "Verlag / Herausgeber": "Bauer Media Group"
+  },
+  {
+    "Rang": 41,
+    "Titel": "MieterZeitung",
+    "Auflage": 643.231,
+    "Gruppe": "Kunden",
+    "Sachgruppe": "Sonstige",
+    "Verlag / Herausgeber": "Deutscher Mieterbund"
+  },
+  {
+    "Rang": 42,
+    "Titel": "Kompakt",
+    "Auflage": 639.69,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Sonstige Zeitschriften National",
+    "Verlag / Herausgeber": "IG Bergbau, Chemie, Energie"
+  },
+  {
+    "Rang": 43,
+    "Titel": "DAV Panorama",
+    "Auflage": 638.493,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Sportzeitschriften",
+    "Verlag / Herausgeber": "Deutscher Alpenverein"
+  },
+  {
+    "Rang": 44,
+    "Titel": "NurTV",
+    "Auflage": 618.623,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Programmzeitschriften",
+    "Verlag / Herausgeber": "Funke Mediengruppe"
+  },
+  {
+    "Rang": 45,
+    "Titel": "Neue Post",
+    "Auflage": 613.572,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Wöchentliche Frauenzeitschriften",
+    "Verlag / Herausgeber": "Bauer Media Group"
+  },
+  {
+    "Rang": 46,
+    "Titel": "ACE-Lenkrad",
+    "Auflage": 580.877,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Motorpresse",
+    "Verlag / Herausgeber": "Auto Club Europa"
+  },
+  {
+    "Rang": 47,
+    "Titel": "Der Vermögensberater",
+    "Auflage": 564.27,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Wirtschaftspresse",
+    "Verlag / Herausgeber": "Deutsche Vermögensberatung"
+  },
+  {
+    "Rang": 48,
+    "Titel": "tv pur",
+    "Auflage": 561.959,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Programmzeitschriften",
+    "Verlag / Herausgeber": "Bauer Media Group"
+  },
+  {
+    "Rang": 49,
+    "Titel": "DBB-Magazin",
+    "Auflage": 542.491,
+    "Gruppe": "Fach",
+    "Sachgruppe": "Recht und Verwaltung",
+    "Verlag / Herausgeber": "dbb beamtenbund und tarifunion"
+  },
+  {
+    "Rang": 50,
+    "Titel": "Fondsmagazin",
+    "Auflage": 538.389,
+    "Gruppe": "Kunden",
+    "Sachgruppe": "Finanzdienstleistungen",
+    "Verlag / Herausgeber": ""
+  },
+  {
+    "Rang": 51,
+    "Titel": "Brigitte",
+    "Auflage": 533.661,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "14-tägliche Frauenzeitschriften",
+    "Verlag / Herausgeber": "Gruner + Jahr"
+  },
+  {
+    "Rang": 52,
+    "Titel": "rotkreuzmagazin für Mitglieder, Freunde und",
+    "Auflage": 531.254,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Gesundheitsmagazine",
+    "Verlag / Herausgeber": ""
+  },
+  {
+    "Rang": 53,
+    "Titel": "Bunte",
+    "Auflage": 519.57,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Aktuelle Zeitschriften und Magazine",
+    "Verlag / Herausgeber": "Hubert Burda Media"
+  },
+  {
+    "Rang": 54,
+    "Titel": "Focus",
+    "Auflage": 508.489,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Aktuelle Zeitschriften und Magazine",
+    "Verlag / Herausgeber": "Hubert Burda Media"
+  },
+  {
+    "Rang": 55,
+    "Titel": "HausArzt - PatientenMagazin",
+    "Auflage": 479.45,
+    "Gruppe": "Kunden",
+    "Sachgruppe": "Apotheken/Medizin/Gesundheit",
+    "Verlag / Herausgeber": "Wort & Bild Verlag"
+  },
+  {
+    "Rang": 56,
+    "Titel": "Frau und Mutter",
+    "Auflage": 474.649,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Monatliche Frauenzeitschriften",
+    "Verlag / Herausgeber": "Katholische Frauengemeinschaft Deutschlands"
+  },
+  {
+    "Rang": 57,
+    "Titel": "Auto Bild",
+    "Auflage": 461.539,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Motorpresse",
+    "Verlag / Herausgeber": "Axel Springer"
+  },
+  {
+    "Rang": 58,
+    "Titel": "mkv Apotheken-Kombi TV Gesund & Leben, LindaMagazin",
+    "Auflage": 458.807,
+    "Gruppe": "Kunden",
+    "Sachgruppe": "Apotheken/Medizin/Gesundheit",
+    "Verlag / Herausgeber": "mkv medienkontor Verlagsgesellschaft mbH & Co. KG"
+  },
+  {
+    "Rang": 59,
+    "Titel": "Funk Uhr",
+    "Auflage": 453.55,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Programmzeitschriften",
+    "Verlag / Herausgeber": "Axel Springer"
+  },
+  {
+    "Rang": 60,
+    "Titel": "eve Magazin",
+    "Auflage": 441.139,
+    "Gruppe": "Kunden",
+    "Sachgruppe": "Lebensmittel",
+    "Verlag / Herausgeber": "TERRITORY CTR GmbH"
+  },
+  {
+    "Rang": 61,
+    "Titel": "Das Neue Blatt",
+    "Auflage": 433.918,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Wöchentliche Frauenzeitschriften",
+    "Verlag / Herausgeber": "Bauer Media Group"
+  },
+  {
+    "Rang": 62,
+    "Titel": "Freizeitwoche",
+    "Auflage": 427.633,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Wöchentliche Frauenzeitschriften",
+    "Verlag / Herausgeber": "Bauer Media Group"
+  },
+  {
+    "Rang": 63,
+    "Titel": "vigo GESUNDHEIT 65",
+    "Auflage": 425.688,
+    "Gruppe": "Kunden",
+    "Sachgruppe": "Medizin/Gesundheit",
+    "Verlag / Herausgeber": ""
+  },
+  {
+    "Rang": 64,
+    "Titel": "SoVD Zeitung - Soziales im Blick",
+    "Auflage": 410.809,
+    "Gruppe": "Fach",
+    "Sachgruppe": "Sonstige",
+    "Verlag / Herausgeber": ""
+  },
+  {
+    "Rang": 65,
+    "Titel": "Tina",
+    "Auflage": 403.493,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Wöchentliche Frauenzeitschriften",
+    "Verlag / Herausgeber": "Bauer Media Group"
+  },
+  {
+    "Rang": 66,
+    "Titel": "Reader´s Digest Das Beste",
+    "Auflage": 401.698,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Aktuelle Zeitschriften und Magazine",
+    "Verlag / Herausgeber": "Reader’s Digest Association"
+  },
+  {
+    "Rang": 67,
+    "Titel": "Vorwärts",
+    "Auflage": 394.892,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Sonstige Zeitschriften National",
+    "Verlag / Herausgeber": "Sozialdemokratische Partei Deutschlands"
+  },
+  {
+    "Rang": 68,
+    "Titel": "Meine Familie & ich",
+    "Auflage": 390.339,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Esszeitschriften",
+    "Verlag / Herausgeber": ""
+  },
+  {
+    "Rang": 69,
+    "Titel": "Fernsehwoche",
+    "Auflage": 388.28,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Programmzeitschriften",
+    "Verlag / Herausgeber": "Bauer Media Group"
+  },
+  {
+    "Rang": 70,
+    "Titel": "Die Aktuelle",
+    "Auflage": 369.428,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Wöchentliche Frauenzeitschriften",
+    "Verlag / Herausgeber": "FUNKE Women Group GmbH"
+  },
+  {
+    "Rang": 71,
+    "Titel": "Freundin",
+    "Auflage": 366.039,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "14-tägliche Frauenzeitschriften",
+    "Verlag / Herausgeber": "Hubert Burda Media"
+  },
+  {
+    "Rang": 72,
+    "Titel": "Sport Bild",
+    "Auflage": 357.91,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Sportzeitschriften",
+    "Verlag / Herausgeber": "Axel Springer"
+  },
+  {
+    "Rang": 73,
+    "Titel": "Familienheim und Garten",
+    "Auflage": 357.712,
+    "Gruppe": "Fach",
+    "Sachgruppe": "Freizeit und Hobby",
+    "Verlag / Herausgeber": ""
+  },
+  {
+    "Rang": 74,
+    "Titel": "InStyle",
+    "Auflage": 357.418,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Monatliche Frauenzeitschriften",
+    "Verlag / Herausgeber": "Hubert Burda Media"
+  },
+  {
+    "Rang": 75,
+    "Titel": "Freizeit Spass",
+    "Auflage": 356.487,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Wöchentliche Frauenzeitschriften",
+    "Verlag / Herausgeber": "Hubert Burda Media"
+  },
+  {
+    "Rang": 76,
+    "Titel": "auto motor und sport",
+    "Auflage": 352.622,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Motorpresse",
+    "Verlag / Herausgeber": "Motor Presse Stuttgart"
+  },
+  {
+    "Rang": 77,
+    "Titel": "Deutsches Ärzteblatt",
+    "Auflage": 351.982,
+    "Gruppe": "Fach",
+    "Sachgruppe": "Medizin und Gesundheitswesen",
+    "Verlag / Herausgeber": "Deutscher Ärzte-Verlag"
+  },
+  {
+    "Rang": 78,
+    "Titel": "Laviva",
+    "Auflage": 335.934,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Monatliche Frauenzeitschriften",
+    "Verlag / Herausgeber": "Axel Springer Vertriebsservice GmbH"
+  },
+  {
+    "Rang": 79,
+    "Titel": "mein schönes Land",
+    "Auflage": 335.33,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Wohn- und Gartenzeitschriften",
+    "Verlag / Herausgeber": ""
+  },
+  {
+    "Rang": 80,
+    "Titel": "Computer Bild",
+    "Auflage": 334.72,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "IT-/Telekommunikationszeitschriften",
+    "Verlag / Herausgeber": "Axel Springer"
+  },
+  {
+    "Rang": 81,
+    "Titel": "TV für mich",
+    "Auflage": 334.4,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Programmzeitschriften",
+    "Verlag / Herausgeber": "Gong Verlag"
+  },
+  {
+    "Rang": 82,
+    "Titel": "Lufthansa Magazin Exclusive",
+    "Auflage": 317.446,
+    "Gruppe": "Kunden",
+    "Sachgruppe": "Reisen/Verkehrsgesellschaften",
+    "Verlag / Herausgeber": ""
+  },
+  {
+    "Rang": 83,
+    "Titel": "Gala",
+    "Auflage": 315.745,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Aktuelle Zeitschriften und Magazine",
+    "Verlag / Herausgeber": "Gruner + Jahr"
+  },
+  {
+    "Rang": 84,
+    "Titel": "Glamour",
+    "Auflage": 314.832,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Monatliche Frauenzeitschriften",
+    "Verlag / Herausgeber": "Condé Nast Verlag"
+  },
+  {
+    "Rang": 85,
+    "Titel": "SUPERillu",
+    "Auflage": 314.807,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Aktuelle Zeitschriften und Magazine",
+    "Verlag / Herausgeber": "Hubert Burda Media"
+  },
+  {
+    "Rang": 86,
+    "Titel": "Gartenfreund/Siedlung und Eigenheim",
+    "Auflage": 314.601,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Wohn- und Gartenzeitschriften",
+    "Verlag / Herausgeber": ""
+  },
+  {
+    "Rang": 87,
+    "Titel": "Naturschutz heute",
+    "Auflage": 313.871,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Naturzeitschriften",
+    "Verlag / Herausgeber": "NABU Media-Agentur"
+  },
+  {
+    "Rang": 88,
+    "Titel": "Für Sie",
+    "Auflage": 307.31,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "14-tägliche Frauenzeitschriften",
+    "Verlag / Herausgeber": "Jahreszeiten Verlag"
+  },
+  {
+    "Rang": 89,
+    "Titel": "Deutsches Ärzteblatt Kombi Praxis/Klinik",
+    "Auflage": 297.952,
+    "Gruppe": "Fach",
+    "Sachgruppe": "Medizin und Gesundheitswesen",
+    "Verlag / Herausgeber": ""
+  },
+  {
+    "Rang": 90,
+    "Titel": "Mein schöner Garten",
+    "Auflage": 297.636,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Wohn- und Gartenzeitschriften",
+    "Verlag / Herausgeber": "Hubert Burda Media"
+  },
+  {
+    "Rang": 91,
+    "Titel": "TV Today",
+    "Auflage": 287.221,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Programmzeitschriften",
+    "Verlag / Herausgeber": "Hubert Burda Media"
+  },
+  {
+    "Rang": 92,
+    "Titel": "on uni",
+    "Auflage": 279.705,
+    "Gruppe": "Kunden",
+    "Sachgruppe": "Medizin/Gesundheit",
+    "Verlag / Herausgeber": "wdv-Gruppe"
+  },
+  {
+    "Rang": 93,
+    "Titel": "Cosmopolitan",
+    "Auflage": 276.314,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Monatliche Frauenzeitschriften",
+    "Verlag / Herausgeber": "Bauer Media Group"
+  },
+  {
+    "Rang": 94,
+    "Titel": "Land IDEE",
+    "Auflage": 272.838,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Wohn- und Gartenzeitschriften",
+    "Verlag / Herausgeber": "Funke Mediengruppe"
+  },
+  {
+    "Rang": 95,
+    "Titel": "Frau im Trend",
+    "Auflage": 272.295,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Wöchentliche Frauenzeitschriften",
+    "Verlag / Herausgeber": "Hubert Burda Media"
+  },
+  {
+    "Rang": 96,
+    "Titel": "c't magazin für computertechnik",
+    "Auflage": 270.517,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "IT-/Telekommunikationszeitschriften",
+    "Verlag / Herausgeber": "Heise Zeitschriften Verlag"
+  },
+  {
+    "Rang": 97,
+    "Titel": "kinder!",
+    "Auflage": 269.841,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Elternzeitschriften",
+    "Verlag / Herausgeber": "Junior-Verlag GmbH & Co. KG (Hamburg)"
+  },
+  {
+    "Rang": 98,
+    "Titel": "TV piccolino plus + (TV piccolino+TV Genie+My TV)",
+    "Auflage": 266.345,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Programmzeitschriften",
+    "Verlag / Herausgeber": ""
+  },
+  {
+    "Rang": 99,
+    "Titel": "Erziehung und Wissenschaft",
+    "Auflage": 263.359,
+    "Gruppe": "Fach",
+    "Sachgruppe": "Erziehung und Bildung",
+    "Verlag / Herausgeber": "STAMM Verlag GmbH"
+  },
+  {
+    "Rang": 100,
+    "Titel": "ACV Profil",
+    "Auflage": 257.7,
+    "Gruppe": "Publikum",
+    "Sachgruppe": "Motorpresse",
+    "Verlag / Herausgeber": ""
+  }
+]
