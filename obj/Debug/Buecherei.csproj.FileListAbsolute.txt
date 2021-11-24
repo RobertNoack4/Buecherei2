@@ -1,0 +1,11 @@
+/home/robert/RiderProjects/Buecherei/bin/Debug/Buecherei.exe
+/home/robert/RiderProjects/Buecherei/bin/Debug/Buecherei.pdb
+/home/robert/RiderProjects/Buecherei/obj/Debug/Buecherei.csprojAssemblyReference.cache
+/home/robert/RiderProjects/Buecherei/obj/Debug/Buecherei.csproj.CoreCompileInputs.cache
+/home/robert/RiderProjects/Buecherei/obj/Debug/Buecherei.exe
+/home/robert/RiderProjects/Buecherei/obj/Debug/Buecherei.pdb
+/home/robert/RiderProjects/Buecherei/bin/Debug/Newtonsoft.Json.dll
+/home/robert/RiderProjects/Buecherei/bin/Debug/Newtonsoft.Json.xml
+/home/robert/RiderProjects/Buecherei/obj/Debug/Buecherei.csproj.CopyComplete
+/home/robert/RiderProjects/Buecherei/bin/Debug/ConsoleTables.dll
+/home/robert/RiderProjects/Buecherei/bin/Debug/ConsoleTables.pdb

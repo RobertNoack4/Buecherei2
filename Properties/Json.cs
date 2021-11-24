@@ -17,7 +17,6 @@ namespace Buecherei.Properties
 
                 foreach (Buch buch in listBuecher)
                 {
-                    Console.WriteLine(buch.Author);
                     Listen.BuchHinzufuegen(buch);
                 }
             }
