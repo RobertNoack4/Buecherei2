@@ -14,10 +14,11 @@ namespace Buecherei.Properties
                 int auswahl;
                 Console.WriteLine("Bitte wählen sie einen Menue Punkt aus:");
                 Console.WriteLine("1: Buch anlegen");
-                Console.WriteLine("2 Bücher ausgeben");
-                Console.WriteLine("3: Programm beenden");
+                Console.WriteLine("2: Bücher ausgeben");
+                Console.WriteLine("3: Buch Informationen anpassen");
+                Console.WriteLine("4: Programm beenden");
 
-                auswahl = Controller.EingabeZahlPruefung(3);
+                auswahl = Controller.EingabeZahlPruefung(4);
                 
                 switch (auswahl)
                 {
@@ -27,8 +28,10 @@ namespace Buecherei.Properties
                     case 2:
                         BuecherAnzeigen();
                         break;
-
                     case 3:
+                        BuchInformationenAnpassen();
+                        break;
+                    case 4:
                         wiederholen = false;
                         break;
                 }
@@ -79,6 +82,203 @@ namespace Buecherei.Properties
 
         private static void BuecherAnzeigen()
         {
+            List<Buch> alleBuecher = Listen.BuchListeAusgeben();
+            AllgemeineInfosBuecher();
+            Console.Write("Möchten sie alle Einträge zu einem Buch sehen?");
+            if (!Controller.JaNeinTest())
+            {
+                return;
+            }
+            Console.WriteLine("Bitte geben sie den Index des Buches ein:");
+            
+            string eingabe = Console.ReadLine();
+            int genauereInfos = Controller.EingabeZahlPruefung(alleBuecher.Count, eingabe);
+            AlleInfosBuch(genauereInfos);
+        }
+
+        private static void BuchInformationenAnpassen()
+        {
+            List<Buch> alleBücher = Listen.BuchListeAusgeben();
+            Buch buch;
+            string aenderung = "";
+            bool sicher;
+
+            AllgemeineInfosBuecher();
+            Console.WriteLine("Bitte geben Sie den Index des Buches ein welches Sie bearbeiten möchten");
+            int genauereInfos = Controller.EingabeZahlPruefung(alleBücher.Count, Console.ReadLine());
+            AlleInfosBuch(genauereInfos);
+            buch = alleBücher[genauereInfos - 1];
+            Console.WriteLine("Möchten sie dieses Buch verändern? (Y/N)");
+            if (Controller.JaNeinTest() == false)
+            {
+                return;
+            }
+            Console.WriteLine("Sollten sie bei einem Punkt keine änderungen haben lassen sie das Änderungsfeld frei");
+            Console.WriteLine("aktueller Author ist: " + buch.Author);
+            if (!Controller.EnterGedrueckt())
+            {
+                do
+                { 
+                    sicher = false;
+                
+                    aenderung = Console.ReadLine();
+                    Console.WriteLine("Der neue Author name ist " + aenderung);
+                    Console.WriteLine("Sind sie sicher? (Y/N)");
+                    if (Controller.JaNeinTest())
+                    {
+                        buch.Author = aenderung;
+                        sicher = true;
+                        aenderung = "";
+                    }
+                } while (!sicher);
+            } 
+            Console.WriteLine("aktueller Titel ist: " + buch.Title);
+            if (!Controller.EnterGedrueckt())
+            {
+                do
+                {
+                    sicher = false;
+                    aenderung = Console.ReadLine();
+                    Console.WriteLine("Der Neue Titel ist " + aenderung);
+                    Console.WriteLine("Sind sie sicher? (Y/N)");
+                    if (Controller.JaNeinTest())
+                    {
+                        buch.Title = aenderung;
+                        sicher = true;
+                        aenderung = "";
+                    }
+                } while (!sicher);
+            } 
+            Console.WriteLine("aktueller Titel ist: " + buch.Title);
+            if (!Controller.EnterGedrueckt())
+            {
+
+                do
+                {
+                    sicher = false;
+                    aenderung = Console.ReadLine();
+                    int aenderungInt = Controller.EingabeZahlPruefung(0, aenderung);
+                    Console.WriteLine("Das neue Erscheinungsjahr ist: " + aenderungInt);
+                    Console.WriteLine("Sind sie sicher? (Y/N)");
+                    if (Controller.JaNeinTest())
+                    {
+                        buch.Year = aenderungInt;
+                        sicher = true;
+                        aenderung = "";
+                    }
+                } while (!sicher);
+            }
+            Console.WriteLine("aktueller Titel ist: " + buch.Title);
+            if (!Controller.EnterGedrueckt())
+            {
+
+
+
+                do
+                {
+                    sicher = false;
+                    aenderung = Console.ReadLine();
+                    Console.WriteLine("Das neue Land ist: " + aenderung);
+                    Console.WriteLine("Sind sie sicher? (Y/N)");
+                    if (Controller.JaNeinTest())
+                    {
+                        buch.Title = aenderung;
+                        sicher = true;
+                        aenderung = "";
+                    }
+                } while (!sicher);
+            }
+            Console.WriteLine("aktueller Titel ist: " + buch.Title);
+            if (!Controller.EnterGedrueckt())
+            {
+                do
+                {
+                    sicher = false;
+                    aenderung = Console.ReadLine();
+                    Console.WriteLine("Die neue Sprache ist " + aenderung);
+                    Console.WriteLine("Sind sie sicher? (Y/N)");
+                    if (Controller.JaNeinTest())
+                    {
+                        buch.Language = aenderung;
+                        sicher = true;
+                        aenderung = "";
+                    }
+                } while (!sicher);
+            } 
+            Console.WriteLine("aktueller Titel ist: " + buch.Title);
+            if (!Controller.EnterGedrueckt())
+            {
+                do
+                {
+                    sicher = false;
+                    aenderung = Console.ReadLine();
+                    int aenderungInt = Controller.EingabeZahlPruefung(0, aenderung);
+                    Console.WriteLine("Die neue Seitenanzahl ist: " + aenderungInt);
+                    Console.WriteLine("Sind sie sicher? (Y/N)");
+                    if (Controller.JaNeinTest())
+                    {
+                        buch.Pages = aenderungInt;
+                        sicher = true;
+                        aenderung = "";
+                    }
+                } while (!sicher);
+            }
+            Console.WriteLine("aktueller Titel ist: " + buch.Title);
+            if (!Controller.EnterGedrueckt())
+            {
+                do
+                {
+                    sicher = false;
+                    aenderung = Console.ReadLine();
+                    Console.WriteLine("Der neue Link zu Wikipedia ist: " + aenderung);
+                    Console.WriteLine("Sind sie sicher? (Y/N)");
+                    if (Controller.JaNeinTest())
+                    {
+                        buch.Link = aenderung;
+                        sicher = true;
+                        aenderung = "";
+                    }
+                } while (!sicher);
+            } 
+            Console.WriteLine("aktueller Titel ist: " + buch.Title);
+            if (!Controller.EnterGedrueckt())
+            {
+
+                do
+                {
+                    sicher = false;
+                    aenderung = Console.ReadLine();
+                    Console.WriteLine("Der neue Link zum Cover ist: " + aenderung);
+                    Console.WriteLine("Sind sie sicher? (Y/N)");
+                    if (Controller.JaNeinTest())
+                    {
+                        buch.ImageLink = aenderung;
+                        sicher = true;
+                        aenderung = "";
+                    }
+                } while (!sicher);
+            } 
+        }
+
+        private static void AlleInfosBuch(int index)
+        {
+            List<Buch> alleBuecher = Listen.BuchListeAusgeben();
+            Buch aktuellesBuch = alleBuecher[index - 1];
+            var table = new ConsoleTable("Name", "Wert");
+            table.AddRow("Author", aktuellesBuch.Author);
+            table.AddRow("Title", aktuellesBuch.Title);
+            table.AddRow("Erscheinungsjahr", aktuellesBuch.Year);
+            table.AddRow("Land", aktuellesBuch.Country);
+            table.AddRow("Sprache", aktuellesBuch.Language);
+            table.AddRow("Seitenanzahl", aktuellesBuch.Pages);
+            table.AddRow("Link zu Wikipedia", aktuellesBuch.Link);
+            table.AddRow("Link zum Cover", aktuellesBuch.ImageLink);
+            
+            Console.WriteLine(table);
+        }
+
+        private static void AllgemeineInfosBuecher()
+        {
             string author;
             string title;
             int pages;
@@ -96,34 +296,6 @@ namespace Buecherei.Properties
                 table.AddRow(index, author, title, pages);
                 index++;
             }
-            Console.WriteLine(table);
-            Console.WriteLine("Geben sie die Index Nummer ein um mehr Informationen zu dem Buch zu erhalten oder Z um ins Hauptmenue zu gelangen");
-            string eingabe = Console.ReadLine();
-            if (eingabe == "Z" || eingabe== "z")
-            {
-                return;
-            }
-            else
-            {
-                int genauereInfos = Controller.EingabeZahlPruefung(alleBuecher.Count, eingabe);
-                AlleInfosBuch(genauereInfos);
-            }
-        }
-
-        public static void AlleInfosBuch(int index)
-        {
-            List<Buch> alleBuecher = Listen.BuchListeAusgeben();
-            Buch aktuellesBuch = alleBuecher[index - 1];
-            var table = new ConsoleTable("Name", "Wert");
-            table.AddRow("Author", aktuellesBuch.Author);
-            table.AddRow("Title", aktuellesBuch.Title);
-            table.AddRow("Erscheinungsjahr", aktuellesBuch.Year);
-            table.AddRow("Land", aktuellesBuch.Country);
-            table.AddRow("Sprache", aktuellesBuch.Language);
-            table.AddRow("Seitenanzahl", aktuellesBuch.Pages);
-            table.AddRow("Link zu Wikipedia", aktuellesBuch.Link);
-            table.AddRow("Link zum Cover", aktuellesBuch.ImageLink);
-            
             Console.WriteLine(table);
         }
     }

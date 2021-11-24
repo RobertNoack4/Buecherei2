@@ -5,10 +5,12 @@ namespace Buecherei.Properties
     public static class Listen
     {
         private static List<Buch> buchListe;
-        
-        public static void BuchInit()
+        private static List<Exemplar> exemplarListe;
+
+        public static void ListenInit()
         {
             buchListe = new List<Buch>();
+            exemplarListe = new List<Exemplar>();
         }
 
         public static void BuchHinzufuegen(Buch neuesBuch)
@@ -19,6 +21,16 @@ namespace Buecherei.Properties
         public static List<Buch> BuchListeAusgeben()
         {
             return buchListe;
+        }
+
+        public static void ExemplarHinzufuegen(Exemplar neuesExemplar)
+        {
+            exemplarListe.Add(neuesExemplar);
+        }
+
+        public static List<Exemplar> ExemplarListeAusgeben()
+        {
+            return exemplarListe;
         }
     }
 }
