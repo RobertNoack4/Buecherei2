@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Buecherei.Properties
 {
-    public class Buch
+    public class Buch : IProduct
     {
         public string Author {  get; set; }
         public string Country { get; set; }
