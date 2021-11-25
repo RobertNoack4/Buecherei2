@@ -17,7 +17,6 @@ namespace Buecherei.Properties
         public static void ExemplarErstellen(Buch buch, bool verfuegbar)
         {
             Exemplar neuesExemplar = new Exemplar(buch, verfuegbar);
-            Listen.ExemplarHinzufuegen(neuesExemplar);
             buch.ExemplarHinzufuegen(neuesExemplar);
         }
 
