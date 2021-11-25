@@ -469,8 +469,65 @@ namespace Buecherei.Properties
 
             if (option == 3)
             {
+                string aenderung;
+                bool sicher;
                 AllgemeineInfos(3);
                 Console.WriteLine("Bitte wählen sie den Leihvorgang aus welchen sie überarbeiten wollen:");
+
+                string eingabe = Console.ReadLine();
+                int auswahl = Pruefungen.EingabeZahlPruefung(0, eingabe);
+                
+                AlleInfos(auswahl, 3);
+                LeihVorgang leihVorgang = Listen.LeihVorgangsListeAusgeben()[auswahl - 1];
+                
+                Console.WriteLine("aktueller Name des Leihers ist: " + leihVorgang.Name);
+                if (!Pruefungen.EnterGedrueckt())
+                {
+                    do
+                    {
+                        sicher = false;
+                        aenderung = Console.ReadLine();
+                        Console.WriteLine("Der neue Name des Leihers ist: " + aenderung);
+                        Console.WriteLine("Sind sie sicher? (Y/N)");
+                        if (Pruefungen.JaNeinTest())
+                        {
+                            leihVorgang.Name= aenderung;
+                            sicher = true;
+                            aenderung = "";
+                        }
+                    } while (!sicher);
+
+                }
+                Console.WriteLine("aktuelles Abgabedatum ist: " + leihVorgang.AbgabeDatum);
+                if (!Pruefungen.EnterGedrueckt())
+                {
+                    do
+                    {
+                        bool datumRichtig = false;
+                        DateTime datum = DateTime.Now;
+                        do
+                        {
+                            aenderung = Console.ReadLine();
+                            if(Pruefungen.DatumPruefung(aenderung))
+                            {
+                                datumRichtig = true;
+                                datum = Convert.ToDateTime(aenderung).Date;
+                            }
+                        } while (!datumRichtig);
+                        sicher = false;
+                        Console.WriteLine("Das neue Abgabedatum ist: " + datum);
+                        Console.WriteLine("Sind sie sicher? (Y/N)");
+                        if (Pruefungen.JaNeinTest())
+                        {
+                            leihVorgang.AbgabeDatum= datum;
+                            sicher = true;
+                            aenderung = "";
+                        }
+                    } while (!sicher);
+
+                }
+
+
             }
         }
 
@@ -493,8 +550,7 @@ namespace Buecherei.Properties
         {
             if (option == 1)
             {
-                List<Buch> alleBuecher = Listen.BuchListeAusgeben();
-                Buch aktuellesBuch = alleBuecher[index - 1];
+                Buch aktuellesBuch = Listen.BuchListeAusgeben()[index - 1];
                 var table = new ConsoleTable("Name", "Wert");
                 table.AddRow("Author", aktuellesBuch.Author);
                 table.AddRow("Title", aktuellesBuch.Title);
@@ -505,6 +561,17 @@ namespace Buecherei.Properties
                 table.AddRow("Link zu Wikipedia", aktuellesBuch.Link);
                 table.AddRow("Link zum Cover", aktuellesBuch.ImageLink);
             
+                Console.WriteLine(table);
+            }
+            if (option == 3)
+            {
+                LeihVorgang aktuellerLeihvorgang = Listen.LeihVorgangsListeAusgeben()[index - 1];
+                var table = new ConsoleTable("Name", "Wert");
+                table.AddRow("geliehenes Exemplar", aktuellerLeihvorgang.GeliehenesExemplar.Id);
+                table.AddRow("Leihnummer", aktuellerLeihvorgang.Leihnummer);
+                table.AddRow("Name", aktuellerLeihvorgang.Name);
+                table.AddRow("Abgabedatum", aktuellerLeihvorgang.AbgabeDatum);
+                
                 Console.WriteLine(table);
             }
         }
@@ -561,11 +628,6 @@ namespace Buecherei.Properties
                 Console.WriteLine(table);
 
             }
-        }
-
-        private static void AllgemeineInfosLeihvorgaenge()
-        {
-
         }
     }
 }

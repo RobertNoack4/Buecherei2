@@ -103,5 +103,20 @@ namespace Buecherei.Properties
             }
 
         }
+
+        public static bool DatumPruefung(string datum)
+        {
+            try
+            {
+                DateTime test = Convert.ToDateTime(datum);
+            }
+            catch
+            {
+                Console.WriteLine("Bitte geben sie das Datum im Format: MM/dd/YYYY ein");
+                return false;
+            }
+
+            return true;
+        }
     }
 }
