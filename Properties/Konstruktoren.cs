@@ -9,6 +9,8 @@ namespace Buecherei.Properties
             string title, int year)
         {
             Buch neuesBuch = new Buch(author, country, imageLink, language, link, pages, title, year);
+            ExemplarErstellen(neuesBuch, true);
+            ExemplarErstellen(neuesBuch, true);
             Listen.BuchHinzufuegen(neuesBuch);
         }
 
