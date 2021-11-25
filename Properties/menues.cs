@@ -61,7 +61,7 @@ namespace Buecherei.Properties
                         InformationenAnpassen(1);
                         break;
                     case 3:
-                        BuchLoeschen();
+                        Loeschen(1);
                         break;
                     
                     case 4:
@@ -98,7 +98,7 @@ namespace Buecherei.Properties
                         InformationenAnpassen(2);
                         break;
                     case 3:
-                        BuchLoeschen();
+                        Loeschen(2);
                         break;
                     
                     case 4:
@@ -135,7 +135,7 @@ namespace Buecherei.Properties
                         InformationenAnpassen(3);
                         break;
                     case 3:
-                        BuchLoeschen();
+                        Loeschen(3);
                         break;
                     
                     case 4:
@@ -532,17 +532,48 @@ namespace Buecherei.Properties
         }
 
 
-        private static void BuchLoeschen()
+        private static void Loeschen(int option)
         {
-            AllgemeineInfos(1);
-            Console.WriteLine("Bitte geben sie den Index des Buches ein welches sie löschen wollen!");
-            string eingabe = Console.ReadLine();
-            int auswahl = Pruefungen.EingabeZahlPruefung(0, eingabe);
-            Console.WriteLine("Sind sie sicher das sie " + Listen.BuchListeAusgeben()[auswahl-1].Author + "löschen wollen?");
-            if (Pruefungen.JaNeinTest())
+            if (option == 1)
             {
-                Listen.BuchEntfernen(auswahl);
-                Console.WriteLine("Das Buch wurde erfolgreich gelöscht");
+                string eingabe;
+                int auswahl;
+                
+                AllgemeineInfos(1);
+                Console.WriteLine("Bitte geben sie den Index des Buches ein welches sie löschen wollen!");
+                eingabe = Console.ReadLine();
+                auswahl = Pruefungen.EingabeZahlPruefung(0, eingabe);
+                Console.WriteLine("Sind sie sicher das sie " + Listen.BuchListeAusgeben()[auswahl-1].Author + "löschen wollen?");
+                if (Pruefungen.JaNeinTest())
+                {
+                    Listen.BuchEntfernen(auswahl);
+                    Console.WriteLine("Das Buch wurde erfolgreich gelöscht");
+                }
+            }
+            if(option == 2)
+            {
+                int auswahl;
+                string eingabe;
+                Buch buch;
+                Exemplar exemplar;
+                
+                AllgemeineInfos(1);
+                Console.WriteLine("Bitte geben sie den Index des Buches ein von welchem sie ein Exemplar löschen möchten");
+
+                eingabe = Console.ReadLine();
+                auswahl = Pruefungen.EingabeZahlPruefung(0, eingabe);
+                buch = Listen.BuchListeAusgeben()[auswahl - 1];
+                
+                ExemplarAusgeben(buch);
+                eingabe = Console.ReadLine();
+                auswahl = Pruefungen.EingabeZahlPruefung(0, eingabe);
+
+                exemplar = buch.Exemplare[auswahl - 1];
+                Console.WriteLine("Sind sie sicher dass sie das Exemplar mit der ID " + exemplar.Id + "löschen wollen?");
+                if (Pruefungen.JaNeinTest())
+                {
+                    buch.Exemplare.RemoveAt(auswahl - 1);
+                }
             }
         }
         
