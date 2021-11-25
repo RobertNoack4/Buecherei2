@@ -15,10 +15,12 @@ namespace Buecherei.Properties
                 Console.WriteLine("Bitte wählen sie einen Menue Punkt aus:");
                 Console.WriteLine("1: Buch anlegen");
                 Console.WriteLine("2: Bücher ausgeben");
-                Console.WriteLine("3: Buch Informationen anpassen");
-                Console.WriteLine("4: Programm beenden");
+                Console.WriteLine("3: Buch anpassen");
+                Console.WriteLine("4: Buch entfernen");
+                Console.WriteLine("5: Buch ausleihen"); 
+                Console.WriteLine("6: Programm beenden");
 
-                auswahl = Controller.EingabeZahlPruefung(4);
+                auswahl = Controller.EingabeZahlPruefung(6);
                 
                 switch (auswahl)
                 {
@@ -32,6 +34,12 @@ namespace Buecherei.Properties
                         BuchInformationenAnpassen();
                         break;
                     case 4:
+                        BuchLoeschen();
+                        break;
+                    case 5:
+                        BuchAusleihen();
+                        break;
+                    case 6:
                         wiederholen = false;
                         break;
                 }
@@ -256,6 +264,35 @@ namespace Buecherei.Properties
             } 
         }
 
+        private static void BuchLoeschen()
+        {
+            AllgemeineInfosBuecher();
+            Console.WriteLine("Bitte geben sie den Index des Buches ein welches sie löschen wollen!");
+            string eingabe = Console.ReadLine();
+            int auswahl = Controller.EingabeZahlPruefung(0, eingabe);
+            Console.WriteLine("Sind sie sicher das sie " + Listen.BuchListeAusgeben()[auswahl-1].Author + "löschen wollen?");
+            if (Controller.JaNeinTest())
+            {
+                Listen.BuchEntfernen(auswahl);
+                Console.WriteLine("Das Buch wurde erfolgreich gelöscht");
+            }
+        }
+
+        private static void BuchAusleihen()
+        {
+            AllgemeineInfosBuecher();
+            Console.WriteLine("Bitte geben geben sie den Index des Buches an welches sie verleihen wollen!");
+            string eingabe = Console.ReadLine();
+            int auswahl = Controller.EingabeZahlPruefung(0, eingabe);
+            Console.WriteLine("Sind sie sicher dass sie " + Listen.BuchListeAusgeben()[auswahl - 1].Title + " Verleihen wollen?");
+            if (Controller.JaNeinTest())
+            {
+                Console.WriteLine("Unter welchem Namen soll dieses Buch verliehen werden?");
+                string name = Console.ReadLine();
+                Konstruktoren.LeihvorgangErstellen(Listen.BuchListeAusgeben()[auswahl - 1], name);
+            }
+        }
+
         private static void AlleInfosBuch(int index)
         {
             List<Buch> alleBuecher = Listen.BuchListeAusgeben();
@@ -279,7 +316,8 @@ namespace Buecherei.Properties
             string title;
             int pages;
             int index = 1;
-            var table = new ConsoleTable("Index","Author", "Title", "Seiten");
+            int verfuegbareExemplare;
+            var table = new ConsoleTable("Index","Author", "Title", "Seiten", "Verfügbare Exemplare");
             List<Buch> alleBuecher = Listen.BuchListeAusgeben();
 
 
@@ -288,8 +326,9 @@ namespace Buecherei.Properties
                 author = buch.Author;
                 title = buch.Title;
                 pages = buch.Pages;
-
-                table.AddRow(index, author, title, pages);
+                verfuegbareExemplare = buch.ExemplareVerfuegbar();
+                
+                table.AddRow(index, author, title, pages, verfuegbareExemplare);
                 index++;
             }
             Console.WriteLine(table);
