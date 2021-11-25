@@ -575,6 +575,28 @@ namespace Buecherei.Properties
                     buch.Exemplare.RemoveAt(auswahl - 1);
                 }
             }
+
+            if (option == 3)
+            {
+                string eingabe;
+                int auswahl;
+                LeihVorgang leihVorgang;
+                
+                AllgemeineInfos(3);
+                Console.Write("Bitte wählen sie aus welchen Leihvorgang sie löschen wollen");
+                eingabe = Console.ReadLine();
+                auswahl = Pruefungen.EingabeZahlPruefung(0, eingabe);
+                leihVorgang = Listen.LeihVorgangsListeAusgeben()[auswahl - 1];
+                
+                AlleInfos(auswahl,3);
+                Console.WriteLine("Sind sie sicher dass sie diesen Leihvorgang löschen wollen? Das verwendete Exemplar wird dadurch wieder verfügbar");
+                if (Pruefungen.JaNeinTest())
+                {
+                    leihVorgang.GeliehenesExemplar.Verfuegbar = true;
+                    Listen.LeihvorgangEntfernen(auswahl);
+                    Console.WriteLine("Leihvorgang wurde gelöscht");
+                }
+            }
         }
         
         private static void AlleInfos(int index, int option)

@@ -26,9 +26,7 @@ namespace Buecherei.Properties
 
         public static void BuchEntfernen(int index)
         {
-            index = index - 1;
-            Console.WriteLine(buchListe.Count);
-            buchListe.RemoveAt(99);
+            buchListe.RemoveAt(index-1);
         }
 
         
@@ -41,5 +39,11 @@ namespace Buecherei.Properties
         {
             leihvorgaenge.Add(neuerLeihvorgang);
         }
+
+        public static void LeihvorgangEntfernen(int index)
+        {
+            leihvorgaenge.RemoveAt(index - 1);
+        }
+        
     }
 }
