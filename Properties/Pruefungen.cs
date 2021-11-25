@@ -2,7 +2,7 @@ using System;
 
 namespace Buecherei.Properties
 {
-    public static class Controller
+    public static class Pruefungen
     {
         public static int EingabeZahlPruefung(int moeglichkeiten)
         {
@@ -102,6 +102,21 @@ namespace Buecherei.Properties
                 return false;
             }
 
+        }
+
+        public static bool DatumPruefung(string datum)
+        {
+            try
+            {
+                DateTime test = Convert.ToDateTime(datum);
+            }
+            catch
+            {
+                Console.WriteLine("Bitte geben sie das Datum im Format: MM/dd/YYYY ein");
+                return false;
+            }
+
+            return true;
         }
     }
 }

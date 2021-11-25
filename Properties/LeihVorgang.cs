@@ -15,7 +15,7 @@ namespace Buecherei.Properties
             GeliehenesExemplar = exemplar;
             Name = name;
             Leihnummer = Guid.NewGuid();
-            AbgabeDatum = DateTime.Now.AddDays(30);
+            AbgabeDatum = DateTime.Now.AddDays(30).Date;
         }
     }
 }

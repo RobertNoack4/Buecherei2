@@ -9,13 +9,14 @@ namespace Buecherei.Properties
             string title, int year)
         {
             Buch neuesBuch = new Buch(author, country, imageLink, language, link, pages, title, year);
+            ExemplarErstellen(neuesBuch, true);
+            ExemplarErstellen(neuesBuch, true);
             Listen.BuchHinzufuegen(neuesBuch);
         }
 
         public static void ExemplarErstellen(Buch buch, bool verfuegbar)
         {
             Exemplar neuesExemplar = new Exemplar(buch, verfuegbar);
-            Listen.ExemplarHinzufuegen(neuesExemplar);
             buch.ExemplarHinzufuegen(neuesExemplar);
         }
 
