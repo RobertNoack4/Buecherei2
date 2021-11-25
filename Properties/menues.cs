@@ -284,7 +284,16 @@ namespace Buecherei.Properties
             Console.WriteLine("Bitte geben geben sie den Index des Buches an welches sie verleihen wollen!");
             string eingabe = Console.ReadLine();
             int auswahl = Controller.EingabeZahlPruefung(0, eingabe);
+            int verfuegbareExemplare = Listen.BuchListeAusgeben()[auswahl - 1].ExemplareVerfuegbar();
+            
+            if (verfuegbareExemplare == 0)
+            {
+                Console.WriteLine("Leider sind alle Exemplare dieses Buches ausgeliehen!");
+                return;
+            }
+            
             Console.WriteLine("Sind sie sicher dass sie " + Listen.BuchListeAusgeben()[auswahl - 1].Title + " Verleihen wollen?");
+            
             if (Controller.JaNeinTest())
             {
                 Console.WriteLine("Unter welchem Namen soll dieses Buch verliehen werden?");
