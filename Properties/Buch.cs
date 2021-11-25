@@ -13,7 +13,7 @@ namespace Buecherei.Properties
         public int Pages { get; set; }
         public string Title { get; set; }
         public int Year { get; set; }
-        private List<Exemplar> Exemplare { get; set;}
+        public List<Exemplar> Exemplare { get; set;}
 
         public Buch(string author, string country, string imageLink, string language, string link, int pages,
             string title, int year)

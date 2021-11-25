@@ -2,7 +2,7 @@ using System;
 
 namespace Buecherei.Properties
 {
-    public static class Controller
+    public static class Pruefungen
     {
         public static int EingabeZahlPruefung(int moeglichkeiten)
         {
