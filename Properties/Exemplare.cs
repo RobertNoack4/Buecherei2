@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.CompilerServices;
 
 namespace Buecherei.Properties
 {
@@ -6,13 +7,18 @@ namespace Buecherei.Properties
     {
         public Buch Buch { get; set; }
         public Guid Id { get; set; }
-        public Boolean Verfuefbar { get; set; }
+        public Boolean Verfuegbar { get; set; }
 
         public Exemplar(Buch buch, bool verfuegbar)
         {
             Buch = buch;
-            Verfuefbar = verfuegbar;
+            Verfuegbar = verfuegbar;
             Id = Guid.NewGuid();
+        }
+
+        public void VerfuegbarkeitAendern(bool verfuegbarkeit)
+        {
+            Verfuegbar = verfuegbarkeit;
         }
     }
 }
