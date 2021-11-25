@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" serverName="Test" remoteFilesAllowedToDisappearOnAutoupload="false">
+    <serverData>
+      <paths name="Test">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$/Buecherei.csproj" web="/" />
+            <mapping local="$PROJECT_DIR$/Buecherei.sln" web="/" />
+            <mapping local="$PROJECT_DIR$/Program.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/Properties/AssemblyInfo.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/Properties/Buch.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/Properties/Exemplare.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/Properties/Json.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/Properties/Konstruktoren.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/Properties/LeihVorgang.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/Properties/Listen.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/Properties/Pruefungen.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/Properties/menues.cs" web="/" />
+            <mapping local="$PROJECT_DIR$/packages.config" web="/" />
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="test">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/" local="$PROJECT_DIR$/Buecherei.csproj" web="/" />
+            <mapping deploy="/" local="$PROJECT_DIR$/Buecherei.sln" web="/" />
+            <mapping deploy="/" local="$PROJECT_DIR$/Program.cs" web="/" />
+            <mapping deploy="/" local="$PROJECT_DIR$/Properties/AssemblyInfo.cs" web="/" />
+            <mapping deploy="/" local="$PROJECT_DIR$/Properties/Buch.cs" web="/" />
+            <mapping deploy="/" local="$PROJECT_DIR$/Properties/Exemplare.cs" web="/" />
+            <mapping deploy="/" local="$PROJECT_DIR$/Properties/Json.cs" web="/" />
+            <mapping deploy="/" local="$PROJECT_DIR$/Properties/Konstruktoren.cs" web="/" />
+            <mapping deploy="/" local="$PROJECT_DIR$/Properties/LeihVorgang.cs" web="/" />
+            <mapping deploy="/" local="$PROJECT_DIR$/Properties/Listen.cs" web="/" />
+            <mapping deploy="/" local="$PROJECT_DIR$/Properties/Pruefungen.cs" web="/" />
+            <mapping deploy="/" local="$PROJECT_DIR$/Properties/menues.cs" web="/" />
+            <mapping deploy="/" local="$PROJECT_DIR$/packages.config" web="/" />
+            <mapping deploy="/" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>
