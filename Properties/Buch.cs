@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Buecherei.Properties
 {
@@ -12,6 +13,7 @@ namespace Buecherei.Properties
         public int Pages { get; set; }
         public string Title { get; set; }
         public int Year { get; set; }
+        private List<Exemplar> Exemplare { get; set;}
 
         public Buch(string author, string country, string imageLink, string language, string link, int pages,
             string title, int year)
@@ -23,7 +25,40 @@ namespace Buecherei.Properties
             Link = link;
             Pages = pages;
             Title = title;
-            Year = year;    
+            Year = year;
+            Exemplare = new List<Exemplar>();
+        }
+
+        public void ExemplarHinzufuegen(Exemplar exemplar)
+        {
+            Exemplare.Add(exemplar);
+        }
+
+        public int ExemplareVerfuegbar()
+        {
+            int verfuegbareExemplare = 0;
+            foreach (Exemplar exemplar in Exemplare)
+            {
+                if (exemplar.Verfuegbar == true)
+                {
+                    verfuegbareExemplare++;
+                }
+            }
+
+            return verfuegbareExemplare;
+        }
+
+        public Exemplar VerfuegbaresExemplarAusgeben()
+        {
+            foreach (Exemplar exemplar in Exemplare)
+            {
+                if (exemplar.Verfuegbar == true)
+                {
+                    return exemplar;    
+                }
+            }
+
+            return null;
         }
     }
 }

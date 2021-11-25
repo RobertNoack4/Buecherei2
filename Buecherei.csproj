@@ -54,6 +54,7 @@
         <Compile Include="Properties\Exemplare.cs" />
         <Compile Include="Properties\Json.cs" />
         <Compile Include="Properties\Konstruktoren.cs" />
+        <Compile Include="Properties\LeihVorgang.cs" />
         <Compile Include="Properties\Listen.cs" />
         <Compile Include="Properties\menues.cs" />
     </ItemGroup>
