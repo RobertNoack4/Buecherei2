@@ -13,8 +13,9 @@ namespace Buecherei.Properties
         public int Pages { get; set; }
         public string Title { get; set; }
         public int Year { get; set; }
+        public string ExemplarIds { get; set; }
         public List<Exemplar> Exemplare { get; set;}
-
+        
         public Buch(string author, string country, string imageLink, string language, string link, int pages,
             string title, int year)
         {
@@ -26,9 +27,8 @@ namespace Buecherei.Properties
             Pages = pages;
             Title = title;
             Year = year;
-            Exemplare = new List<Exemplar>();
         }
-
+        
         public void ExemplarHinzufuegen(Exemplar exemplar)
         {
             Exemplare.Add(exemplar);

@@ -14,6 +14,8 @@ namespace Buecherei.Properties
             Buch = buch;
             Verfuegbar = verfuegbar;
             Id = Guid.NewGuid();
+            
+            Listen.ExemplarHinzufuegen(this);
         }
 
         public void VerfuegbarkeitAendern(bool verfuegbarkeit)

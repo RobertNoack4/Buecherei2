@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using ConsoleTables;
+using Newtonsoft.Json;
 
 namespace Buecherei.Properties
 {
@@ -33,6 +34,8 @@ namespace Buecherei.Properties
                         break;
                     case 4:
                         wiederholen = false;
+                        Json.SpeicherBuch();
+                        Json.SpeicherExemplar();
                         break;
                 }
             } while (wiederholen);
@@ -613,6 +616,7 @@ namespace Buecherei.Properties
                 table.AddRow("Seitenanzahl", aktuellesBuch.Pages);
                 table.AddRow("Link zu Wikipedia", aktuellesBuch.Link);
                 table.AddRow("Link zum Cover", aktuellesBuch.ImageLink);
+                table.AddRow("Exemplar IDs ", aktuellesBuch.ExemplarIds);
             
                 Console.WriteLine(table);
             }

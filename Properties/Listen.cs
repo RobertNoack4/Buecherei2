@@ -7,11 +7,13 @@ namespace Buecherei.Properties
     {
         private static List<Buch> buchListe;
         private static List<LeihVorgang> leihvorgaenge;
+        private static List<Exemplar> exemplarListe;
 
         public static void ListenInit()
         {
             buchListe = new List<Buch>();
             leihvorgaenge = new List<LeihVorgang>();
+            exemplarListe = new List<Exemplar>();
         }
 
         public static void BuchHinzufuegen(Buch neuesBuch)
@@ -43,6 +45,16 @@ namespace Buecherei.Properties
         public static void LeihvorgangEntfernen(int index)
         {
             leihvorgaenge.RemoveAt(index - 1);
+        }
+
+        public static List<Exemplar> ExemplarListenAusgeben()
+        {
+            return exemplarListe;
+        }
+
+        public static void ExemplarHinzufuegen(Exemplar neuesExemplar)
+        {
+            exemplarListe.Add(neuesExemplar);
         }
         
     }
