@@ -25,9 +25,13 @@ namespace Buecherei.Properties
                         if (buch.BuchId == Guid.Empty)
                         {
                             buch.BuchId = Guid.NewGuid();
+                            Konstruktoren.ExemplarErstellen(buch, true);
+                            Konstruktoren.ExemplarErstellen(buch, true);
+                            
                         }
                         Listen.BuchHinzufuegen(buch);
                     }
+                    r.Close();
                 }
 
             }
@@ -51,7 +55,34 @@ namespace Buecherei.Properties
                     {
                         Buch buch = alleBuecher.Find(x => x.BuchId == exemplar.Buch);
                         buch.ExemplarHinzufuegen(exemplar);
+                        Listen.ExemplarHinzufuegen(exemplar);
                     }
+                    r.Close();
+                }
+            }
+            catch 
+            {
+                Debug.Print("books.json nicht zum laden gefunden");
+            }
+        }
+        
+        public static void LoadLeihvorgaenge()
+        {
+            try
+            {
+                List<Exemplar> alleExemplare = Listen.ExemplarListenAusgeben();
+                using (StreamReader r = new StreamReader(directory + "/leihen.json"))
+                {
+                    string json = r.ReadToEnd();
+                    List<LeihVorgang> listLeihVorgang = JsonConvert.DeserializeObject<List<LeihVorgang>>(json);
+
+                    foreach (LeihVorgang leihvorgang in listLeihVorgang)
+                    {
+                        Exemplar exemplar = alleExemplare.Find(x => x.Id == leihvorgang.ExemplarId);
+                        leihvorgang.ExemplarHinzufuegen(exemplar);
+                        Listen.LeihvorgangHinzufuegen(leihvorgang);
+                    }
+                    r.Close();
                 }
 
             }
@@ -60,6 +91,7 @@ namespace Buecherei.Properties
                 Debug.Print("books.json nicht zum laden gefunden");
             }
         }
+
 
 
         public static void SpeicherBuch()
@@ -102,6 +134,30 @@ namespace Buecherei.Properties
             {
                 JsonSerializer serializer = new JsonSerializer();
                 serializer.Serialize(file, exemplare);
+            }
+        }
+        public static void SpeicherLeihvorgang()
+        {
+            try
+            {
+                File.Delete(directory + "/leihen.json");
+            }
+            catch 
+            {
+                Debug.Print("leihen.json beim Speichern nicht gefunden");
+            }
+
+            List<LeihVorgang> leihVorgaenge = Listen.LeihVorgangsListeAusgeben();
+            foreach (LeihVorgang leihVorgang in leihVorgaenge)
+            {
+                leihVorgang.ExemplarId = leihVorgang.GeliehenesExemplar.Id;
+                leihVorgang.GeliehenesExemplar = null; 
+            }
+            
+            using (StreamWriter file = File.CreateText(directory + "/leihen.json"))
+            {
+                JsonSerializer serializer = new JsonSerializer();
+                serializer.Serialize(file, leihVorgaenge);
             }
         }
     }

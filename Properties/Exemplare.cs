@@ -1,5 +1,6 @@
 using System;
 using System.Runtime.CompilerServices;
+using Newtonsoft.Json;
 
 namespace Buecherei.Properties
 {
@@ -16,6 +17,14 @@ namespace Buecherei.Properties
             Id = Guid.NewGuid();
             
             Listen.ExemplarHinzufuegen(this);
+        }
+        
+        [JsonConstructor]
+        public Exemplar(Guid buch ,bool verfuegbar, Guid guid)
+        {
+            Buch = buch;
+            Verfuegbar = verfuegbar;
+            Id = guid;
         }
 
         public void VerfuegbarkeitAendern(bool verfuegbarkeit)

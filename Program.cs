@@ -9,6 +9,7 @@ namespace Buecherei
             Listen.ListenInit();
             Json.LoadBuch();
             Json.LoadExemplar();
+            Json.LoadLeihvorgaenge();
             Menues.HauptMenue();
         }   
     }

@@ -30,6 +30,12 @@ namespace Buecherei.Properties
         {
             buchListe.RemoveAt(index-1);
         }
+        public static void BuchEntfernen(Buch buch)
+        {
+            buchListe.Remove(buch);
+        }
+
+        
 
         
         public static List<LeihVorgang> LeihVorgangsListeAusgeben()
