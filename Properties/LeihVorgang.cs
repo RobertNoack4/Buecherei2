@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace Buecherei.Properties
 {
-    public class LeihVorgang
+    public class LeihVorgang : IProduct
     {
         public Exemplar GeliehenesExemplar { get; set; }
         public Guid ExemplarId { get; set; }
@@ -33,6 +33,21 @@ namespace Buecherei.Properties
         public void ExemplarHinzufuegen(Exemplar exemplar)
         {
             GeliehenesExemplar = exemplar;
+        }
+
+        public void Anzeigen()
+        {
+            
+        }
+
+        public void Anpassen()
+        {
+            
+        }
+
+        public void Loeschen()
+        {
+            
         }
     }
 }

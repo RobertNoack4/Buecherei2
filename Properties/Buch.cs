@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Security.Cryptography.X509Certificates;
 using ConsoleTables;
 using Newtonsoft.Json;
 
@@ -8,16 +9,16 @@ namespace Buecherei.Properties
 {
     public class Buch : IProduct
     {
-        public string Author {  get; set; }
-        public string Country { get; set; }
-        public string ImageLink { get; set; }
-        public string Language { get; set; }
-        public string Link { get; set; }
-        public int Pages { get; set; }
-        public string Title { get; set; }
-        public int Year { get; set; }
-        public List<Exemplar> Exemplare { get; set;}
-        public Guid BuchId { get; set; }
+        public string Author {  get; private set; }
+        private string Country { get; set; }
+        private string ImageLink { get; set; }
+        private string Language { get; set; }
+        private string Link { get; set; }
+        public int Pages { get; private set; }
+        public string Title { get; private set; }
+        private int Year { get; set; }
+        public List<Exemplar> Exemplare { get; private set;}
+        public Guid BuchId { get; private set; }
         
         public Buch(string author, string country, string imageLink, string language, string link, int pages,
             string title, int year)
@@ -81,6 +82,11 @@ namespace Buecherei.Properties
             }
 
             return null;
+        }
+
+        public void BuchIdGenerieren()
+        {
+            this.BuchId = Guid.NewGuid();
         }
 
         public void Anzeigen()

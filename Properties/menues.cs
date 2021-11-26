@@ -239,58 +239,56 @@ namespace Buecherei.Properties
 
         private static void Anzeigen(int option)
         {
-            if (option == 1)
+            string verfuegbar = "";
+            int index = 1;
+            List<Exemplar> exemplare = Listen.ExemplarListenAusgeben();
+            List<Buch> alleBuecher = Listen.BuchListeAusgeben();
+            List<LeihVorgang> leihvorgangsListe = Listen.LeihVorgangsListeAusgeben();
+
+            switch (option)
             {
-                List<Buch> alleBuecher = Listen.BuchListeAusgeben();
-                AllgemeineInfos(1);
-                Console.Write("Möchten sie alle Einträge zu einem Buch sehen?");
-                if (!Pruefungen.JaNeinTest())
-                {
-                    return;
-                }
-                Console.WriteLine("Bitte geben sie den Index des Buches ein:");
+                case 1:
+                    AllgemeineInfos(1);
+                    Console.Write("Möchten sie alle Einträge zu einem Buch sehen?");
+                    if (!Pruefungen.JaNeinTest())
+                    {
+                        return;
+                    }
+                    Console.WriteLine("Bitte geben sie den Index des Buches ein:");
             
-                string eingabe = Console.ReadLine();
-                int genauereInfos = Pruefungen.EingabeZahlPruefung(alleBuecher.Count, eingabe);
-                AlleInfos(genauereInfos, 1);
-            }
-
-            if (option == 2)
-            {
-                int index = 1;
-                string verfuegbar = "";
-                List<Exemplar> exemplare = Listen.ExemplarListenAusgeben();
-                var table = new ConsoleTable("Index","Exemplar ID", "Buch ID", "Verfuegbarkeit");
-
-                foreach (Exemplar exemplar in exemplare)
-                {
-                    if (exemplar.Verfuegbar)
+                    string eingabe = Console.ReadLine();
+                    int genauereInfos = Pruefungen.EingabeZahlPruefung(alleBuecher.Count, eingabe);
+                    AlleInfos(genauereInfos, 1);
+                    break;
+                case 2:
+                    var table2 = new ConsoleTable("Index", "ID des Exemplars", "ID des Buches", "Status");
+                    
+                    foreach (Exemplar exemplar in exemplare)
                     {
-                        verfuegbar = "Verfügbar";
+                        if (exemplar.Verfuegbar)
+                        {
+                            verfuegbar = "Verfügbar";
+                        }
+                        else
+                        {
+                            verfuegbar = "nicht Verfügbar";
+                        }
+
+                        table2.AddRow(index,exemplar.Id, exemplar.Buch, verfuegbar);
+                        index++;
                     }
-                    else
+                    Console.WriteLine(table2);
+                    break;
+                case 3:
+                    var table3 = new ConsoleTable( "Index", "Verliehen an", "Verliehen bis", "Exemplar ID");
+
+                    foreach (LeihVorgang leihVorgang in leihvorgangsListe)
                     {
-                        verfuegbar = "nicht Verfügbar";
+                        table3.AddRow(index,leihVorgang.Name, leihVorgang.AbgabeDatum, leihVorgang.GeliehenesExemplar.Id);
+                        index++;
                     }
-
-                    table.AddRow(index,exemplar.Id, exemplar.Buch, verfuegbar);
-                    index++;
-                }
-                Console.WriteLine(table);
-            }
-
-            if (option == 3)
-            {
-                List<LeihVorgang> leihvorgangsListe = Listen.LeihVorgangsListeAusgeben();
-                var table = new ConsoleTable( "Index", "Verliehen an", "Verliehen bis", "Exemplar ID");
-                int index = 1;
-                
-                foreach (LeihVorgang leihVorgang in leihvorgangsListe)
-                {
-                    table.AddRow(index,leihVorgang.Name, leihVorgang.AbgabeDatum, leihVorgang.GeliehenesExemplar.Id);
-                    index++;
-                }
-                Console.WriteLine(table);
+                    Console.WriteLine(table3);
+                    break;
             }
         }
 
@@ -326,34 +324,7 @@ namespace Buecherei.Properties
                 int exemplarIndex = Pruefungen.EingabeZahlPruefung(0, auswahlExemplar);
                 
                 exemplar = buch.Exemplare[exemplarIndex - 1];
-                Console.WriteLine("Sollten sie bei einem Punkt keine änderungen haben lassen sie das Änderungsfeld frei");
-                string verfuegbarkeit;
-
-                if (exemplar.Verfuegbar)
-                {
-                    verfuegbarkeit = "verfügbar";
-                }
-                else
-                {
-                    verfuegbarkeit = "nicht verfügbar";
-                }
-                Console.WriteLine("aktueller Status ist: " + verfuegbarkeit);
-                Console.WriteLine("Schreiben sie Y um den Status auf Verfuegbar zu setzen oder N um ihn auf nicht verfügbar zu setzen");
-                Console.WriteLine("Sollte das Buch aufgrund eines Leihvorgangs nicht verfügbar sein empfehlen wir den Leihvorgang zu löschen anstatt es hier zu ändern");
-                if (!Pruefungen.EnterGedrueckt())
-                {
-                    exemplar.Verfuegbar = Pruefungen.JaNeinTest();
-                    if (exemplar.Verfuegbar)
-                    {
-                        verfuegbarkeit = "verfügbar";
-                    }
-                    else
-                    {
-                        verfuegbarkeit = "nicht verfügbar";
-                    }
-                    Console.WriteLine("Der neue Status ist: " + verfuegbarkeit);
-
-                }
+                exemplar.Anpassen();
             }
 
             if (option == 3)
@@ -423,85 +394,79 @@ namespace Buecherei.Properties
 
         private static void Loeschen(int option)
         {
-            if (option == 1)
-            {
-                string eingabe;
-                int auswahl;
-                Buch buch;
-                
-                AllgemeineInfos(1);
-                Console.WriteLine("Bitte geben sie den Index des Buches ein welches sie löschen wollen!");
-                eingabe = Console.ReadLine();
-                auswahl = Pruefungen.EingabeZahlPruefung(0, eingabe);
-                buch = Listen.BuchListeAusgeben()[auswahl - 1];
-                buch.Loeschen();
-            }
-            if(option == 2)
-            {
-                int auswahl;
-                string eingabe;
-                Buch buch;
-                Exemplar exemplar;
-                
-                AllgemeineInfos(1);
-                Console.WriteLine("Bitte geben sie den Index des Buches ein von welchem sie ein Exemplar löschen möchten");
+            string eingabe;
+            int auswahl;
+            Buch buch;
+            Exemplar exemplar;
+            LeihVorgang leihVorgang;
 
-                eingabe = Console.ReadLine();
-                auswahl = Pruefungen.EingabeZahlPruefung(0, eingabe);
-                buch = Listen.BuchListeAusgeben()[auswahl - 1];
-                
-                ExemplarAusgeben(buch);
-                eingabe = Console.ReadLine();
-                auswahl = Pruefungen.EingabeZahlPruefung(0, eingabe);
-
-                exemplar = buch.Exemplare[auswahl - 1];
-                Console.WriteLine("Sind sie sicher dass sie das Exemplar mit der ID " + exemplar.Id + "löschen wollen?");
-                if (Pruefungen.JaNeinTest())
-                {
-                    buch.Exemplare.RemoveAt(auswahl - 1);
-                }
-            }
-
-            if (option == 3)
+            switch (option)
             {
-                string eingabe;
-                int auswahl;
-                LeihVorgang leihVorgang;
+                case 1:
+                    AllgemeineInfos(1);
+                    Console.WriteLine("Bitte geben sie den Index des Buches ein welches sie löschen wollen!");
+                    eingabe = Console.ReadLine();
+                    auswahl = Pruefungen.EingabeZahlPruefung(0, eingabe);
+                    buch = Listen.BuchListeAusgeben()[auswahl - 1];
+                    buch.Loeschen();
+                    break;
+                case 2:
+                    AllgemeineInfos(1);
+                    Console.WriteLine("Bitte geben sie den Index des Buches ein von welchem sie ein Exemplar löschen möchten");
+
+                    eingabe = Console.ReadLine();
+                    auswahl = Pruefungen.EingabeZahlPruefung(0, eingabe);
+                    buch = Listen.BuchListeAusgeben()[auswahl - 1];
                 
-                AllgemeineInfos(3);
-                Console.Write("Bitte wählen sie aus welchen Leihvorgang sie löschen wollen");
-                eingabe = Console.ReadLine();
-                auswahl = Pruefungen.EingabeZahlPruefung(0, eingabe);
-                leihVorgang = Listen.LeihVorgangsListeAusgeben()[auswahl - 1];
+                    ExemplarAusgeben(buch);
+                    eingabe = Console.ReadLine();
+                    auswahl = Pruefungen.EingabeZahlPruefung(0, eingabe);
+
+                    exemplar = buch.Exemplare[auswahl - 1];
+                    Console.WriteLine("Sind sie sicher dass sie das Exemplar mit der ID " + exemplar.Id + "löschen wollen?");
+                    if (Pruefungen.JaNeinTest())
+                    {
+                        buch.Exemplare.RemoveAt(auswahl - 1);
+                    }
+                    break;
+                case 3:
+                    AllgemeineInfos(3);
+                    Console.Write("Bitte wählen sie aus welchen Leihvorgang sie löschen wollen");
+                    eingabe = Console.ReadLine();
+                    auswahl = Pruefungen.EingabeZahlPruefung(0, eingabe);
+                    leihVorgang = Listen.LeihVorgangsListeAusgeben()[auswahl - 1];
                 
-                AlleInfos(auswahl,3);
-                Console.WriteLine("Sind sie sicher dass sie diesen Leihvorgang löschen wollen? Das verwendete Exemplar wird dadurch wieder verfügbar");
-                if (Pruefungen.JaNeinTest())
-                {
-                    leihVorgang.GeliehenesExemplar.Verfuegbar = true;
-                    Listen.LeihvorgangEntfernen(auswahl);
-                    Console.WriteLine("Leihvorgang wurde gelöscht");
-                }
+                    AlleInfos(auswahl,3);
+                    Console.WriteLine("Sind sie sicher dass sie diesen Leihvorgang löschen wollen? Das verwendete Exemplar wird dadurch wieder verfügbar");
+                    if (Pruefungen.JaNeinTest())
+                    {
+                        leihVorgang.GeliehenesExemplar.Verfuegbar = true;
+                        Listen.LeihvorgangEntfernen(auswahl);
+                        Console.WriteLine("Leihvorgang wurde gelöscht");
+                    }
+                    break;
             }
+            AllesSpeichern();
         }
         
         private static void AlleInfos(int index, int option)
         {
-            if (option == 1)
+            switch (option)
             {
-                Buch aktuellesBuch = Listen.BuchListeAusgeben()[index - 1];
-                aktuellesBuch.Anzeigen();
-            }
-            if (option == 3)
-            {
-                LeihVorgang aktuellerLeihvorgang = Listen.LeihVorgangsListeAusgeben()[index - 1];
-                var table = new ConsoleTable("Name", "Wert");
-                table.AddRow("geliehenes Exemplar", aktuellerLeihvorgang.GeliehenesExemplar.Id);
-                table.AddRow("Leihnummer", aktuellerLeihvorgang.Leihnummer);
-                table.AddRow("Name", aktuellerLeihvorgang.Name);
-                table.AddRow("Abgabedatum", aktuellerLeihvorgang.AbgabeDatum);
+                case 1:
+                    Buch aktuellesBuch = Listen.BuchListeAusgeben()[index - 1];
+                    aktuellesBuch.Anzeigen();
+                    break;
+                case 3:
+                    LeihVorgang aktuellerLeihvorgang = Listen.LeihVorgangsListeAusgeben()[index - 1];
+                    var table = new ConsoleTable("Name", "Wert");
+                    table.AddRow("geliehenes Exemplar", aktuellerLeihvorgang.GeliehenesExemplar.Id);
+                    table.AddRow("Leihnummer", aktuellerLeihvorgang.Leihnummer);
+                    table.AddRow("Name", aktuellerLeihvorgang.Name);
+                    table.AddRow("Abgabedatum", aktuellerLeihvorgang.AbgabeDatum);
                 
-                Console.WriteLine(table);
+                    Console.WriteLine(table);
+                    break;
             }
         }
 
@@ -521,43 +486,41 @@ namespace Buecherei.Properties
 
         private static void AllgemeineInfos(int option)
         {
-            if (option == 1)
+            string author;
+            string title;
+            int pages;
+            int index = 1;
+            int verfuegbareExemplare;
+            List<Buch> alleBuecher = Listen.BuchListeAusgeben();
+            List<LeihVorgang> leihvorgangsListe = Listen.LeihVorgangsListeAusgeben();
+
+            switch (option)
             {
-                string author;
-                string title;
-                int pages;
-                int index = 1;
-                int verfuegbareExemplare;
-                var table = new ConsoleTable("Index","Author", "Title", "Seiten", "Verfügbare Exemplare");
-                List<Buch> alleBuecher = Listen.BuchListeAusgeben();
-
-
-                foreach (Buch buch in alleBuecher)
-                {
-                    author = buch.Author;
-                    title = buch.Title;
-                    pages = buch.Pages;
-                    verfuegbareExemplare = buch.ExemplareVerfuegbar();
+                case 1:
+                    var table = new ConsoleTable("Index","Author", "Title", "Seiten", "Verfügbare Exemplare");
+                    foreach (Buch buch in alleBuecher)
+                    {
+                        author = buch.Author;
+                        title = buch.Title;
+                        pages = buch.Pages;
+                        verfuegbareExemplare = buch.ExemplareVerfuegbar();
                 
-                    table.AddRow(index, author, title, pages, verfuegbareExemplare);
-                    index++;
-                }
-                Console.WriteLine(table);
-            }
-
-            if (option == 3)
-            {
-                List<LeihVorgang> leihvorgangsListe = Listen.LeihVorgangsListeAusgeben();
-                var table = new ConsoleTable( "Index","Verliehen an", "Verliehen bis", "Exemplar ID");
-                int index = 1;
-                
-                foreach (LeihVorgang leihVorgang in leihvorgangsListe)
-                {
-                    table.AddRow(index, leihVorgang.Name, leihVorgang.AbgabeDatum, leihVorgang.GeliehenesExemplar.Id);
-                    index++;
-                }
-                Console.WriteLine(table);
-
+                        table.AddRow(index, author, title, pages, verfuegbareExemplare);
+                        index++;
+                    }
+                    Console.WriteLine(table);
+                    break;
+                case 3:
+                    var table3 = new ConsoleTable("Index", "Verliehen an", "Verliehen bis", "Exemplar ID",
+                        "Id des ausgeliehenen Exemplars");
+                    
+                    foreach (LeihVorgang leihVorgang in leihvorgangsListe)
+                    {
+                        table3.AddRow(index, leihVorgang.Name, leihVorgang.AbgabeDatum, leihVorgang.GeliehenesExemplar.Id);
+                        index++;
+                    }
+                    Console.WriteLine(table3);
+                    break;
             }
         }
 

@@ -24,10 +24,7 @@ namespace Buecherei.Properties
                     {
                         if (buch.BuchId == Guid.Empty)
                         {
-                            buch.BuchId = Guid.NewGuid();
-                            Konstruktoren.ExemplarErstellen(buch, true);
-                            Konstruktoren.ExemplarErstellen(buch, true);
-                            
+                            buch.BuchIdGenerieren();
                         }
                         Listen.BuchHinzufuegen(buch);
                     }
