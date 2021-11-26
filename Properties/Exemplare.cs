@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace Buecherei.Properties
 {
-    public class Exemplar : IProduct
+    public class Exemplar
     {
         public Guid Buch { get; set; }
         public Guid Id { get; set; }

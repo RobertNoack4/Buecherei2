@@ -51,7 +51,10 @@ namespace Buecherei.Properties
             Exemplare = new List<Exemplar>();
         }
 
-        
+        public string TitelAusgeben()
+        {
+            return Title;
+        }
         public void ExemplarHinzufuegen(Exemplar exemplar)
         {
             Exemplare.Add(exemplar);

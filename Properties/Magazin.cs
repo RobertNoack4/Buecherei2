@@ -41,6 +41,11 @@ namespace Buecherei.Properties
             MagazinId = Guid.NewGuid();
         }
 
+        public string TitelAusgeben()
+        {
+            return Titel;
+        }
+
         public void Anzeigen()
         {
             

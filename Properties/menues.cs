@@ -16,7 +16,7 @@ namespace Buecherei.Properties
             {
                 int auswahl;
                 Console.WriteLine("Bitte Wählen sie einen Menue Punkt aus:");
-                Console.WriteLine("1: Bücher");
+                Console.WriteLine("1: Katalog");
                 Console.WriteLine("2: Exemplare");
                 Console.WriteLine("3: Leihvorgänge");
                 Console.WriteLine("4: Programm beenden");
@@ -26,8 +26,7 @@ namespace Buecherei.Properties
                 {
                     
                     case 1:
-                        AllesSpeichern();
-                        BuchMenue();
+                        KatalogMenue();
                         break;
                     case 2:
                         ExemplarMenue();
@@ -37,24 +36,22 @@ namespace Buecherei.Properties
                         break;
                     case 4:
                         wiederholen = false;
-                        Json.SpeicherBuch();
-                        Json.SpeicherExemplar();
-                        Json.SpeicherLeihvorgang();
+                        AllesSpeichern();
                         break;
                 }
             } while (wiederholen);
         }
-        public static void BuchMenue()
+        public static void KatalogMenue()
         {
             bool wiederholen = true;
             do
             {
                 int auswahl;
                 Console.WriteLine("Bitte wählen sie einen Menue Punkt aus:");
-                Console.WriteLine("1: Buch anlegen");
-                Console.WriteLine("2: Buch anpassen");
-                Console.WriteLine("3: Buch entfernen");
-                Console.WriteLine("4: Bücher ausgeben");
+                Console.WriteLine("1: Produkt anlegen");
+                Console.WriteLine("2: Produkt anpassen");
+                Console.WriteLine("3: Produkt entfernen");
+                Console.WriteLine("4: Katalog ausgeben");
                 Console.WriteLine("5: zum Hauptmenue wechseln");
 
                 auswahl = Pruefungen.EingabeZahlPruefung(5);
@@ -242,23 +239,22 @@ namespace Buecherei.Properties
             string verfuegbar = "";
             int index = 1;
             List<Exemplar> exemplare = Listen.ExemplarListenAusgeben();
-            List<Buch> alleBuecher = Listen.BuchListeAusgeben();
             List<LeihVorgang> leihvorgangsListe = Listen.LeihVorgangsListeAusgeben();
 
             switch (option)
             {
                 case 1:
                     AllgemeineInfos(1);
-                    Console.Write("Möchten sie alle Einträge zu einem Buch sehen?");
-                    if (!Pruefungen.JaNeinTest())
-                    {
-                        return;
-                    }
-                    Console.WriteLine("Bitte geben sie den Index des Buches ein:");
-            
-                    string eingabe = Console.ReadLine();
-                    int genauereInfos = Pruefungen.EingabeZahlPruefung(alleBuecher.Count, eingabe);
-                    AlleInfos(genauereInfos, 1);
+                    // Console.Write("Möchten sie alle Einträge zu einem Buch sehen?");
+                    // if (!Pruefungen.JaNeinTest())
+                    // {
+                    //     return;
+                    // }
+                    // Console.WriteLine("Bitte geben sie den Index des Buches ein:");
+                    //
+                    // string eingabe = Console.ReadLine();
+                    // int genauereInfos = Pruefungen.EingabeZahlPruefung(alleBuecher.Count, eingabe);
+                    // AlleInfos(genauereInfos, 1);
                     break;
                 case 2:
                     var table2 = new ConsoleTable("Index", "ID des Exemplars", "ID des Buches", "Status");
@@ -429,21 +425,18 @@ namespace Buecherei.Properties
             int pages;
             int index = 1;
             int verfuegbareExemplare;
-            List<Buch> alleBuecher = Listen.BuchListeAusgeben();
+            List<IProduct> alleProdukte = Listen.ProduktListeAusgeben();
             List<LeihVorgang> leihvorgangsListe = Listen.LeihVorgangsListeAusgeben();
 
             switch (option)
             {
                 case 1:
-                    var table = new ConsoleTable("Index","Author", "Title", "Seiten", "Verfügbare Exemplare");
-                    foreach (Buch buch in alleBuecher)
+                    var table = new ConsoleTable("Index", "Titel");
+                    foreach (IProduct product in alleProdukte)
                     {
-                        author = buch.Author;
-                        title = buch.Title;
-                        pages = buch.Pages;
-                        verfuegbareExemplare = buch.ExemplareVerfuegbar();
+                        title = product.TitelAusgeben();
                 
-                        table.AddRow(index, author, title, pages, verfuegbareExemplare);
+                        table.AddRow(index, title);
                         index++;
                     }
                     Console.WriteLine(table);
@@ -464,15 +457,15 @@ namespace Buecherei.Properties
 
         public static void AllesSpeichern()
         {
-            Json.SpeicherBuch();
-            Json.SpeicherExemplar();
-            Json.SpeicherLeihvorgang();
-            
-            Listen.ListenInit();
-            
-            Json.LoadBuch();
-            Json.LoadExemplar();
-            Json.LoadLeihvorgaenge();
+            // Json.SpeicherBuch();
+            // Json.SpeicherExemplar();
+            // Json.SpeicherLeihvorgang();
+            //
+            // Listen.ListenInit();
+            //
+            // Json.LoadBuch();
+            // Json.LoadExemplar();
+            // Json.LoadLeihvorgaenge();
         }
     }
 }
