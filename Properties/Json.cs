@@ -126,7 +126,7 @@ namespace Buecherei.Properties
 
         public static void SpeicherBuch()
         {
-            List<Buch> alleBuecher = new List<Buch>();
+            List<IProduct> alleBuecher = new List<IProduct>();
             try
             {
                 File.Delete(directory + "/books.json");
@@ -136,18 +136,46 @@ namespace Buecherei.Properties
                 Debug.Print("books.json beim Speichern nicht gefunden");
             }
             List<IProduct> produkte = Listen.ProduktListeAusgeben();
-            foreach (Buch buch in produkte)
+            foreach (IProduct product in produkte)
             {
-                buch.Exemplare.Clear();
-                alleBuecher.Add(buch);
-                Debug.Print(Convert.ToString(buch.BuchId));
+                if (product.ArtAusgeben() == "Buch")
+                {
+                    alleBuecher.Add(product);
+                }
             }
             using (StreamWriter file = File.CreateText(directory + "/books.json"))
             {
                 JsonSerializer serializer = new JsonSerializer();
-                serializer.Serialize(file, Listen.ProduktListeAusgeben());
+                serializer.Serialize(file, alleBuecher);
             }
         }
+        
+        public static void SpeicherMagazin()
+        {
+            List<IProduct> alleMagazine = new List<IProduct>();
+            try
+            {
+                File.Delete(directory + "/Magazine.json");
+            }
+            catch
+            {
+                Debug.Print("books.json beim Speichern nicht gefunden");
+            }
+            List<IProduct> produkte = Listen.ProduktListeAusgeben();
+            foreach (IProduct product in produkte)
+            {
+                if (product.ArtAusgeben() == "Magazin")
+                {
+                    alleMagazine.Add(product);
+                }
+            }
+            using (StreamWriter file = File.CreateText(directory + "/Magazine.json"))
+            {
+                JsonSerializer serializer = new JsonSerializer();
+                serializer.Serialize(file, alleMagazine);
+            }
+        }
+
 
         public static void SpeicherExemplar()
         {
@@ -168,6 +196,8 @@ namespace Buecherei.Properties
                 serializer.Serialize(file, exemplare);
             }
         }
+        
+        
         public static void SpeicherLeihvorgang()
         {
             try

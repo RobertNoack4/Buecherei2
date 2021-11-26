@@ -17,6 +17,7 @@ namespace Buecherei.Properties
         public int Pages { get; private set; }
         public string Title { get; private set; }
         private int Year { get; set; }
+        public string Art { get; private set; }
         public List<Exemplar> Exemplare { get; private set;}
         public Guid BuchId { get; private set; }
         
@@ -31,6 +32,7 @@ namespace Buecherei.Properties
             Pages = pages;
             Title = title;
             Year = year;
+            Art = "Buch";
             BuchId = Guid.NewGuid();
             Exemplare = new List<Exemplar>();
         }
@@ -48,12 +50,18 @@ namespace Buecherei.Properties
             Title = title;
             Year = year;
             BuchId = guid;
+            Art = "Buch";
             Exemplare = new List<Exemplar>();
         }
 
         public string TitelAusgeben()
         {
             return Title;
+        }
+
+        public string ArtAusgeben()
+        {
+            return Art;
         }
         public void ExemplarHinzufuegen(Exemplar exemplar)
         {

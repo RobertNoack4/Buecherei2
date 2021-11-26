@@ -290,8 +290,6 @@ namespace Buecherei.Properties
 
         private static void InformationenAnpassen(int option)
         {
-            string aenderung;
-            bool sicher;
             int genauereInfos;
             List<Buch> alleBücher = Listen.BuchListeAusgeben();
             Exemplar exemplar;
@@ -420,11 +418,8 @@ namespace Buecherei.Properties
 
         private static void AllgemeineInfos(int option)
         {
-            string author;
             string title;
-            int pages;
             int index = 1;
-            int verfuegbareExemplare;
             List<IProduct> alleProdukte = Listen.ProduktListeAusgeben();
             List<LeihVorgang> leihvorgangsListe = Listen.LeihVorgangsListeAusgeben();
 
@@ -457,7 +452,8 @@ namespace Buecherei.Properties
 
         public static void AllesSpeichern()
         {
-            // Json.SpeicherBuch();
+            Json.SpeicherBuch();
+            Json.SpeicherMagazin();
             // Json.SpeicherExemplar();
             // Json.SpeicherLeihvorgang();
             //

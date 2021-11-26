@@ -11,6 +11,7 @@ namespace Buecherei.Properties
         public string Gruppe { get; set; }
         public string Sachgruppe { get; set; }
         public string Verlag { get; set; }
+        public string Art { get; set; }
         public Guid MagazinId { get; set; }
 
         public Magazin(int rang, string titel, string auflage, string gruppe, string sachgruppe, string verlag)
@@ -21,6 +22,7 @@ namespace Buecherei.Properties
             Gruppe = gruppe;
             Sachgruppe = sachgruppe;
             Verlag = verlag;
+            Art = "Magazin";
             MagazinId = Guid.NewGuid();
         }
         
@@ -34,6 +36,7 @@ namespace Buecherei.Properties
             Sachgruppe = sachgruppe;
             Verlag = verlag;
             MagazinId = guid;
+            Art = "Magazin";
         }
 
         public void IdGenerieren()
@@ -44,6 +47,10 @@ namespace Buecherei.Properties
         public string TitelAusgeben()
         {
             return Titel;
+        }
+        public string ArtAusgeben()
+        {
+            return Art;
         }
 
         public void Anzeigen()
