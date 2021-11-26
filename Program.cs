@@ -8,6 +8,7 @@ namespace Buecherei
         {
             Listen.ListenInit();
             Json.LoadBuch();
+            Json.LoadMagazine();
             Json.LoadExemplar();
             Json.LoadLeihvorgaenge();
             Menues.HauptMenue();

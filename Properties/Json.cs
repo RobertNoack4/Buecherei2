@@ -26,7 +26,7 @@ namespace Buecherei.Properties
                         {
                             buch.BuchIdGenerieren();
                         }
-                        Listen.BuchHinzufuegen(buch);
+                        Listen.ProduktHinzufuegen(buch);
                     }
                     r.Close();
                 }
@@ -42,7 +42,12 @@ namespace Buecherei.Properties
         {
             try
             {
-                List<Buch> alleBuecher = Listen.BuchListeAusgeben();
+                List<Buch> alleBuecher = new List<Buch>();
+                List<IProduct> alleProdukte = Listen.ProduktListeAusgeben();
+                foreach (Buch buch in alleProdukte)
+                {
+                    alleBuecher.Add(buch);
+                }
                 using (StreamReader r = new StreamReader(directory + "/exemplar.json"))
                 {
                     string json = r.ReadToEnd();
@@ -89,10 +94,39 @@ namespace Buecherei.Properties
             }
         }
 
+        public static void LoadMagazine()
+        {
+            try
+            {
+                using (StreamReader r = new StreamReader(directory + "/Magazine.json"))
+                {
+                    string json = r.ReadToEnd();
+                    List<Magazin> listMagazine = JsonConvert.DeserializeObject<List<Magazin>>(json);
+
+                    foreach (Magazin magazin in listMagazine)
+                    {
+                        if (magazin.MagazinId == Guid.Empty)
+                        {
+                            magazin.IdGenerieren();
+                        }
+                        Listen.ProduktHinzufuegen(magazin);
+                    }
+                    r.Close();
+                }
+
+            }
+            catch 
+            {
+                Debug.Print("Magazin.json zum Laden nicht gefunden");
+            }
+
+        }
+
 
 
         public static void SpeicherBuch()
         {
+            List<Buch> alleBuecher = new List<Buch>();
             try
             {
                 File.Delete(directory + "/books.json");
@@ -101,16 +135,17 @@ namespace Buecherei.Properties
             {
                 Debug.Print("books.json beim Speichern nicht gefunden");
             }
-            List<Buch> buecher = Listen.BuchListeAusgeben();
-            foreach (Buch buch in buecher)
+            List<IProduct> produkte = Listen.ProduktListeAusgeben();
+            foreach (Buch buch in produkte)
             {
                 buch.Exemplare.Clear();
+                alleBuecher.Add(buch);
                 Debug.Print(Convert.ToString(buch.BuchId));
             }
             using (StreamWriter file = File.CreateText(directory + "/books.json"))
             {
                 JsonSerializer serializer = new JsonSerializer();
-                serializer.Serialize(file, Listen.BuchListeAusgeben());
+                serializer.Serialize(file, Listen.ProduktListeAusgeben());
             }
         }
 
