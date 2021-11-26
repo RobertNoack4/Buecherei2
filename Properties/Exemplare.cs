@@ -5,11 +5,11 @@ namespace Buecherei.Properties
 {
     public class Exemplar
     {
-        public Buch Buch { get; set; }
+        public Guid Buch { get; set; }
         public Guid Id { get; set; }
         public Boolean Verfuegbar { get; set; }
 
-        public Exemplar(Buch buch, bool verfuegbar)
+        public Exemplar(Guid buch ,bool verfuegbar)
         {
             Buch = buch;
             Verfuegbar = verfuegbar;
@@ -21,6 +21,11 @@ namespace Buecherei.Properties
         public void VerfuegbarkeitAendern(bool verfuegbarkeit)
         {
             Verfuegbar = verfuegbarkeit;
+        }
+
+        public void BuchHinzufuegen(Guid BuchId)
+        {
+            Buch = BuchId;
         }
     }
 }

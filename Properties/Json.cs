@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Text;
 using Newtonsoft.Json;
 
@@ -10,19 +11,56 @@ namespace Buecherei.Properties
     public static class Json
     {
         private static string directory = System.IO.Directory.GetParent(System.IO.Directory.GetParent(Environment.CurrentDirectory).ToString()).ToString();
-        public static void LoadJsonBuch()
+        public static void LoadBuch()
         {
-            using (StreamReader r = new StreamReader(directory + "/books.json"))
+            try
             {
-                string json = r.ReadToEnd();
-                List<Buch> listBuecher = JsonConvert.DeserializeObject<List<Buch>>(json);
-
-                foreach (Buch buch in listBuecher)
+                using (StreamReader r = new StreamReader(directory + "/books.json"))
                 {
-                    Listen.BuchHinzufuegen(buch);
+                    string json = r.ReadToEnd();
+                    List<Buch> listBuecher = JsonConvert.DeserializeObject<List<Buch>>(json);
+
+                    foreach (Buch buch in listBuecher)
+                    {
+                        if (buch.BuchId == Guid.Empty)
+                        {
+                            buch.BuchId = Guid.NewGuid();
+                        }
+                        Listen.BuchHinzufuegen(buch);
+                    }
                 }
+
+            }
+             catch 
+             {
+                 Debug.Print("books.json nicht zum laden gefunden");
+             }
+        }
+        
+        public static void LoadExemplar()
+        {
+            try
+            {
+                List<Buch> alleBuecher = Listen.BuchListeAusgeben();
+                using (StreamReader r = new StreamReader(directory + "/exemplar.json"))
+                {
+                    string json = r.ReadToEnd();
+                    List<Exemplar> listExemplar = JsonConvert.DeserializeObject<List<Exemplar>>(json);
+
+                    foreach (Exemplar exemplar in listExemplar)
+                    {
+                        Buch buch = alleBuecher.Find(x => x.BuchId == exemplar.Buch);
+                        buch.ExemplarHinzufuegen(exemplar);
+                    }
+                }
+
+            }
+            catch 
+            {
+                Debug.Print("books.json nicht zum laden gefunden");
             }
         }
+
 
         public static void SpeicherBuch()
         {
@@ -37,15 +75,8 @@ namespace Buecherei.Properties
             List<Buch> buecher = Listen.BuchListeAusgeben();
             foreach (Buch buch in buecher)
             {
-                StringBuilder builder = new StringBuilder();
-                foreach (Exemplar exemplar in buch.Exemplare)
-                {
-                    builder.Append(exemplar.Id);
-                    builder.Append(" ");
-                }
-
-                buch.ExemplarIds = builder.ToString();
                 buch.Exemplare.Clear();
+                Debug.Print(Convert.ToString(buch.BuchId));
             }
             using (StreamWriter file = File.CreateText(directory + "/books.json"))
             {
@@ -66,17 +97,12 @@ namespace Buecherei.Properties
             }
 
             List<Exemplar> exemplare = Listen.ExemplarListenAusgeben();
-            foreach (Exemplar exemplar in exemplare)
-            {
-                exemplar.Buch = null;
-            }
             
             using (StreamWriter file = File.CreateText(directory + "/exemplar.json"))
             {
                 JsonSerializer serializer = new JsonSerializer();
                 serializer.Serialize(file, exemplare);
             }
-
         }
     }
 }

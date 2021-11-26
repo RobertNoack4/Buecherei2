@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using ConsoleTables;
 using Newtonsoft.Json;
 
@@ -191,7 +192,7 @@ namespace Buecherei.Properties
                 Console.WriteLine("Bitte geben sie das Erscheinungsjahr des Buches ein:");
                 year = Pruefungen.EingabeZahlPruefung(0); 
             
-                Konstruktoren.BuchErstellen(author, country, imageLink, language, link, pages, title, year); 
+                Konstruktoren.BuchErstellen(author, country, imageLink, language, link, pages, title, year);
             }
 
             else if (option == 2)
@@ -616,7 +617,7 @@ namespace Buecherei.Properties
                 table.AddRow("Seitenanzahl", aktuellesBuch.Pages);
                 table.AddRow("Link zu Wikipedia", aktuellesBuch.Link);
                 table.AddRow("Link zum Cover", aktuellesBuch.ImageLink);
-                table.AddRow("Exemplar IDs ", aktuellesBuch.ExemplarIds);
+                table.AddRow("Buch Id ", aktuellesBuch.BuchId);
             
                 Console.WriteLine(table);
             }
@@ -676,11 +677,11 @@ namespace Buecherei.Properties
             if (option == 3)
             {
                 List<LeihVorgang> leihvorgangsListe = Listen.LeihVorgangsListeAusgeben();
-                var table = new ConsoleTable("Ausgeliehenes Buch", "Verliehen an", "Verliehen bis", "Exemplar ID");
+                var table = new ConsoleTable( "Verliehen an", "Verliehen bis", "Exemplar ID");
 
                 foreach (LeihVorgang leihVorgang in leihvorgangsListe)
                 {
-                    table.AddRow(leihVorgang.GeliehenesExemplar.Buch.Title, leihVorgang.Name, leihVorgang.AbgabeDatum, leihVorgang.GeliehenesExemplar.Id);
+                    table.AddRow(leihVorgang.Name, leihVorgang.AbgabeDatum, leihVorgang.GeliehenesExemplar.Id);
                 }
                 Console.WriteLine(table);
 

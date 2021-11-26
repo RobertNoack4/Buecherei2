@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using Newtonsoft.Json;
 
 namespace Buecherei.Properties
 {
@@ -13,8 +15,9 @@ namespace Buecherei.Properties
         public int Pages { get; set; }
         public string Title { get; set; }
         public int Year { get; set; }
-        public string ExemplarIds { get; set; }
+        public List<Guid> ExemplarIds { get; set; }
         public List<Exemplar> Exemplare { get; set;}
+        public Guid BuchId { get; set; }
         
         public Buch(string author, string country, string imageLink, string language, string link, int pages,
             string title, int year)
@@ -27,7 +30,26 @@ namespace Buecherei.Properties
             Pages = pages;
             Title = title;
             Year = year;
+            BuchId = Guid.NewGuid();
+            Exemplare = new List<Exemplar>();
         }
+        
+        [JsonConstructor]
+        public Buch(string author, string country, string imageLink, string language, string link, int pages,
+            string title, int year, Guid guid)
+        {
+            Author = author;
+            Country = country;
+            ImageLink = imageLink;
+            Language = language;
+            Link = link;
+            Pages = pages;
+            Title = title;
+            Year = year;
+            BuchId = guid;
+            Exemplare = new List<Exemplar>();
+        }
+
         
         public void ExemplarHinzufuegen(Exemplar exemplar)
         {
