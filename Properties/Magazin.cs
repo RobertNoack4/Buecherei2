@@ -52,20 +52,5 @@ namespace Buecherei.Properties
         {
             return Art;
         }
-
-        public void Anzeigen()
-        {
-            
-        }
-
-        public void Anpassen()
-        {
-            
-        }
-
-        public void Loeschen()
-        {
-            
-        }
     }
 }
