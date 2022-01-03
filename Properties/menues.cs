@@ -24,7 +24,7 @@ namespace Buecherei.Properties
                 auswahl = Pruefungen.EingabeZahlPruefung(4);
                 switch (auswahl)
                 {
-                    
+
                     case 1:
                         KatalogMenue();
                         break;
@@ -55,7 +55,7 @@ namespace Buecherei.Properties
                 Console.WriteLine("5: zum Hauptmenue wechseln");
 
                 auswahl = Pruefungen.EingabeZahlPruefung(5);
-                
+
                 switch (auswahl)
                 {
                     case 1:
@@ -67,7 +67,7 @@ namespace Buecherei.Properties
                     case 3:
                         Loeschen(1);
                         break;
-                    
+
                     case 4:
                         Anzeigen(1);
                         break;
@@ -92,7 +92,7 @@ namespace Buecherei.Properties
                 Console.WriteLine("5: zum Hauptmenue wechseln");
 
                 auswahl = Pruefungen.EingabeZahlPruefung(5);
-                
+
                 switch (auswahl)
                 {
                     case 1:
@@ -104,7 +104,7 @@ namespace Buecherei.Properties
                     case 3:
                         Loeschen(2);
                         break;
-                    
+
                     case 4:
                         Anzeigen(2);
                         break;
@@ -129,7 +129,7 @@ namespace Buecherei.Properties
                 Console.WriteLine("5: zum Hauptmenue wechseln");
 
                 auswahl = Pruefungen.EingabeZahlPruefung(5);
-                
+
                 switch (auswahl)
                 {
                     case 1:
@@ -141,7 +141,7 @@ namespace Buecherei.Properties
                     case 3:
                         Loeschen(3);
                         break;
-                    
+
                     case 4:
                         Anzeigen(3);
                         break;
@@ -166,32 +166,32 @@ namespace Buecherei.Properties
 
                 int pages;
                 int year;
-            
-            
+
+
                 Console.WriteLine("Bitte geben sie den Namen des Authors ein:");
                 author = Console.ReadLine();
-            
+
                 Console.WriteLine("Bitte geben sie das Land ein:");
                 country = Console.ReadLine();
-            
+
                 Console.WriteLine("Bitte geben sie den Link zum Titlebild ein:");
                 imageLink = Console.ReadLine();
-            
+
                 Console.WriteLine("Bitte geben sie die Sprache ein in dem das Buch verfasst ist:");
                 language = Console.ReadLine();
-            
+
                 Console.WriteLine("Bitte geben sie den Wikipedia Link des Buches ein:");
                 link = Console.ReadLine();
-            
+
                 Console.WriteLine("Bitte geben sie den Title des Buches ein:");
                 title = Console.ReadLine();
-            
+
                 Console.WriteLine("Bitte geben sie die Anzahl der Seiten des Buches ein:");
                 pages = Pruefungen.EingabeZahlPruefung(0);
-            
+
                 Console.WriteLine("Bitte geben sie das Erscheinungsjahr des Buches ein:");
-                year = Pruefungen.EingabeZahlPruefung(0); 
-            
+                year = Pruefungen.EingabeZahlPruefung(0);
+
                 Konstruktoren.BuchErstellen(author, country, imageLink, language, link, pages, title, year);
             }
 
@@ -215,15 +215,15 @@ namespace Buecherei.Properties
                 string eingabe = Console.ReadLine();
                 int auswahl = Pruefungen.EingabeZahlPruefung(0, eingabe);
                 int verfuegbareExemplare = Listen.BuchListeAusgeben()[auswahl - 1].ExemplareVerfuegbar();
-            
+
                 if (verfuegbareExemplare == 0)
                 {
                     Console.WriteLine("Leider sind alle Exemplare dieses Buches ausgeliehen!");
                     return;
                 }
-            
+
                 Console.WriteLine("Sind sie sicher dass sie " + Listen.BuchListeAusgeben()[auswahl - 1].Title + " Verleihen wollen?");
-            
+
                 if (Pruefungen.JaNeinTest())
                 {
                     Console.WriteLine("Unter welchem Namen soll dieses Buch verliehen werden?");
@@ -258,7 +258,7 @@ namespace Buecherei.Properties
                     break;
                 case 2:
                     var table2 = new ConsoleTable("Index", "ID des Exemplars", "ID des Buches", "Status");
-                    
+
                     foreach (Exemplar exemplar in exemplare)
                     {
                         if (exemplar.Verfuegbar)
@@ -270,17 +270,17 @@ namespace Buecherei.Properties
                             verfuegbar = "nicht Verfügbar";
                         }
 
-                        table2.AddRow(index,exemplar.Id, exemplar.Buch, verfuegbar);
+                        table2.AddRow(index, exemplar.Id, exemplar.Buch, verfuegbar);
                         index++;
                     }
                     Console.WriteLine(table2);
                     break;
                 case 3:
-                    var table3 = new ConsoleTable( "Index", "Verliehen an", "Verliehen bis", "Exemplar ID");
+                    var table3 = new ConsoleTable("Index", "Verliehen an", "Verliehen bis", "Exemplar ID");
 
                     foreach (LeihVorgang leihVorgang in leihvorgangsListe)
                     {
-                        table3.AddRow(index,leihVorgang.Name, leihVorgang.AbgabeDatum, leihVorgang.GeliehenesExemplar.Id);
+                        table3.AddRow(index, leihVorgang.Name, leihVorgang.AbgabeDatum, leihVorgang.GeliehenesExemplar.Id);
                         index++;
                     }
                     Console.WriteLine(table3);
@@ -303,23 +303,208 @@ namespace Buecherei.Properties
                     Console.WriteLine("Bitte geben Sie den Index des Buches ein welches Sie bearbeiten möchten");
                     genauereInfos = Pruefungen.EingabeZahlPruefung(alleBücher.Count, Console.ReadLine());
                     buch = Listen.BuchListeAusgeben()[genauereInfos - 1];
-                    buch.Anpassen();
+                    bool sicher = false;
+                    string aenderung = "";
+                    Console.WriteLine("Möchten sie dieses Buch verändern? (Y/N)");
+                    if (Pruefungen.JaNeinTest() == false)
+                    {
+                        return;
+                    }
+
+                    Console.WriteLine("Sollten sie bei einem Punkt keine änderungen haben lassen sie das Änderungsfeld frei");
+                    Console.WriteLine("aktueller Author ist: " + buch.Author);
+                    if (!Pruefungen.EnterGedrueckt())
+                    {
+                        do
+                        {
+                            sicher = false;
+
+                            aenderung = Console.ReadLine();
+                            Console.WriteLine("Der neue Author name ist " + aenderung);
+                            Console.WriteLine("Sind sie sicher? (Y/N)");
+                            if (Pruefungen.JaNeinTest())
+                            {
+                                buch.Author = aenderung;
+                                sicher = true;
+                                aenderung = "";
+                            }
+                        } while (!sicher);
+                    }
+
+                    Console.WriteLine("aktueller Titel ist: " + buch.Title);
+                    if (!Pruefungen.EnterGedrueckt())
+                    {
+                        do
+                        {
+                            sicher = false;
+                            aenderung = Console.ReadLine();
+                            Console.WriteLine("Der Neue Titel ist " + aenderung);
+                            Console.WriteLine("Sind sie sicher? (Y/N)");
+                            if (Pruefungen.JaNeinTest())
+                            {
+                                buch.Title = aenderung;
+                                sicher = true;
+                                aenderung = "";
+                            }
+                        } while (!sicher);
+                    }
+
+                    Console.WriteLine("aktuelles Erscheinungsjahr ist: " + buch.Year);
+                    if (!Pruefungen.EnterGedrueckt())
+                    {
+                        do
+                        {
+                            sicher = false;
+                            aenderung = Console.ReadLine();
+                            int aenderungInt = Pruefungen.EingabeZahlPruefung(0, aenderung);
+                            Console.WriteLine("Das neue Erscheinungsjahr ist: " + aenderungInt);
+                            Console.WriteLine("Sind sie sicher? (Y/N)");
+                            if (Pruefungen.JaNeinTest())
+                            {
+                                buch.Year = aenderungInt;
+                                sicher = true;
+                                aenderung = "";
+                            }
+                        } while (!sicher);
+                    }
+
+                    Console.WriteLine("aktuelles Land ist: " + buch.Country);
+                    if (!Pruefungen.EnterGedrueckt())
+                    {
+                        do
+                        {
+                            sicher = false;
+                            aenderung = Console.ReadLine();
+                            Console.WriteLine("Das neue Land ist: " + aenderung);
+                            Console.WriteLine("Sind sie sicher? (Y/N)");
+                            if (Pruefungen.JaNeinTest())
+                            {
+                                buch.Title = aenderung;
+                                sicher = true;
+                                aenderung = "";
+                            }
+                        } while (!sicher);
+                    }
+
+                    Console.WriteLine("aktuelle Sprache ist: " + buch.Language);
+                    if (!Pruefungen.EnterGedrueckt())
+                    {
+                        do
+                        {
+                            sicher = false;
+                            aenderung = Console.ReadLine();
+                            Console.WriteLine("Die neue Sprache ist " + aenderung);
+                            Console.WriteLine("Sind sie sicher? (Y/N)");
+                            if (Pruefungen.JaNeinTest())
+                            {
+                                buch.Language = aenderung;
+                                sicher = true;
+                                aenderung = "";
+                            }
+                        } while (!sicher);
+                    }
+
+                    Console.WriteLine("aktuelle Seitenanzahl ist: " + buch.Pages);
+                    if (!Pruefungen.EnterGedrueckt())
+                    {
+                        do
+                        {
+                            sicher = false;
+                            aenderung = Console.ReadLine();
+                            int aenderungInt = Pruefungen.EingabeZahlPruefung(0, aenderung);
+                            Console.WriteLine("Die neue Seitenanzahl ist: " + aenderungInt);
+                            Console.WriteLine("Sind sie sicher? (Y/N)");
+                            if (Pruefungen.JaNeinTest())
+                            {
+                                buch.Pages = aenderungInt;
+                                sicher = true;
+                                aenderung = "";
+                            }
+                        } while (!sicher);
+                    }
+
+                    Console.WriteLine("aktueller Link zu Wikipedia ist: " + buch.Link);
+                    if (!Pruefungen.EnterGedrueckt())
+                    {
+                        do
+                        {
+                            sicher = false;
+                            aenderung = Console.ReadLine();
+                            Console.WriteLine("Der neue Link zu Wikipedia ist: " + aenderung);
+                            Console.WriteLine("Sind sie sicher? (Y/N)");
+                            if (Pruefungen.JaNeinTest())
+                            {
+                                buch.Link = aenderung;
+                                sicher = true;
+                                aenderung = "";
+                            }
+                        } while (!sicher);
+                    }
+
+                    Console.WriteLine("aktueller Link zum Cover ist: " + buch.ImageLink);
+                    if (!Pruefungen.EnterGedrueckt())
+                    {
+
+                        do
+                        {
+                            sicher = false;
+                            aenderung = Console.ReadLine();
+                            Console.WriteLine("Der neue Link zum Cover ist: " + aenderung);
+                            Console.WriteLine("Sind sie sicher? (Y/N)");
+                            if (Pruefungen.JaNeinTest())
+                            {
+                                buch.ImageLink = aenderung;
+                                sicher = true;
+                                aenderung = "";
+                            }
+                        } while (!sicher);
+
+                    }
                     break;
                 case 2:
                     AllgemeineInfos(1);
                     Console.WriteLine("Bitte geben Sie den Index des Buches ein bei welchem sie ein Exemplar bearbeiten wollen");
-                
+
                     genauereInfos = Pruefungen.EingabeZahlPruefung(alleBücher.Count, Console.ReadLine());
                     buch = Listen.BuchListeAusgeben()[genauereInfos - 1];
                     AlleInfos(genauereInfos, 1);
                     ExemplarAusgeben(buch);
                     Console.WriteLine("Welches Exemplar möchten sie von diesem Buch verändern?");
-                
+
                     string auswahlExemplar = Console.ReadLine();
                     int exemplarIndex = Pruefungen.EingabeZahlPruefung(0, auswahlExemplar);
-                
+
                     exemplar = buch.Exemplare[exemplarIndex - 1];
-                    exemplar.Anpassen();
+                    Console.WriteLine("Sollten sie bei einem Punkt keine änderungen haben lassen sie das Änderungsfeld frei");
+                    string verfuegbarkeit;
+
+                    if (exemplar.Verfuegbar)
+                    {
+                        verfuegbarkeit = "verfügbar";
+                    }
+                    else
+                    {
+                        verfuegbarkeit = "nicht verfügbar";
+                    }
+                    Console.WriteLine("aktueller Status ist: " + verfuegbarkeit);
+                    Console.WriteLine("Schreiben sie Y um den Status auf Verfuegbar zu setzen oder N um ihn auf nicht verfügbar zu setzen");
+                    Console.WriteLine("Sollte das Buch aufgrund eines Leihvorgangs nicht verfügbar sein empfehlen wir den Leihvorgang zu löschen anstatt es hier zu ändern");
+
+                    if (!Pruefungen.EnterGedrueckt())
+                    {
+                        exemplar.Verfuegbar = Pruefungen.JaNeinTest();
+                        if (exemplar.Verfuegbar)
+                        {
+                            verfuegbarkeit = "verfügbar";
+                        }
+                        else
+                        {
+                            verfuegbarkeit = "nicht verfügbar";
+                        }
+                        Console.WriteLine("Der neue Status ist: " + verfuegbarkeit);
+
+                    }
+
                     break;
                 case 3:
                     AllgemeineInfos(3);
@@ -327,10 +512,58 @@ namespace Buecherei.Properties
 
                     string eingabe = Console.ReadLine();
                     int auswahl = Pruefungen.EingabeZahlPruefung(0, eingabe);
-                    
+
                     AlleInfos(auswahl, 3);
                     leihVorgang = Listen.LeihVorgangsListeAusgeben()[auswahl - 1];
-                    leihVorgang.Anpassen();
+                    bool datumRichtig;
+
+                    Console.WriteLine("aktueller Name des Leihers ist: " + leihVorgang.Name);
+                    if (!Pruefungen.EnterGedrueckt())
+                    {
+                        do
+                        {
+                            sicher = false;
+                            aenderung = Console.ReadLine();
+                            Console.WriteLine("Der neue Name des Leihers ist: " + aenderung);
+                            Console.WriteLine("Sind sie sicher? (Y/N)");
+                            if (Pruefungen.JaNeinTest())
+                            {
+                                leihVorgang.Name = aenderung;
+                                sicher = true;
+                                aenderung = "";
+                            }
+                        } while (!sicher);
+
+                    }
+
+                    Console.WriteLine("aktuelles Abgabedatum ist: " + leihVorgang.AbgabeDatum);
+                    if (!Pruefungen.EnterGedrueckt())
+                    {
+                        do
+                        {
+                            datumRichtig = false;
+                            DateTime datum = DateTime.Now;
+                            do
+                            {
+                                aenderung = Console.ReadLine();
+                                if (Pruefungen.DatumPruefung(aenderung))
+                                {
+                                    datumRichtig = true;
+                                    datum = Convert.ToDateTime(aenderung).Date;
+                                }
+                            } while (!datumRichtig);
+
+                            sicher = false;
+                            Console.WriteLine("Das neue Abgabedatum ist: " + datum);
+                            Console.WriteLine("Sind sie sicher? (Y/N)");
+                            if (Pruefungen.JaNeinTest())
+                            {
+                                leihVorgang.AbgabeDatum = datum;
+                                sicher = true;
+                                aenderung = "";
+                            }
+                        } while (!sicher);
+                    }
                     break;
             }
         }
@@ -352,7 +585,13 @@ namespace Buecherei.Properties
                     eingabe = Console.ReadLine();
                     auswahl = Pruefungen.EingabeZahlPruefung(0, eingabe);
                     buch = Listen.BuchListeAusgeben()[auswahl - 1];
-                    buch.Loeschen();
+                    Console.WriteLine("Sind sie sicher das sie " + buch.Author + "löschen wollen?");
+                    if (Pruefungen.JaNeinTest())
+                    {
+                        Listen.BuchEntfernen(buch);
+                        Console.WriteLine("Das Buch wurde erfolgreich gelöscht");
+                    }
+
                     break;
                 case 2:
                     AllgemeineInfos(1);
@@ -361,7 +600,7 @@ namespace Buecherei.Properties
                     eingabe = Console.ReadLine();
                     auswahl = Pruefungen.EingabeZahlPruefung(0, eingabe);
                     buch = Listen.BuchListeAusgeben()[auswahl - 1];
-                
+
                     ExemplarAusgeben(buch);
                     eingabe = Console.ReadLine();
                     auswahl = Pruefungen.EingabeZahlPruefung(0, eingabe);
@@ -379,25 +618,50 @@ namespace Buecherei.Properties
                     eingabe = Console.ReadLine();
                     auswahl = Pruefungen.EingabeZahlPruefung(0, eingabe);
                     leihVorgang = Listen.LeihVorgangsListeAusgeben()[auswahl - 1];
-                
-                    AlleInfos(auswahl,3);
-                    leihVorgang.Loeschen();
+
+                    AlleInfos(auswahl, 3);
+                    Console.WriteLine("Sind sie sicher dass sie diesen Leihvorgang löschen wollen? Das verwendete Exemplar wird dadurch wieder verfügbar");
+                    if (Pruefungen.JaNeinTest())
+                    {
+                        leihVorgang.GeliehenesExemplar.Verfuegbar = true;
+                        Listen.LeihvorgangEntfernen(leihVorgang);
+                        Console.WriteLine("Leihvorgang wurde gelöscht");
+                    }
                     break;
             }
             AllesSpeichern();
         }
-        
+
         private static void AlleInfos(int index, int option)
         {
             switch (option)
             {
                 case 1:
                     Buch aktuellesBuch = Listen.BuchListeAusgeben()[index - 1];
-                    aktuellesBuch.Anzeigen();
+                    var table = new ConsoleTable("Name", "Wert");
+                    table.AddRow("Author", aktuellesBuch.Author);
+                    table.AddRow("Title", aktuellesBuch.Title);
+                    table.AddRow("Erscheinungsjahr", aktuellesBuch.Year);
+                    table.AddRow("Land", aktuellesBuch.Country);
+                    table.AddRow("Sprache", aktuellesBuch.Language);
+                    table.AddRow("Seitenanzahl", aktuellesBuch.Pages);
+                    table.AddRow("Link zu Wikipedia", aktuellesBuch.Link);
+                    table.AddRow("Link zum Cover", aktuellesBuch.ImageLink);
+                    table.AddRow("Buch Id ", aktuellesBuch.BuchId);
+
+                    Console.WriteLine(table);
+
                     break;
                 case 3:
                     LeihVorgang aktuellerLeihvorgang = Listen.LeihVorgangsListeAusgeben()[index - 1];
-                    aktuellerLeihvorgang.Anzeigen();
+                    table = new ConsoleTable("Name", "Wert");
+                    table.AddRow("geliehenes Exemplar", aktuellerLeihvorgang.GeliehenesExemplar.Id);
+                    table.AddRow("Leihnummer", aktuellerLeihvorgang.Leihnummer);
+                    table.AddRow("Name", aktuellerLeihvorgang.Name);
+                    table.AddRow("Abgabedatum", aktuellerLeihvorgang.AbgabeDatum);
+
+                    Console.WriteLine(table);
+
                     break;
             }
         }
@@ -430,7 +694,7 @@ namespace Buecherei.Properties
                     foreach (IProduct product in alleProdukte)
                     {
                         title = product.TitelAusgeben();
-                
+
                         table.AddRow(index, title);
                         index++;
                     }
@@ -439,7 +703,7 @@ namespace Buecherei.Properties
                 case 3:
                     var table3 = new ConsoleTable("Index", "Verliehen an", "Verliehen bis", "Exemplar ID",
                         "Id des ausgeliehenen Exemplars");
-                    
+
                     foreach (LeihVorgang leihVorgang in leihvorgangsListe)
                     {
                         table3.AddRow(index, leihVorgang.Name, leihVorgang.AbgabeDatum, leihVorgang.GeliehenesExemplar.Id);
