@@ -10,7 +10,7 @@ namespace Buecherei.Properties
 {
     public static class Json
     {
-        private static string directory = System.IO.Directory.GetParent(System.IO.Directory.GetParent(Environment.CurrentDirectory).ToString()).ToString();
+        private static readonly string directory = System.IO.Directory.GetParent(System.IO.Directory.GetParent(Environment.CurrentDirectory).ToString()).ToString();
         public static void LoadBuch()
         {
             try
@@ -22,20 +22,26 @@ namespace Buecherei.Properties
 
                     foreach (Buch buch in listBuecher)
                     {
-                        if (buch.BuchId == Guid.Empty)
+                        if (buch.IdAusgeben() == Guid.Empty)
                         {
                             buch.BuchIdGenerieren();
                         }
+
+                        //Exemplar exemplar = new Exemplar(buch.IdAusgeben(), true);
+                        //buch.ExemplarHinzufuegen(exemplar);
+                        //Exemplar exemplar2 = new Exemplar(buch.IdAusgeben(), true);
+                        //buch.ExemplarHinzufuegen(exemplar2);
+
                         Listen.ProduktHinzufuegen(buch);
                     }
                     r.Close();
                 }
 
             }
-             catch 
-             {
-                 Debug.Print("books.json nicht zum laden gefunden");
-             }
+            catch
+            {
+                Debug.WriteLine("books.json nicht gefunden");
+            }
         }
         
         public static void LoadExemplar()
@@ -44,27 +50,63 @@ namespace Buecherei.Properties
             {
                 List<Buch> alleBuecher = new List<Buch>();
                 List<IProduct> alleProdukte = Listen.ProduktListeAusgeben();
-                foreach (Buch buch in alleProdukte)
+                List<Magazin> alleMagazine = new List<Magazin>();
+                foreach (IProduct product in alleProdukte)
                 {
-                    alleBuecher.Add(buch);
+                    if (product.InformationenAusgeben("Art") == "Buch")
+                    {
+                        Buch neuesBuch = new Buch(product.InformationenAusgeben("Author"), Convert.ToInt32(product.InformationenAusgeben("Seiten")), product.InformationenAusgeben("Titel"), product.IdAusgeben(), product.InformationenAusgeben("Land"), product.InformationenAusgeben("Bild"), product.InformationenAusgeben("Sprache"), product.InformationenAusgeben("Link"), Convert.ToInt32(product.InformationenAusgeben("Jahr")));
+                        alleBuecher.Add(neuesBuch);
+                    }
+
+                    if (product.InformationenAusgeben("Art") == "Magazin")
+                    {
+                        Magazin neuesMagazin = new Magazin(Convert.ToInt32(product.InformationenAusgeben("Rang")), product.InformationenAusgeben("Titel"), product.InformationenAusgeben("Auflage"), product.InformationenAusgeben("Gruppe"), product.InformationenAusgeben("SachGruppe"), product.InformationenAusgeben("Verlag"), product.IdAusgeben());
+                        alleMagazine.Add(neuesMagazin);
+                    }
+
                 }
                 using (StreamReader r = new StreamReader(directory + "/exemplar.json"))
                 {
                     string json = r.ReadToEnd();
                     List<Exemplar> listExemplar = JsonConvert.DeserializeObject<List<Exemplar>>(json);
-
-                    foreach (Exemplar exemplar in listExemplar)
+                    if (listExemplar != null)
                     {
-                        Buch buch = alleBuecher.Find(x => x.BuchId == exemplar.Buch);
-                        buch.ExemplarHinzufuegen(exemplar);
-                        Listen.ExemplarHinzufuegen(exemplar);
+                        foreach (Exemplar exemplar in listExemplar)
+                        {
+                            
+                            Buch buch = alleBuecher.Find(x => x.IdAusgeben() == exemplar.GehoertZu);
+                            if (buch != null)
+                            {
+                                buch.ExemplarHinzufuegen(exemplar);
+                            }
+
+                            else
+                            {
+                                Magazin magazin = alleMagazine.Find(x => x.IdAusgeben() == exemplar.GehoertZu);
+
+                                if (magazin != null)
+                                {
+                                    magazin.ExemplarHinzufuegen(exemplar);
+                                }
+
+                                else
+                                {
+                                    Console.WriteLine("Exemplar konnte nicht zugeordnet werden");
+                                }
+
+                            }
+
+
+                            Listen.ExemplarHinzufuegen(exemplar);
+                        }
+                        r.Close();
                     }
-                    r.Close();
                 }
             }
-            catch 
+            catch
             {
-                Debug.Print("books.json nicht zum laden gefunden");
+                Debug.Print("exemplar.json nicht zum laden gefunden");
             }
         }
         
@@ -78,11 +120,14 @@ namespace Buecherei.Properties
                     string json = r.ReadToEnd();
                     List<LeihVorgang> listLeihVorgang = JsonConvert.DeserializeObject<List<LeihVorgang>>(json);
 
-                    foreach (LeihVorgang leihvorgang in listLeihVorgang)
+                    if(listLeihVorgang != null)
                     {
-                        Exemplar exemplar = alleExemplare.Find(x => x.Id == leihvorgang.ExemplarId);
-                        leihvorgang.ExemplarHinzufuegen(exemplar);
-                        Listen.LeihvorgangHinzufuegen(leihvorgang);
+                        foreach (LeihVorgang leihvorgang in listLeihVorgang)
+                        {
+                            Exemplar exemplar = alleExemplare.Find(x => x.Id == leihvorgang.ExemplarId);
+                            leihvorgang.ExemplarHinzufuegen(exemplar);
+                            Listen.LeihvorgangHinzufuegen(leihvorgang);
+                        }
                     }
                     r.Close();
                 }
@@ -90,7 +135,7 @@ namespace Buecherei.Properties
             }
             catch 
             {
-                Debug.Print("books.json nicht zum laden gefunden");
+                Debug.Print("leihen.json nicht zum laden gefunden");
             }
         }
 
@@ -103,13 +148,21 @@ namespace Buecherei.Properties
                     string json = r.ReadToEnd();
                     List<Magazin> listMagazine = JsonConvert.DeserializeObject<List<Magazin>>(json);
 
-                    foreach (Magazin magazin in listMagazine)
+                    if (listMagazine != null)
                     {
-                        if (magazin.MagazinId == Guid.Empty)
+                        foreach (Magazin magazin in listMagazine)
                         {
-                            magazin.IdGenerieren();
+                            if (magazin.IdAusgeben() == Guid.Empty)
+                            {
+                                magazin.IdGenerieren();
+                            }
+                            //Exemplar exemplar = new Exemplar(magazin.IdAusgeben(), true);
+                            //magazin.ExemplarHinzufuegen(exemplar);
+                            //Exemplar exemplar2 = new Exemplar(magazin.IdAusgeben(), true);
+                            //magazin.ExemplarHinzufuegen(exemplar2);
+
+                            Listen.ProduktHinzufuegen(magazin);
                         }
-                        Listen.ProduktHinzufuegen(magazin);
                     }
                     r.Close();
                 }
@@ -126,88 +179,52 @@ namespace Buecherei.Properties
 
         public static void SpeicherBuch()
         {
-            List<IProduct> alleBuecher = new List<IProduct>();
-            try
-            {
-                File.Delete(directory + "/books.json");
-            }
-            catch
-            {
-                Debug.Print("books.json beim Speichern nicht gefunden");
-            }
+            List<Buch> alleBuecher = new List<Buch>();
             List<IProduct> produkte = Listen.ProduktListeAusgeben();
             foreach (IProduct product in produkte)
             {
-                if (product.ArtAusgeben() == "Buch")
+                if (product.InformationenAusgeben("Art") == "Buch")
                 {
-                    alleBuecher.Add(product);
+                    Buch neuesBuch = new Buch(product.InformationenAusgeben("Author"), Convert.ToInt32(product.InformationenAusgeben("Seiten")), product.InformationenAusgeben("Titel"),product.IdAusgeben() ,product.InformationenAusgeben("Land"), product.InformationenAusgeben("Bild"),product.InformationenAusgeben("Sprache"), product.InformationenAusgeben("Link") ,Convert.ToInt32(product.InformationenAusgeben("Jahr")));
+                    alleBuecher.Add(neuesBuch);
                 }
             }
-            using (StreamWriter file = File.CreateText(directory + "/books.json"))
-            {
-                JsonSerializer serializer = new JsonSerializer();
-                serializer.Serialize(file, alleBuecher);
-            }
+            string json = JsonConvert.SerializeObject(alleBuecher);
+
+            File.WriteAllText(directory + "/books.json", json);
         }
-        
+
         public static void SpeicherMagazin()
         {
-            List<IProduct> alleMagazine = new List<IProduct>();
-            try
-            {
-                File.Delete(directory + "/Magazine.json");
-            }
-            catch
-            {
-                Debug.Print("books.json beim Speichern nicht gefunden");
-            }
+            List<Magazin> alleMagazine = new List<Magazin>();
             List<IProduct> produkte = Listen.ProduktListeAusgeben();
             foreach (IProduct product in produkte)
             {
-                if (product.ArtAusgeben() == "Magazin")
+                if (product.InformationenAusgeben("Art") == "Magazin")
                 {
-                    alleMagazine.Add(product);
+                    Magazin neuesMagazin = new Magazin(Convert.ToInt32(product.InformationenAusgeben("Rang")), product.InformationenAusgeben("Titel"), product.InformationenAusgeben("Auflage"), product.InformationenAusgeben("Gruppe"), product.InformationenAusgeben("SachGruppe"), product.InformationenAusgeben("Verlag"), product.IdAusgeben());
+                    alleMagazine.Add(neuesMagazin);                
                 }
             }
-            using (StreamWriter file = File.CreateText(directory + "/Magazine.json"))
-            {
-                JsonSerializer serializer = new JsonSerializer();
-                serializer.Serialize(file, alleMagazine);
-            }
+            string json = JsonConvert.SerializeObject(alleMagazine);
+
+            File.WriteAllText(directory + "/Magazine.json", json);
         }
 
 
         public static void SpeicherExemplar()
         {
-            try
-            {
-                File.Delete(directory + "/exemplar.json");
-            }
-            catch 
-            {
-                Debug.Print("exemplar.json beim Speichern nicht gefunden");
-            }
 
             List<Exemplar> exemplare = Listen.ExemplarListenAusgeben();
             
-            using (StreamWriter file = File.CreateText(directory + "/exemplar.json"))
-            {
-                JsonSerializer serializer = new JsonSerializer();
-                serializer.Serialize(file, exemplare);
-            }
+            string json = JsonConvert.SerializeObject(exemplare);
+
+            File.WriteAllText(directory + "/exemplar.json", json);
         }
         
         
         public static void SpeicherLeihvorgang()
         {
-            try
-            {
-                File.Delete(directory + "/leihen.json");
-            }
-            catch 
-            {
-                Debug.Print("leihen.json beim Speichern nicht gefunden");
-            }
 
             List<LeihVorgang> leihVorgaenge = Listen.LeihVorgangsListeAusgeben();
             foreach (LeihVorgang leihVorgang in leihVorgaenge)
@@ -215,12 +232,10 @@ namespace Buecherei.Properties
                 leihVorgang.ExemplarId = leihVorgang.GeliehenesExemplar.Id;
                 leihVorgang.GeliehenesExemplar = null; 
             }
-            
-            using (StreamWriter file = File.CreateText(directory + "/leihen.json"))
-            {
-                JsonSerializer serializer = new JsonSerializer();
-                serializer.Serialize(file, leihVorgaenge);
-            }
+
+            string json = JsonConvert.SerializeObject(leihVorgaenge);
+
+            File.WriteAllText(directory + "/leihen.json", json);
         }
     }
 }

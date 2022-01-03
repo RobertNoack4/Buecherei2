@@ -6,13 +6,13 @@ namespace Buecherei.Properties
 {
     public class Exemplar
     {
-        public Guid Buch { get; set; }
+        public Guid GehoertZu { get; set; }
         public Guid Id { get; set; }
         public Boolean Verfuegbar { get; set; }
 
-        public Exemplar(Guid buch ,bool verfuegbar)
+        public Exemplar(Guid gehoertZu ,bool verfuegbar)
         {
-            Buch = buch;
+            GehoertZu = gehoertZu;
             Verfuegbar = verfuegbar;
             Id = Guid.NewGuid();
             
@@ -22,7 +22,7 @@ namespace Buecherei.Properties
         [JsonConstructor]
         public Exemplar(Guid buch ,bool verfuegbar, Guid guid)
         {
-            Buch = buch;
+            GehoertZu = buch;
             Verfuegbar = verfuegbar;
             Id = guid;
         }
@@ -34,7 +34,7 @@ namespace Buecherei.Properties
 
         public void BuchHinzufuegen(Guid BuchId)
         {
-            Buch = BuchId;
+            GehoertZu = BuchId;
         }
     }
 }

@@ -6,7 +6,7 @@ namespace Buecherei.Properties
     {
         public static int EingabeZahlPruefung(int moeglichkeiten)
         {
-            bool fehler = false;
+            bool fehler;
             int probe = 0;
             do
             {
@@ -36,7 +36,7 @@ namespace Buecherei.Properties
 
         public static int EingabeZahlPruefung(int moeglichkeiten, string eingabe)
         {
-            bool fehler = false;
+            bool fehler;
             int probe = 0;
             do
             {
@@ -70,8 +70,7 @@ namespace Buecherei.Properties
         {
             do
             {
-                ConsoleKeyInfo keyInfo = new ConsoleKeyInfo();
-                keyInfo = Console.ReadKey(true);
+                ConsoleKeyInfo keyInfo = Console.ReadKey(true);
                 if (keyInfo.Key == ConsoleKey.Y)
                 {
                     return true;
@@ -90,8 +89,7 @@ namespace Buecherei.Properties
 
         public static bool EnterGedrueckt()
         {
-            ConsoleKeyInfo keyInfo = new ConsoleKeyInfo();
-            keyInfo = Console.ReadKey(true);
+            ConsoleKeyInfo keyInfo = Console.ReadKey(true);
 
             if (keyInfo.Key == ConsoleKey.Enter)
             {

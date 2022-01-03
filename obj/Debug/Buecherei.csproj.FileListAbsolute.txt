@@ -9,3 +9,15 @@
 /home/robert/RiderProjects/Buecherei/obj/Debug/Buecherei.csproj.CopyComplete
 /home/robert/RiderProjects/Buecherei/bin/Debug/ConsoleTables.dll
 /home/robert/RiderProjects/Buecherei/bin/Debug/ConsoleTables.pdb
+C:\Users\NoackRob\Source\Repos\Buecherei2\bin\Debug\Buecherei.exe.config
+C:\Users\NoackRob\Source\Repos\Buecherei2\bin\Debug\Buecherei.exe
+C:\Users\NoackRob\Source\Repos\Buecherei2\bin\Debug\Buecherei.pdb
+C:\Users\NoackRob\Source\Repos\Buecherei2\bin\Debug\ConsoleTables.dll
+C:\Users\NoackRob\Source\Repos\Buecherei2\bin\Debug\Newtonsoft.Json.dll
+C:\Users\NoackRob\Source\Repos\Buecherei2\bin\Debug\ConsoleTables.pdb
+C:\Users\NoackRob\Source\Repos\Buecherei2\bin\Debug\Newtonsoft.Json.xml
+C:\Users\NoackRob\Source\Repos\Buecherei2\obj\Debug\Buecherei.csproj.AssemblyReference.cache
+C:\Users\NoackRob\Source\Repos\Buecherei2\obj\Debug\Buecherei.csproj.CoreCompileInputs.cache
+C:\Users\NoackRob\Source\Repos\Buecherei2\obj\Debug\Buecherei.csproj.CopyComplete
+C:\Users\NoackRob\Source\Repos\Buecherei2\obj\Debug\Buecherei.exe
+C:\Users\NoackRob\Source\Repos\Buecherei2\obj\Debug\Buecherei.pdb

@@ -26,37 +26,13 @@ namespace Buecherei.Properties
             return produktListe;
         }
 
-        public static List<Buch> BuchListeAusgeben()
-        {
-            List<Buch> buchliste = new List<Buch>();
-            foreach (Buch buch in produktListe)
-            {
-                buchliste.Add(buch);
-            }
-
-            return buchliste;
-        }
-
-        public static List<IProduct> BuecherUndMagazinListeAusgeben()
-        {
-            List<IProduct> alleProdukte = produktListe;
-            List<IProduct> magazinUndBuchListe = new List<IProduct>();
-
-            foreach (Buch buch in produktListe)
-            {
-                magazinUndBuchListe.Add(buch);
-            }
-
-            return magazinUndBuchListe;
-        }
-
-        public static void BuchEntfernen(int index)
+        public static void ProduktEntfernen(int index)
         {
             produktListe.RemoveAt(index-1);
         }
-        public static void BuchEntfernen(Buch buch)
+        public static void ProduktEntfernen(IProduct product)
         {
-            produktListe.Remove(buch);
+            produktListe.Remove(product);
         }
 
         
