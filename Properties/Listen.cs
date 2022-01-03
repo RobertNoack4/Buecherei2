@@ -28,13 +28,6 @@ namespace Buecherei.Properties
 
         public static List<Buch> BuchListeAusgeben()
         {
-            List<Buch> buchliste = new List<Buch>();
-            foreach (Buch buch in produktListe)
-            {
-                buchliste.Add(buch);
-            }
-
-            return buchliste;
         }
 
         public static List<IProduct> BuecherUndMagazinListeAusgeben()

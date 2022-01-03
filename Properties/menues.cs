@@ -197,16 +197,18 @@ namespace Buecherei.Properties
 
             else if (option == 2)
             {
-                Buch buch;
+                IProduct product;
                 bool verfuegbar;
                 AllgemeineInfos(1);
-                Console.WriteLine("Bitte wählen sie aus zu welchen Buch sie ein neues Exemplar erstellen möchten");
-                int auswahl = Pruefungen.EingabeZahlPruefung(Listen.BuchListeAusgeben().Count, Console.ReadLine());
-                buch = Listen.BuchListeAusgeben()[auswahl - 1];
+                Console.WriteLine("Bitte wählen sie aus zu welchem Produkt sie ein neues Exemplar erstellen möchten");
+                int auswahl = Pruefungen.EingabeZahlPruefung(Listen.ProduktListeAusgeben().Count, Console.ReadLine());
+
+                product = Listen.ProduktListeAusgeben()[auswahl - 1];
                 Console.WriteLine("Ist dieses Exemplar aktuell verfügbar?");
                 verfuegbar = Pruefungen.JaNeinTest();
-                Konstruktoren.ExemplarErstellen(buch, verfuegbar);
-                Console.WriteLine("Es wurde ein neues exemplar von " + buch.Title + " erstellt");
+
+                Konstruktoren.ExemplarErstellen(product, verfuegbar);
+                Console.WriteLine("Es wurde ein neues exemplar von " + product.TitelAusgeben() + " erstellt");
             }
             else if (option == 3)
             {
@@ -270,7 +272,7 @@ namespace Buecherei.Properties
                             verfuegbar = "nicht Verfügbar";
                         }
 
-                        table2.AddRow(index, exemplar.Id, exemplar.Buch, verfuegbar);
+                        table2.AddRow(index, exemplar.Id, exemplar.GehoertZu, verfuegbar);
                         index++;
                     }
                     Console.WriteLine(table2);
@@ -690,12 +692,12 @@ namespace Buecherei.Properties
             switch (option)
             {
                 case 1:
-                    var table = new ConsoleTable("Index", "Titel");
+                    var table = new ConsoleTable("Index", "Titel", "Art");
                     foreach (IProduct product in alleProdukte)
                     {
                         title = product.TitelAusgeben();
 
-                        table.AddRow(index, title);
+                        table.AddRow(index, title, product.ArtAusgeben());
                         index++;
                     }
                     Console.WriteLine(table);
@@ -718,14 +720,14 @@ namespace Buecherei.Properties
         {
             Json.SpeicherBuch();
             Json.SpeicherMagazin();
-            // Json.SpeicherExemplar();
-            // Json.SpeicherLeihvorgang();
-            //
-            // Listen.ListenInit();
-            //
-            // Json.LoadBuch();
-            // Json.LoadExemplar();
-            // Json.LoadLeihvorgaenge();
+            Json.SpeicherExemplar();
+            Json.SpeicherLeihvorgang();
+            
+            Listen.ListenInit();
+            
+            Json.LoadBuch();
+            Json.LoadExemplar();
+            Json.LoadLeihvorgaenge();
         }
     }
 }

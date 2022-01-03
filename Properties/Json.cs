@@ -55,7 +55,7 @@ namespace Buecherei.Properties
 
                     foreach (Exemplar exemplar in listExemplar)
                     {
-                        Buch buch = alleBuecher.Find(x => x.BuchId == exemplar.Buch);
+                        Buch buch = alleBuecher.Find(x => x.BuchId == exemplar.GehoertZu);
                         buch.ExemplarHinzufuegen(exemplar);
                         Listen.ExemplarHinzufuegen(exemplar);
                     }

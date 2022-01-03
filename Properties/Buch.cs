@@ -63,6 +63,12 @@ namespace Buecherei.Properties
         {
             return Art;
         }
+
+        public Guid IdAusgeben()
+        {
+            return BuchId;
+        }
+
         public void ExemplarHinzufuegen(Exemplar exemplar)
         {
             Exemplare.Add(exemplar);

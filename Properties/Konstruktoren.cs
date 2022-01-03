@@ -11,10 +11,11 @@ namespace Buecherei.Properties
             Buch neuesBuch = new Buch(author, country, imageLink, language, link, pages, title, year);
             Listen.ProduktHinzufuegen(neuesBuch);
         }
-        public static void ExemplarErstellen(Buch buch, bool verfuegbar)
+
+        public static void ExemplarErstellen(IProduct product, bool verfuegbar)
         {
-            Exemplar neuesExemplar = new Exemplar(buch.BuchId, verfuegbar);
-            buch.ExemplarHinzufuegen(neuesExemplar);
+            Exemplar exemplar = new Exemplar(product.IdAusgeben(), verfuegbar);
+            product.ExemplareHinzufuegen(exemplar);
         }
 
         public static void LeihvorgangErstellen(Buch buch, string name)

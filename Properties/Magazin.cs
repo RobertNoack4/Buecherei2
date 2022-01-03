@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 
 namespace Buecherei.Properties
@@ -12,10 +13,12 @@ namespace Buecherei.Properties
         public string Sachgruppe { get; set; }
         public string Verlag { get; set; }
         public string Art { get; set; }
+        public List<Exemplar> Exemplare { get; set; }
         public Guid MagazinId { get; set; }
 
         public Magazin(int rang, string titel, string auflage, string gruppe, string sachgruppe, string verlag)
         {
+            Exemplare = new List<Exemplar>();
             Rang = rang;
             Titel = titel;
             Auflage = auflage;
@@ -29,6 +32,7 @@ namespace Buecherei.Properties
         [JsonConstructor]
         public Magazin(int rang, string titel, string auflage, string gruppe, string sachgruppe, string verlag, Guid guid)
         {
+            Exemplare = new List<Exemplar>();
             Rang = rang;
             Titel = titel;
             Auflage = auflage;
@@ -51,6 +55,16 @@ namespace Buecherei.Properties
         public string ArtAusgeben()
         {
             return Art;
+        }
+
+        public Guid IdAusgeben()
+        {
+            return MagazinId;
+        }
+
+        public void ExemplarHinzufuegen(Exemplar exemplar)
+        {
+            Exemplare.Add(exemplar);
         }
     }
 }
