@@ -15,12 +15,12 @@ namespace Buecherei.Properties
         public static void ExemplarErstellen(IProduct product, bool verfuegbar)
         {
             Exemplar exemplar = new Exemplar(product.IdAusgeben(), verfuegbar);
-            product.ExemplareHinzufuegen(exemplar);
+            product.ExemplarHinzufuegen(exemplar);
         }
 
-        public static void LeihvorgangErstellen(Buch buch, string name)
+        public static void LeihvorgangErstellen(IProduct product, string name)
         {
-            Exemplar verliehenesExemplar = buch.VerfuegbaresExemplarAusgeben();
+            Exemplar verliehenesExemplar = product.VerfuegbaresExemplarAusgeben();
             if (verliehenesExemplar == null)
             {
                 Console.WriteLine("Sie haben versucht ein Buch zu verleihen was nicht mehr existiert");
