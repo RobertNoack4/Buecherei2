@@ -2,7 +2,7 @@
 
 namespace Buecherei
 {
-    internal class Program
+    public class Program
     {
         public static void Main()
         {
@@ -11,7 +11,8 @@ namespace Buecherei
             Json.LoadMagazine();
             Json.LoadExemplar();
             Json.LoadLeihvorgaenge();
+            
             Menues.HauptMenue();
-        }   
+        }
     }
 }

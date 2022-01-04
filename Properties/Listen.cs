@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 
 namespace Buecherei.Properties
@@ -34,9 +33,6 @@ namespace Buecherei.Properties
         {
             produktListe.Remove(product);
         }
-
-        
-
         
         public static List<LeihVorgang> LeihVorgangsListeAusgeben()
         {
@@ -66,7 +62,6 @@ namespace Buecherei.Properties
         public static void ExemplarHinzufuegen(Exemplar neuesExemplar)
         {
             exemplarListe.Add(neuesExemplar);
-        }
-        
+        }        
     }
 }

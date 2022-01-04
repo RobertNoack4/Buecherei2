@@ -18,20 +18,24 @@ namespace Buecherei.Properties
                     string json = r.ReadToEnd();
                     List<Buch> listBuecher = JsonConvert.DeserializeObject<List<Buch>>(json);
 
-                    foreach (Buch buch in listBuecher)
+                    if(listBuecher != null)
                     {
-                        if (buch.IdAusgeben() == Guid.Empty)
+                        foreach (Buch buch in listBuecher)
                         {
-                            buch.BuchIdGenerieren();
-                        }
-                        if (buch.InformationenAusgeben("Download") == null)
-                        {
-                            buch.DownloadlinkGenerieren();
-                        }
-                        //Konstruktoren.ExemplarErstellen(buch, true);
-                        //Konstruktoren.ExemplarErstellen(buch, true);
+                            if (buch.IdAusgeben() == Guid.Empty)
+                            {
+                                buch.BuchIdGenerieren();
+                            }
+                            if (buch.InformationenAusgeben("Download") == null)
+                            {
+                                buch.DownloadlinkGenerieren();
+                            }
+                            //Konstruktoren.ExemplarErstellen(buch, true);
+                            //Konstruktoren.ExemplarErstellen(buch, true);
+                            Listen.ProduktHinzufuegen(buch);
 
-                        Listen.ProduktHinzufuegen(buch);
+                        }
+
                     }
                     r.Close();
                 }
