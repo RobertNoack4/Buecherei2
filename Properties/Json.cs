@@ -39,6 +39,7 @@ namespace Buecherei.Properties
             }
             catch
             {
+                File.Create(directory + "/books.json");
                 Debug.WriteLine("books.json nicht gefunden");
             }
         }
@@ -75,6 +76,7 @@ namespace Buecherei.Properties
             }
             catch
             {
+                File.Create(directory + "/Magazin.json");
                 Debug.Print("Magazin.json zum Laden nicht gefunden");
             }
 
@@ -105,6 +107,7 @@ namespace Buecherei.Properties
             }
             catch
             {
+                File.Create(directory + "/exemplar.json");
                 Debug.Print("exemplar.json nicht zum laden gefunden");
             }
         }
@@ -134,6 +137,7 @@ namespace Buecherei.Properties
             }
             catch 
             {
+                File.Create(directory + "/leihen.json");
                 Debug.Print("leihen.json nicht zum laden gefunden");
             }
         }

@@ -121,21 +121,6 @@ namespace Buecherei.Properties
         }
 
 
-        public static bool EnterGedrueckt()
-        {
-            ConsoleKeyInfo keyInfo = Console.ReadKey(true);
-
-            if (keyInfo.Key == ConsoleKey.Enter)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-
-        }
-
         public static bool DatumPruefung(string datum)
         {
             try
