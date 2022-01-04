@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using ConsoleTables;
-using Newtonsoft.Json;
 
 namespace Buecherei.Properties
 {
@@ -301,6 +299,7 @@ namespace Buecherei.Properties
         private static void InformationenAnpassen(int option)
         {
             int genauereInfos;
+            string eingabe;
             List<IProduct> alleProdukte = Listen.ProduktListeAusgeben();
             Exemplar exemplar;
             IProduct product;
@@ -315,7 +314,8 @@ namespace Buecherei.Properties
                     product = Listen.ProduktListeAusgeben()[genauereInfos - 1];
                     bool sicher;
                     string aenderung;
-                    Console.WriteLine("Möchten sie dieses Buch verändern? (Y/N)");
+                    Console.WriteLine("Möchten sie dieses Produkt verändern? (Y/N)");
+                    Console.WriteLine(product.InformationenAusgeben("Titel"));
                     if (Pruefungen.JaNeinTest() == false)
                     {
                         return;
@@ -323,260 +323,28 @@ namespace Buecherei.Properties
 
                     if (product.InformationenAusgeben("Art") == "Buch")
                     {
-
                         Console.WriteLine("Sollten sie bei einem Punkt keine änderungen haben lassen sie das Änderungsfeld frei");
-                        Console.WriteLine("aktueller Author ist: " + product.InformationenAusgeben("Author"));
-                        if (!Pruefungen.EnterGedrueckt())
-                        {
-                            do
-                            {
-                                sicher = false;
 
-                                aenderung = Console.ReadLine();
-                                Console.WriteLine("Der neue Author name ist " + aenderung);
-                                Console.WriteLine("Sind sie sicher? (Y/N)");
-                                if (Pruefungen.JaNeinTest())
-                                {
-                                    product.Aenderung("Author", aenderung);
-                                    sicher = true;
-                                }
-                            } while (!sicher);
-                        }
-
-                        Console.WriteLine("aktueller Titel ist: " + product.InformationenAusgeben("Titel"));
-                        if (!Pruefungen.EnterGedrueckt())
-                        {
-                            do
-                            {
-                                sicher = false;
-                                aenderung = Console.ReadLine();
-                                Console.WriteLine("Der Neue Titel ist " + aenderung);
-                                Console.WriteLine("Sind sie sicher? (Y/N)");
-                                if (Pruefungen.JaNeinTest())
-                                {
-                                    product.Aenderung("Titel", aenderung);
-                                    sicher = true;
-                                }
-                            } while (!sicher);
-                        }
-
-                        Console.WriteLine("aktuelles Erscheinungsjahr ist: " + product.InformationenAusgeben("Jahr"));
-                        if (!Pruefungen.EnterGedrueckt())
-                        {
-                            do
-                            {
-                                sicher = false;
-                                aenderung = Console.ReadLine();
-                                int aenderungInt = Pruefungen.EingabeZahlPruefung(0, aenderung);
-                                Console.WriteLine("Das neue Erscheinungsjahr ist: " + aenderungInt);
-                                Console.WriteLine("Sind sie sicher? (Y/N)");
-                                if (Pruefungen.JaNeinTest())
-                                {
-                                    product.Aenderung("Jahr", aenderungInt.ToString());
-                                    sicher = true;
-                                }
-                            } while (!sicher);
-                        }
-
-                        Console.WriteLine("aktuelles Land ist: " + product.InformationenAusgeben("Land"));
-                        if (!Pruefungen.EnterGedrueckt())
-                        {
-                            do
-                            {
-                                sicher = false;
-                                aenderung = Console.ReadLine();
-                                Console.WriteLine("Das neue Land ist: " + aenderung);
-                                Console.WriteLine("Sind sie sicher? (Y/N)");
-                                if (Pruefungen.JaNeinTest())
-                                {
-                                    product.Aenderung("Land", aenderung);
-                                    sicher = true;
-                                }
-                            } while (!sicher);
-                        }
-
-                        Console.WriteLine("aktuelle Sprache ist: " + product.InformationenAusgeben("Sprache"));
-                        if (!Pruefungen.EnterGedrueckt())
-                        {
-                            do
-                            {
-                                sicher = false;
-                                aenderung = Console.ReadLine();
-                                Console.WriteLine("Die neue Sprache ist " + aenderung);
-                                Console.WriteLine("Sind sie sicher? (Y/N)");
-                                if (Pruefungen.JaNeinTest())
-                                {
-                                    product.Aenderung("Sprache", aenderung);
-                                    sicher = true;
-                                }
-                            } while (!sicher);
-                        }
-
-                        Console.WriteLine("aktuelle Seitenanzahl ist: " + product.InformationenAusgeben("Seiten"));
-                        if (!Pruefungen.EnterGedrueckt())
-                        {
-                            do
-                            {
-                                sicher = false;
-                                aenderung = Console.ReadLine();
-                                int aenderungInt = Pruefungen.EingabeZahlPruefung(0, aenderung);
-                                Console.WriteLine("Die neue Seitenanzahl ist: " + aenderungInt);
-                                Console.WriteLine("Sind sie sicher? (Y/N)");
-                                if (Pruefungen.JaNeinTest())
-                                {
-                                    product.Aenderung("Seiten", aenderungInt.ToString());
-                                    sicher = true;
-                                }
-                            } while (!sicher);
-                        }
-
-                        Console.WriteLine("aktueller Link zu Wikipedia ist: " + product.InformationenAusgeben("Link"));
-                        if (!Pruefungen.EnterGedrueckt())
-                        {
-                            do
-                            {
-                                sicher = false;
-                                aenderung = Console.ReadLine();
-                                Console.WriteLine("Der neue Link zu Wikipedia ist: " + aenderung);
-                                Console.WriteLine("Sind sie sicher? (Y/N)");
-                                if (Pruefungen.JaNeinTest())
-                                {
-                                    product.Aenderung("Link", aenderung);
-                                    sicher = true;
-                                }
-                            } while (!sicher);
-                        }
-
-                        Console.WriteLine("aktueller Link zum Cover ist: " + product.InformationenAusgeben("Bild"));
-                        if (!Pruefungen.EnterGedrueckt())
-                        {
-
-                            do
-                            {
-                                sicher = false;
-                                aenderung = Console.ReadLine();
-                                Console.WriteLine("Der neue Link zum Cover ist: " + aenderung);
-                                Console.WriteLine("Sind sie sicher? (Y/N)");
-                                if (Pruefungen.JaNeinTest())
-                                {
-                                    product.Aenderung("Bild", aenderung);
-                                    sicher = true;
-                                }
-                            } while (!sicher);
-                        }
+                        InformationenAnpassenStr("Author", product);
+                        InformationenAnpassenStr("Titel", product);
+                        InformationenAnpassenInt("Jahr", product);
+                        InformationenAnpassenStr("Land", product);
+                        InformationenAnpassenStr("Sprache", product);
+                        InformationenAnpassenInt("Seiten", product);
+                        InformationenAnpassenStr("Link", product);
+                        InformationenAnpassenStr("Bild", product);
                     }
 
                     else if (product.InformationenAusgeben("Art") == "Magazin")
                     {
-
                         Console.WriteLine("Sollten sie bei einem Punkt keine änderungen haben lassen sie das Änderungsfeld frei");
-                        Console.WriteLine("aktueller Titel ist: " + product.InformationenAusgeben("Titel"));
-                        if (!Pruefungen.EnterGedrueckt())
-                        {
-                            do
-                            {
-                                sicher = false;
 
-                                aenderung = Console.ReadLine();
-                                Console.WriteLine("Der neue Titel ist " + aenderung);
-                                Console.WriteLine("Sind sie sicher? (Y/N)");
-                                if (Pruefungen.JaNeinTest())
-                                {
-                                    product.Aenderung("Titel", aenderung);
-                                    sicher = true;
-                                }
-                            } while (!sicher);
-                        }
-
-                        Console.WriteLine("aktueller Rang ist: " + product.InformationenAusgeben("Rang"));
-                        if (!Pruefungen.EnterGedrueckt())
-                        {
-                            do
-                            {
-                                sicher = false;
-                                aenderung = Console.ReadLine();
-                                int aenderungInt = Pruefungen.EingabeZahlPruefung(0, aenderung);
-                                Console.WriteLine("Das neue Erscheinungsjahr ist: " + aenderungInt);
-                                Console.WriteLine("Sind sie sicher? (Y/N)");
-                                if (Pruefungen.JaNeinTest())
-                                {
-                                    product.Aenderung("Rang", aenderungInt.ToString());
-                                    sicher = true;
-                                }
-                            } while (!sicher);
-                        }
-
-                        Console.WriteLine("aktuelle Auflage ist: " + product.InformationenAusgeben("Auflage"));
-                        if (!Pruefungen.EnterGedrueckt())
-                        {
-                            do
-                            {
-                                sicher = false;
-
-                                aenderung = Console.ReadLine();
-                                Console.WriteLine("Die neue Auflage ist " + aenderung);
-                                Console.WriteLine("Sind sie sicher? (Y/N)");
-                                if (Pruefungen.JaNeinTest())
-                                {
-                                    product.Aenderung("Auflage", aenderung);
-                                    sicher = true;
-                                }
-                            } while (!sicher);
-                        }
-
-                        Console.WriteLine("aktuelle Gruppe ist: " + product.InformationenAusgeben("Gruppe"));
-                        if (!Pruefungen.EnterGedrueckt())
-                        {
-                            do
-                            {
-                                sicher = false;
-
-                                aenderung = Console.ReadLine();
-                                Console.WriteLine("Die neue Gruppe ist " + aenderung);
-                                Console.WriteLine("Sind sie sicher? (Y/N)");
-                                if (Pruefungen.JaNeinTest())
-                                {
-                                    product.Aenderung("Gruppe", aenderung);
-                                    sicher = true;
-                                }
-                            } while (!sicher);
-                        }
-
-                        Console.WriteLine("aktuelle Sachgruppe ist: " + product.InformationenAusgeben("SachGruppe"));
-                        if (!Pruefungen.EnterGedrueckt())
-                        {
-                            do
-                            {
-                                sicher = false;
-
-                                aenderung = Console.ReadLine();
-                                Console.WriteLine("Die neue Sachgruppe ist " + aenderung);
-                                Console.WriteLine("Sind sie sicher? (Y/N)");
-                                if (Pruefungen.JaNeinTest())
-                                {
-                                    product.Aenderung("SachGruppe", aenderung);
-                                    sicher = true;
-                                }
-                            } while (!sicher);
-                        }
-
-                        Console.WriteLine("aktueller Verlag ist: " + product.InformationenAusgeben("Verlag"));
-                        if (!Pruefungen.EnterGedrueckt())
-                        {
-                            do
-                            {
-                                sicher = false;
-
-                                aenderung = Console.ReadLine();
-                                Console.WriteLine("Der neue Verlag ist " + aenderung);
-                                Console.WriteLine("Sind sie sicher? (Y/N)");
-                                if (Pruefungen.JaNeinTest())
-                                {
-                                    product.Aenderung("Verlag", aenderung);
-                                    sicher = true;
-                                }
-                            } while (!sicher);
-                        }
+                        InformationenAnpassenStr("Titel", product);
+                        InformationenAnpassenInt("Rang", product);
+                        InformationenAnpassenStr("Auflage", product);
+                        InformationenAnpassenStr("Gruppe", product);
+                        InformationenAnpassenStr("SachGruppe", product);
+                        InformationenAnpassenStr("Verlag", product);
                     }
                     break;
                 case 2:
@@ -609,10 +377,10 @@ namespace Buecherei.Properties
                     Console.WriteLine("aktueller Status ist: " + verfuegbarkeit);
                     Console.WriteLine("Schreiben sie Y um den Status auf Verfuegbar zu setzen oder N um ihn auf nicht verfügbar zu setzen");
                     Console.WriteLine("Sollte das Buch aufgrund eines Leihvorgangs nicht verfügbar sein empfehlen wir den Leihvorgang zu löschen anstatt es hier zu ändern");
-
-                    if (!Pruefungen.EnterGedrueckt())
+                    eingabe = Console.ReadLine();
+                    if (!String.IsNullOrWhiteSpace(eingabe))
                     {
-                        exemplar.Verfuegbar = Pruefungen.JaNeinTest();
+                        exemplar.Verfuegbar = Pruefungen.JaNeinTest(eingabe);
                         if (exemplar.Verfuegbar)
                         {
                             verfuegbarkeit = "verfügbar";
@@ -630,7 +398,7 @@ namespace Buecherei.Properties
                     AllgemeineInfos(3);
                     Console.WriteLine("Bitte wählen sie den Leihvorgang aus welchen sie überarbeiten wollen:");
 
-                    string eingabe = Console.ReadLine();
+                    eingabe = Console.ReadLine();
                     int auswahl = Pruefungen.EingabeZahlPruefung(0, eingabe);
 
                     AlleInfos(auswahl, 3);
@@ -638,12 +406,12 @@ namespace Buecherei.Properties
                     bool datumRichtig;
 
                     Console.WriteLine("aktueller Name des Leihers ist: " + leihVorgang.Name);
-                    if (!Pruefungen.EnterGedrueckt())
+                    aenderung = Console.ReadLine();
+                    if (!String.IsNullOrWhiteSpace(aenderung))
                     {
                         do
                         {
                             sicher = false;
-                            aenderung = Console.ReadLine();
                             Console.WriteLine("Der neue Name des Leihers ist: " + aenderung);
                             Console.WriteLine("Sind sie sicher? (Y/N)");
                             if (Pruefungen.JaNeinTest())
@@ -651,12 +419,20 @@ namespace Buecherei.Properties
                                 leihVorgang.Name = aenderung;
                                 sicher = true;
                             }
+
+                            Console.WriteLine("Möchten sie doch keine Veränderung vornehmen? (Y/N)");
+                            if (Pruefungen.JaNeinTest())
+                            {
+                                return;
+                            }
+                            aenderung = Console.ReadLine();
                         } while (!sicher);
 
                     }
 
                     Console.WriteLine("aktuelles Abgabedatum ist: " + leihVorgang.AbgabeDatum);
-                    if (!Pruefungen.EnterGedrueckt())
+                    aenderung = Console.ReadLine();
+                    if (!String.IsNullOrWhiteSpace(aenderung))
                     {
                         do
                         {
@@ -664,7 +440,6 @@ namespace Buecherei.Properties
                             DateTime datum = DateTime.Now;
                             do
                             {
-                                aenderung = Console.ReadLine();
                                 if (Pruefungen.DatumPruefung(aenderung))
                                 {
                                     datumRichtig = true;
@@ -680,6 +455,12 @@ namespace Buecherei.Properties
                                 leihVorgang.AbgabeDatum = datum;
                                 sicher = true;
                             }
+                            Console.WriteLine("Möchten sie doch keine Veränderung vornehmen? (Y/N)");
+                            if (Pruefungen.JaNeinTest())
+                            {
+                                return;
+                            }
+                            aenderung = Console.ReadLine();
                         } while (!sicher);
                     }
                     break;
@@ -862,6 +643,63 @@ namespace Buecherei.Properties
             Json.LoadMagazine();
             Json.LoadExemplar();
             Json.LoadLeihvorgaenge();
+        }
+
+        private static void InformationenAnpassenStr(string art, IProduct product)
+        {
+            bool sicher;
+            string aenderung;
+            Console.WriteLine("Aktuell steht in dem Feld " + art + " folgendes: " + product.InformationenAusgeben(art));
+            aenderung = Console.ReadLine();
+            if (!String.IsNullOrWhiteSpace(aenderung))
+            {
+                do
+                {
+                    sicher = false;
+                    Console.WriteLine("Das neue Feld " + art + " ist " + aenderung);
+                    Console.WriteLine("Sind sie sicher? (Y/N)");
+                    if (Pruefungen.JaNeinTest())
+                    {
+                        product.Aenderung(art, aenderung);
+                        return;
+                    }
+                    Console.WriteLine("Möchten sie doch keine Veränderung vornehmen? (Y/N)");
+                    if(Pruefungen.JaNeinTest())
+                    {
+                        return;
+                    }
+                    aenderung = Console.ReadLine();
+                } while (!sicher);
+            }
+        }
+
+        private static void InformationenAnpassenInt(string art, IProduct product)
+        {
+            bool sicher;
+            string aenderung;
+            Console.WriteLine("Aktuell steht in dem Feld " + art + " folgendes: " + product.InformationenAusgeben(art));
+            aenderung = Console.ReadLine();
+            if (!String.IsNullOrWhiteSpace(aenderung))
+            {
+                do
+                {
+                    sicher = false;
+                    int aenderungInt = Pruefungen.EingabeZahlPruefung(0, aenderung);
+                    Console.WriteLine("Das neue Erscheinungsjahr ist: " + aenderungInt);
+                    Console.WriteLine("Sind sie sicher? (Y/N)");
+                    if (Pruefungen.JaNeinTest())
+                    {
+                        product.Aenderung(art, aenderungInt.ToString());
+                        return;
+                    }
+                    Console.WriteLine("Möchten sie doch keine Veränderung vornehmen? (Y/N)");
+                    if (Pruefungen.JaNeinTest())
+                    {
+                        return;
+                    }
+                    aenderung = Console.ReadLine();
+                } while (!sicher);
+            }
         }
     }
 }

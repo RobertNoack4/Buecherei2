@@ -1,8 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Security.Cryptography.X509Certificates;
-using ConsoleTables;
 using Newtonsoft.Json;
 
 namespace Buecherei.Properties

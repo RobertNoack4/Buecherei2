@@ -87,6 +87,40 @@ namespace Buecherei.Properties
             } while (true);
         }
 
+        public static bool JaNeinTest(string eingabe)
+        {
+            if (eingabe == "Y" || eingabe == "y")
+            {
+                return true;
+            }
+            else if (eingabe == "N" || eingabe == "n")
+            {
+                return false;
+            }
+            else
+            {
+                Console.WriteLine("Bitte geben sie entweder Y oder N ein!");
+                do
+                {
+                    ConsoleKeyInfo keyInfo = Console.ReadKey(true);
+                    if (keyInfo.Key == ConsoleKey.Y)
+                    {
+                        return true;
+                    }
+                    else if (keyInfo.Key == ConsoleKey.N)
+                    {
+                        return false;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Bitte geben sie entweder Y oder N ein!");
+                    }
+
+                } while (true);
+            }
+        }
+
+
         public static bool EnterGedrueckt()
         {
             ConsoleKeyInfo keyInfo = Console.ReadKey(true);
