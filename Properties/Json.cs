@@ -2,8 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
 using Newtonsoft.Json;
 
 namespace Buecherei.Properties
@@ -26,11 +24,12 @@ namespace Buecherei.Properties
                         {
                             buch.BuchIdGenerieren();
                         }
-
-                        //Exemplar exemplar = new Exemplar(buch.IdAusgeben(), true);
-                        //buch.ExemplarHinzufuegen(exemplar);
-                        //Exemplar exemplar2 = new Exemplar(buch.IdAusgeben(), true);
-                        //buch.ExemplarHinzufuegen(exemplar2);
+                        if (buch.InformationenAusgeben("Download") == null)
+                        {
+                            buch.DownloadlinkGenerieren();
+                        }
+                        //Konstruktoren.ExemplarErstellen(buch, true);
+                        //Konstruktoren.ExemplarErstellen(buch, true);
 
                         Listen.ProduktHinzufuegen(buch);
                     }
@@ -40,32 +39,54 @@ namespace Buecherei.Properties
             }
             catch
             {
+                File.Create(directory + "/books.json");
                 Debug.WriteLine("books.json nicht gefunden");
             }
         }
-        
+        public static void LoadMagazine()
+        {
+            try
+            {
+                using (StreamReader r = new StreamReader(directory + "/Magazine.json"))
+                {
+                    string json = r.ReadToEnd();
+                    List<Magazin> listMagazine = JsonConvert.DeserializeObject<List<Magazin>>(json);
+
+                    if (listMagazine != null)
+                    {
+                        foreach (Magazin magazin in listMagazine)
+                        {
+                            if (magazin.IdAusgeben() == Guid.Empty)
+                            {
+                                magazin.IdGenerieren();
+                            }
+                            if (magazin.InformationenAusgeben("Download") == null)
+                            {
+                                magazin.DownloadlinkGenerieren();
+                            }
+                        //Konstruktoren.ExemplarErstellen(magazin, true);
+                        //Konstruktoren.ExemplarErstellen(magazin, true);
+
+                        Listen.ProduktHinzufuegen(magazin);
+                        }
+                    }
+                    r.Close();
+                }
+
+            }
+            catch
+            {
+                File.Create(directory + "/Magazin.json");
+                Debug.Print("Magazin.json zum Laden nicht gefunden");
+            }
+
+        }
+
         public static void LoadExemplar()
         {
             try
             {
-                List<Buch> alleBuecher = new List<Buch>();
                 List<IProduct> alleProdukte = Listen.ProduktListeAusgeben();
-                List<Magazin> alleMagazine = new List<Magazin>();
-                foreach (IProduct product in alleProdukte)
-                {
-                    if (product.InformationenAusgeben("Art") == "Buch")
-                    {
-                        Buch neuesBuch = new Buch(product.InformationenAusgeben("Author"), Convert.ToInt32(product.InformationenAusgeben("Seiten")), product.InformationenAusgeben("Titel"), product.IdAusgeben(), product.InformationenAusgeben("Land"), product.InformationenAusgeben("Bild"), product.InformationenAusgeben("Sprache"), product.InformationenAusgeben("Link"), Convert.ToInt32(product.InformationenAusgeben("Jahr")));
-                        alleBuecher.Add(neuesBuch);
-                    }
-
-                    if (product.InformationenAusgeben("Art") == "Magazin")
-                    {
-                        Magazin neuesMagazin = new Magazin(Convert.ToInt32(product.InformationenAusgeben("Rang")), product.InformationenAusgeben("Titel"), product.InformationenAusgeben("Auflage"), product.InformationenAusgeben("Gruppe"), product.InformationenAusgeben("SachGruppe"), product.InformationenAusgeben("Verlag"), product.IdAusgeben());
-                        alleMagazine.Add(neuesMagazin);
-                    }
-
-                }
                 using (StreamReader r = new StreamReader(directory + "/exemplar.json"))
                 {
                     string json = r.ReadToEnd();
@@ -74,31 +95,11 @@ namespace Buecherei.Properties
                     {
                         foreach (Exemplar exemplar in listExemplar)
                         {
-                            
-                            Buch buch = alleBuecher.Find(x => x.IdAusgeben() == exemplar.GehoertZu);
-                            if (buch != null)
-                            {
-                                buch.ExemplarHinzufuegen(exemplar);
-                            }
-
-                            else
-                            {
-                                Magazin magazin = alleMagazine.Find(x => x.IdAusgeben() == exemplar.GehoertZu);
-
-                                if (magazin != null)
-                                {
-                                    magazin.ExemplarHinzufuegen(exemplar);
-                                }
-
-                                else
-                                {
-                                    Console.WriteLine("Exemplar konnte nicht zugeordnet werden");
-                                }
-
-                            }
-
+                            IProduct product = alleProdukte.Find(x => x.IdAusgeben() == exemplar.GehoertZu);
 
                             Listen.ExemplarHinzufuegen(exemplar);
+                            product.ExemplarHinzufuegen(exemplar);
+
                         }
                         r.Close();
                     }
@@ -106,6 +107,7 @@ namespace Buecherei.Properties
             }
             catch
             {
+                File.Create(directory + "/exemplar.json");
                 Debug.Print("exemplar.json nicht zum laden gefunden");
             }
         }
@@ -135,47 +137,10 @@ namespace Buecherei.Properties
             }
             catch 
             {
+                File.Create(directory + "/leihen.json");
                 Debug.Print("leihen.json nicht zum laden gefunden");
             }
         }
-
-        public static void LoadMagazine()
-        {
-            try
-            {
-                using (StreamReader r = new StreamReader(directory + "/Magazine.json"))
-                {
-                    string json = r.ReadToEnd();
-                    List<Magazin> listMagazine = JsonConvert.DeserializeObject<List<Magazin>>(json);
-
-                    if (listMagazine != null)
-                    {
-                        foreach (Magazin magazin in listMagazine)
-                        {
-                            if (magazin.IdAusgeben() == Guid.Empty)
-                            {
-                                magazin.IdGenerieren();
-                            }
-                            //Exemplar exemplar = new Exemplar(magazin.IdAusgeben(), true);
-                            //magazin.ExemplarHinzufuegen(exemplar);
-                            //Exemplar exemplar2 = new Exemplar(magazin.IdAusgeben(), true);
-                            //magazin.ExemplarHinzufuegen(exemplar2);
-
-                            Listen.ProduktHinzufuegen(magazin);
-                        }
-                    }
-                    r.Close();
-                }
-
-            }
-            catch 
-            {
-                Debug.Print("Magazin.json zum Laden nicht gefunden");
-            }
-
-        }
-
-
 
         public static void SpeicherBuch()
         {
@@ -202,7 +167,7 @@ namespace Buecherei.Properties
             {
                 if (product.InformationenAusgeben("Art") == "Magazin")
                 {
-                    Magazin neuesMagazin = new Magazin(Convert.ToInt32(product.InformationenAusgeben("Rang")), product.InformationenAusgeben("Titel"), product.InformationenAusgeben("Auflage"), product.InformationenAusgeben("Gruppe"), product.InformationenAusgeben("SachGruppe"), product.InformationenAusgeben("Verlag"), product.IdAusgeben());
+                    Magazin neuesMagazin = new Magazin(Convert.ToInt32(product.InformationenAusgeben("Rang")), product.InformationenAusgeben("Titel"), product.InformationenAusgeben("Auflage"), product.InformationenAusgeben("Gruppe"), product.InformationenAusgeben("SachGruppe"), product.InformationenAusgeben("Verlag"), product.IdAusgeben(), product.InformationenAusgeben("Download"));
                     alleMagazine.Add(neuesMagazin);                
                 }
             }

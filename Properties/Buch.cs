@@ -1,8 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Security.Cryptography.X509Certificates;
-using ConsoleTables;
 using Newtonsoft.Json;
 
 namespace Buecherei.Properties
@@ -19,6 +16,7 @@ namespace Buecherei.Properties
         private string Title { get; set; }
         private int Year { get; set; }
         private string Art { get; set; }
+        private string DownloadLink { get; set; }
         private List<Exemplar> Exemplare { get; set; }
         private Guid BuchId { get; set; }
 
@@ -34,6 +32,7 @@ namespace Buecherei.Properties
             Title = title;
             Year = year;
             Art = "Buch";
+            DownloadLink = "www.Buchladen.de/" + Title.Trim();
             BuchId = Guid.NewGuid();
             Exemplare = new List<Exemplar>();
         }
@@ -77,6 +76,8 @@ namespace Buecherei.Properties
                     return Link;
                 case "Bild":
                     return ImageLink;
+                case "Download":
+                    return DownloadLink;
                 default:
                     return "Ein fehler ist aufgetreten!";
             }
@@ -168,6 +169,12 @@ namespace Buecherei.Properties
         {
             Exemplare.RemoveAt(position);
         }
+
+        public void DownloadlinkGenerieren()
+        {
+            DownloadLink = "www.Buchladen.de/" + this.Title.Replace(" ", "");
+        }
+
 
     }
 }

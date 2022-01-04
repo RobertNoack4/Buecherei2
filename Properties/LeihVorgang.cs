@@ -12,22 +12,33 @@ namespace Buecherei.Properties
         public Guid Leihnummer { get; set; }
         public string Name { get; set; }
         public DateTime AbgabeDatum { get; set; }
+        public string Downloadlink { get; set; }
 
-        public LeihVorgang(Exemplar exemplar, string name)
+        public LeihVorgang(Exemplar exemplar, string name, int tage)
         {
             GeliehenesExemplar = exemplar;
             Name = name;
             Leihnummer = Guid.NewGuid();
-            AbgabeDatum = DateTime.Now.AddDays(30).Date;
+            AbgabeDatum = DateTime.Now.AddDays(tage).Date;
+        }
+
+        public LeihVorgang(Exemplar exemplar, string name, int tage, string downloadlink)
+        {
+            GeliehenesExemplar = exemplar;
+            Name = name;
+            Leihnummer = Guid.NewGuid();
+            AbgabeDatum = DateTime.Now.AddDays(tage).Date;
+            Downloadlink = downloadlink;
         }
 
         [JsonConstructor]
-        public LeihVorgang(Guid exemplarId, Guid leihnummer, string name, DateTime abgabeDatum)
+        public LeihVorgang(Guid exemplarId, Guid leihnummer, string name, DateTime abgabeDatum, string downloadlink)
         {
             ExemplarId = exemplarId;
             Name = name;
             Leihnummer = leihnummer;
             AbgabeDatum = abgabeDatum;
+            Downloadlink = downloadlink;
         }
 
 

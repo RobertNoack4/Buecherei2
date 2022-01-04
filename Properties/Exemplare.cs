@@ -1,5 +1,4 @@
 using System;
-using System.Runtime.CompilerServices;
 using Newtonsoft.Json;
 
 namespace Buecherei.Properties
@@ -20,9 +19,9 @@ namespace Buecherei.Properties
         }
         
         [JsonConstructor]
-        public Exemplar(Guid buch ,bool verfuegbar, Guid guid)
+        public Exemplar(Guid productId ,bool verfuegbar, Guid guid)
         {
-            GehoertZu = buch;
+            GehoertZu = productId;
             Verfuegbar = verfuegbar;
             Id = guid;
         }
@@ -30,11 +29,6 @@ namespace Buecherei.Properties
         public void VerfuegbarkeitAendern(bool verfuegbarkeit)
         {
             Verfuegbar = verfuegbarkeit;
-        }
-
-        public void BuchHinzufuegen(Guid BuchId)
-        {
-            GehoertZu = BuchId;
         }
     }
 }

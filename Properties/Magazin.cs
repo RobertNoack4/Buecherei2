@@ -14,6 +14,7 @@ namespace Buecherei.Properties
         private string SachGruppe { get; set; }
         private string Verlag { get; set; }
         private string Art { get; set; }
+        private string DownloadLink { get; set; }
         private List<Exemplar> Exemplare { get; set; }
         private Guid MagazinId { get; set; }
 
@@ -31,7 +32,7 @@ namespace Buecherei.Properties
         }
         
         [JsonConstructor]
-        public Magazin(int rang, string titel, string auflage, string gruppe, string sachgruppe, string verlag, Guid guid)
+        public Magazin(int rang, string titel, string auflage, string gruppe, string sachgruppe, string verlag, Guid guid, string downlod)
         {
             Exemplare = new List<Exemplar>();
             Rang = rang;
@@ -41,6 +42,7 @@ namespace Buecherei.Properties
             SachGruppe = sachgruppe;
             Verlag = verlag;
             MagazinId = guid;
+            DownloadLink = downlod;
             Art = "Magazin";
         }
 
@@ -62,6 +64,8 @@ namespace Buecherei.Properties
                     return SachGruppe;
                 case "Verlag":
                     return Verlag;
+                case "Download":
+                    return DownloadLink;
                 default:
                     return "Es ist ein Fehler passiert";
             }
@@ -94,6 +98,7 @@ namespace Buecherei.Properties
                     return;
             }
         }
+
 
         public void IdGenerieren()
         {
@@ -145,6 +150,11 @@ namespace Buecherei.Properties
         public void ExemplarLoeschen(int position)
         {
             Exemplare.RemoveAt(position);
+        }
+
+        public void DownloadlinkGenerieren()
+        {
+            DownloadLink = "www.Buchladen.de/" + this.Titel.Replace(" ", "");
         }
 
     }
