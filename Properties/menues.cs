@@ -218,6 +218,14 @@ namespace Buecherei.Properties
                 int auswahl = Pruefungen.EingabeZahlPruefung(0, eingabe);
                 int verfuegbareExemplare = Listen.ProduktListeAusgeben()[auswahl - 1].ExemplareVerfuegbar();
 
+                Console.WriteLine("Möchten sie dies als Downloadlink verleihen?");
+
+                if(Pruefungen.JaNeinTest() == true)
+                {
+                    Console.WriteLine(Listen.ProduktListeAusgeben()[auswahl - 1].InformationenAusgeben("Download"));
+                    return;
+                }
+
                 if (verfuegbareExemplare == 0)
                 {
                     Console.WriteLine("Leider sind alle Exemplare dieses Buches ausgeliehen!");
@@ -833,7 +841,7 @@ namespace Buecherei.Properties
 
                     foreach (LeihVorgang leihVorgang in leihvorgangsListe)
                     {
-                        table3.AddRow(index, leihVorgang.Name, leihVorgang.AbgabeDatum, leihVorgang.GeliehenesExemplar.Id);
+                        table3.AddRow(index, leihVorgang.Name, leihVorgang.AbgabeDatum, leihVorgang.GeliehenesExemplar.Id, leihVorgang.GeliehenesExemplar.GehoertZu);
                         index++;
                     }
                     Console.WriteLine(table3);
@@ -851,6 +859,7 @@ namespace Buecherei.Properties
             Listen.ListenInit();
 
             Json.LoadBuch();
+            Json.LoadMagazine();
             Json.LoadExemplar();
             Json.LoadLeihvorgaenge();
         }
