@@ -12,7 +12,6 @@ namespace Buecherei.Properties
             bool wiederholen = true;
             do
             {
-                Console.Clear();
                 int auswahl;
                 Console.WriteLine("Bitte Wählen sie einen Menue Punkt aus:");
                 Console.WriteLine("1: Katalog");
