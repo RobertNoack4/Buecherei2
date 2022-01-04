@@ -774,6 +774,7 @@ namespace Buecherei.Properties
                         table.AddRow("Gruppe", product.InformationenAusgeben("Gruppe"));
                         table.AddRow("Sachgruppe", product.InformationenAusgeben("SachGruppe"));
                         table.AddRow("Verlag", product.InformationenAusgeben("Verlag"));
+                        table.AddRow("ID", product.IdAusgeben());
                     }
                     Console.WriteLine(table);
                     break;

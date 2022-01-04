@@ -27,6 +27,9 @@ namespace Buecherei.Properties
                             buch.BuchIdGenerieren();
                         }
 
+                        //Konstruktoren.ExemplarErstellen(buch, true);
+                        //Konstruktoren.ExemplarErstellen(buch, true);
+
                         //Exemplar exemplar = new Exemplar(buch.IdAusgeben(), true);
                         //buch.ExemplarHinzufuegen(exemplar);
                         //Exemplar exemplar2 = new Exemplar(buch.IdAusgeben(), true);
@@ -64,7 +67,6 @@ namespace Buecherei.Properties
                         Magazin neuesMagazin = new Magazin(Convert.ToInt32(product.InformationenAusgeben("Rang")), product.InformationenAusgeben("Titel"), product.InformationenAusgeben("Auflage"), product.InformationenAusgeben("Gruppe"), product.InformationenAusgeben("SachGruppe"), product.InformationenAusgeben("Verlag"), product.IdAusgeben());
                         alleMagazine.Add(neuesMagazin);
                     }
-
                 }
                 using (StreamReader r = new StreamReader(directory + "/exemplar.json"))
                 {
@@ -81,22 +83,12 @@ namespace Buecherei.Properties
                                 buch.ExemplarHinzufuegen(exemplar);
                             }
 
-                            else
+                            Magazin magazin = alleMagazine.Find(x => x.IdAusgeben() == exemplar.GehoertZu);
+
+                            if (magazin != null)
                             {
-                                Magazin magazin = alleMagazine.Find(x => x.IdAusgeben() == exemplar.GehoertZu);
-
-                                if (magazin != null)
-                                {
-                                    magazin.ExemplarHinzufuegen(exemplar);
-                                }
-
-                                else
-                                {
-                                    Console.WriteLine("Exemplar konnte nicht zugeordnet werden");
-                                }
-
+                                magazin.ExemplarHinzufuegen(exemplar);
                             }
-
 
                             Listen.ExemplarHinzufuegen(exemplar);
                         }
@@ -156,6 +148,9 @@ namespace Buecherei.Properties
                             {
                                 magazin.IdGenerieren();
                             }
+
+                            //Konstruktoren.ExemplarErstellen(magazin, true);
+                            //Konstruktoren.ExemplarErstellen(magazin, true);
                             //Exemplar exemplar = new Exemplar(magazin.IdAusgeben(), true);
                             //magazin.ExemplarHinzufuegen(exemplar);
                             //Exemplar exemplar2 = new Exemplar(magazin.IdAusgeben(), true);

@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Properties"
   ],
-  "SelectedNode": "\\Buecherei.sln",
+  "SelectedNode": "\\Buecherei.csproj",
   "PreviewInSolutionExplorer": false
 }
