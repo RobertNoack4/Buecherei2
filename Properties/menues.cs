@@ -12,6 +12,7 @@ namespace Buecherei.Properties
             bool wiederholen = true;
             do
             {
+                Console.Clear();
                 int auswahl;
                 Console.WriteLine("Bitte Wählen sie einen Menue Punkt aus:");
                 Console.WriteLine("1: Katalog");
@@ -220,13 +221,19 @@ namespace Buecherei.Properties
 
                 if(Pruefungen.JaNeinTest() == true)
                 {
-                    Console.WriteLine(Listen.ProduktListeAusgeben()[auswahl - 1].InformationenAusgeben("Download"));
+                    string name;
+                    string link = Listen.ProduktListeAusgeben()[auswahl - 1].InformationenAusgeben("Download") + "/" + Guid.NewGuid().ToString().Replace("-", "/");
+                    Console.WriteLine("Unter welchem Namen soll dieses Produkt verliehen werden?");
+                    name = Console.ReadLine();
+                    Konstruktoren.LeihvorgangErstellen(Listen.ProduktListeAusgeben()[auswahl - 1], name, link);
+                    Console.WriteLine("Produkt wurde an " + name + " verliehen");
+                    Console.WriteLine("Downloadlink: " + link);
                     return;
                 }
 
-                if (verfuegbareExemplare == 0)
+                else if (verfuegbareExemplare == 0)
                 {
-                    Console.WriteLine("Leider sind alle Exemplare dieses Buches ausgeliehen!");
+                    Console.WriteLine("Leider sind alle Exemplare dieses Produktes ausgeliehen!");
                     return;
                 }
 
@@ -234,7 +241,7 @@ namespace Buecherei.Properties
 
                 if (Pruefungen.JaNeinTest())
                 {
-                    Console.WriteLine("Unter welchem Namen soll dieses Buch verliehen werden?");
+                    Console.WriteLine("Unter welchem Namen soll dieses Produkt verliehen werden?");
                     string name = Console.ReadLine();
                     Konstruktoren.LeihvorgangErstellen(Listen.ProduktListeAusgeben()[auswahl - 1], name);
                 }
@@ -284,11 +291,11 @@ namespace Buecherei.Properties
                     Console.WriteLine(table2);
                     break;
                 case 3:
-                    var table3 = new ConsoleTable("Index", "Verliehen an", "Verliehen bis", "Exemplar ID");
+                    var table3 = new ConsoleTable("Index", "Verliehen an", "Verliehen bis", "Exemplar ID", "Downloadlink");
 
                     foreach (LeihVorgang leihVorgang in leihvorgangsListe)
                     {
-                        table3.AddRow(index, leihVorgang.Name, leihVorgang.AbgabeDatum, leihVorgang.GeliehenesExemplar.Id);
+                        table3.AddRow(index, leihVorgang.Name, leihVorgang.AbgabeDatum, leihVorgang.GeliehenesExemplar.Id, leihVorgang.Downloadlink);
                         index++;
                     }
                     Console.WriteLine(table3);
@@ -515,12 +522,14 @@ namespace Buecherei.Properties
                 case 3:
                     AllgemeineInfos(3);
                     Console.Write("Bitte wählen sie aus welchen Leihvorgang sie löschen wollen");
+                    Console.WriteLine(Environment.NewLine);
                     eingabe = Console.ReadLine();
                     auswahl = Pruefungen.EingabeZahlPruefung(0, eingabe);
                     leihVorgang = Listen.LeihVorgangsListeAusgeben()[auswahl - 1];
 
                     AlleInfos(auswahl, 3);
                     Console.WriteLine("Sind sie sicher dass sie diesen Leihvorgang löschen wollen? Das verwendete Exemplar wird dadurch wieder verfügbar");
+                    Console.WriteLine();
                     if (Pruefungen.JaNeinTest())
                     {
                         leihVorgang.GeliehenesExemplar.Verfuegbar = true;
