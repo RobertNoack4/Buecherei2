@@ -595,13 +595,16 @@ namespace Buecherei.Properties
 
             int indexExemplar = 1;
             List<Exemplar> alleExemplare = product.AlleExemplareAusgeben();
-            foreach (Exemplar exemplar in alleExemplare)
+            if(alleExemplare != null)
             {
-                table.AddRow(indexExemplar, exemplar.Verfuegbar, exemplar.Id);
-                indexExemplar ++;
-            }
-            Console.WriteLine(table);
+                foreach (Exemplar exemplar in alleExemplare)
+                {
+                    table.AddRow(indexExemplar, exemplar.Verfuegbar, exemplar.Id);
+                    indexExemplar++;
+                }
+                Console.WriteLine(table);
 
+            }
         }
 
         private static void AllgemeineInfos(int option)
@@ -615,25 +618,32 @@ namespace Buecherei.Properties
             {
                 case 1:
                     var table = new ConsoleTable("Index", "Titel", "Art");
-                    foreach (IProduct product in alleProdukte)
+                    if(alleProdukte != null)
                     {
-                        title = product.InformationenAusgeben("Titel");
+                        foreach (IProduct product in alleProdukte)
+                        {
+                            title = product.InformationenAusgeben("Titel");
 
-                        table.AddRow(index, title, product.InformationenAusgeben("Art"));
-                        index++;
+                            table.AddRow(index, title, product.InformationenAusgeben("Art"));
+                            index++;
+                        }
+                        Console.WriteLine(table);
+                        break;
                     }
-                    Console.WriteLine(table);
                     break;
                 case 3:
                     var table3 = new ConsoleTable("Index", "Verliehen an", "Verliehen bis", "Exemplar ID",
                         "Id des ausgeliehenen Exemplars");
-
-                    foreach (LeihVorgang leihVorgang in leihvorgangsListe)
+                    if(leihvorgangsListe != null)
                     {
-                        table3.AddRow(index, leihVorgang.Name, leihVorgang.AbgabeDatum, leihVorgang.GeliehenesExemplar.Id, leihVorgang.GeliehenesExemplar.GehoertZu);
-                        index++;
+                        foreach (LeihVorgang leihVorgang in leihvorgangsListe)
+                        {
+                            table3.AddRow(index, leihVorgang.Name, leihVorgang.AbgabeDatum, leihVorgang.GeliehenesExemplar.Id, leihVorgang.GeliehenesExemplar.GehoertZu);
+                            index++;
+                        }
+                        Console.WriteLine(table3);
+                        break;
                     }
-                    Console.WriteLine(table3);
                     break;
             }
         }

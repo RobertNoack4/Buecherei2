@@ -70,7 +70,6 @@ namespace Buecherei.Properties
 
             LeihVorgang neuerLeihvorgang = new LeihVorgang(verliehenesExemplar, name, tage, link);
             Listen.LeihvorgangHinzufuegen(neuerLeihvorgang);
-            verliehenesExemplar.VerfuegbarkeitAendern(false);
         }
     }
 }
