@@ -73,18 +73,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Buch.cs" />
-    <Compile Include="Properties\IProduct.cs" />
-    <Compile Include="Properties\Magazin.cs" />
-    <Compile Include="Properties\Pruefungen.cs" />
-    <Compile Include="Properties\Exemplare.cs" />
-    <Compile Include="Properties\Json.cs" />
-    <Compile Include="Properties\Konstruktoren.cs" />
-    <Compile Include="Properties\LeihVorgang.cs" />
-    <Compile Include="Properties\Listen.cs" />
-    <Compile Include="Properties\menues.cs" />
+    <Compile Include="Code\MenueServices.cs" />
+    <Compile Include="Code\Program.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Code\Buch.cs" />
+    <Compile Include="Code\IProduct.cs" />
+    <Compile Include="Code\Magazin.cs" />
+    <Compile Include="Code\Pruefungen.cs" />
+    <Compile Include="Code\Exemplare.cs" />
+    <Compile Include="Code\Json.cs" />
+    <Compile Include="Code\Konstruktoren.cs" />
+    <Compile Include="Code\LeihVorgang.cs" />
+    <Compile Include="Code\Listen.cs" />
+    <Compile Include="Code\menues.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

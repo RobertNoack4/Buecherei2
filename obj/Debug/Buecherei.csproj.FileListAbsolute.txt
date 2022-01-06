@@ -14,7 +14,6 @@ C:\Users\NoackRob\Source\Repos\Buecherei2\bin\Debug\ConsoleTables.dll
 C:\Users\NoackRob\Source\Repos\Buecherei2\bin\Debug\Newtonsoft.Json.dll
 C:\Users\NoackRob\Source\Repos\Buecherei2\bin\Debug\ConsoleTables.pdb
 C:\Users\NoackRob\Source\Repos\Buecherei2\bin\Debug\Newtonsoft.Json.xml
-C:\Users\NoackRob\Source\Repos\Buecherei2\obj\Debug\Buecherei.csproj.AssemblyReference.cache
 C:\Users\NoackRob\Source\Repos\Buecherei2\obj\Debug\Buecherei.csproj.CoreCompileInputs.cache
 C:\Users\NoackRob\Source\Repos\Buecherei2\obj\Debug\Buecherei.csproj.CopyComplete
 C:\Users\NoackRob\Source\Repos\Buecherei2\obj\Debug\Buecherei.pdb
@@ -29,3 +28,4 @@ C:\Users\NoackRob\source\repos\Buecherei2\bin\Debug\testcentric.engine.metadata.
 C:\Users\NoackRob\source\repos\Buecherei2\bin\Debug\Buecherei.exe.config
 C:\Users\NoackRob\source\repos\Buecherei2\bin\Debug\Buecherei.exe
 C:\Users\NoackRob\source\repos\Buecherei2\obj\Debug\Buecherei.exe
+C:\Users\NoackRob\source\repos\Buecherei2\obj\Debug\Buecherei.csproj.AssemblyReference.cache
